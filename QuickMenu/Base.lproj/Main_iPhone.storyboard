@@ -24,7 +24,7 @@
                                         <rect key="frame" x="145" y="427" width="31" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Skip">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -45,7 +45,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal" title="Or create an account">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -75,42 +75,33 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <state key="normal" title="Create">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.67450980392156867" green="0.23137254901960785" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.3529411764705882" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="DJ6-Kq-9FV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="322"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Menyou" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ox9-k0-xva">
-                                <rect key="frame" x="20" y="24" width="184" height="39"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FTUELogo" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-IS-o5Q">
+                                <rect key="frame" x="31" y="272" width="258" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="33"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHE-fV-rUE">
-                                <rect key="frame" x="20" y="73" width="300" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cDb-Eo-GwZ"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="background" destination="06a-1e-g8u" id="EGB-Eb-tw4"/>
                         <outlet property="backgroundImage" destination="DJ6-Kq-9FV" id="wWT-jt-Mv2"/>
                         <outlet property="continueButton" destination="32g-LX-Jiz" id="WkX-3W-lYn"/>
                         <outlet property="creatAccountButton" destination="Bsx-Fx-AHZ" id="33J-rU-C75"/>
                         <outlet property="createAccountButton" destination="Kle-25-SkX" id="HJ5-q8-On2"/>
-                        <outlet property="lineView" destination="aHE-fV-rUE" id="6Nr-gj-Ho1"/>
                         <outlet property="loginButton" destination="Kle-25-SkX" id="0k9-xh-rvP"/>
-                        <outlet property="logo" destination="Ox9-k0-xva" id="8Uj-A3-vxW"/>
+                        <outlet property="logoView" destination="BiS-IS-o5Q" id="73a-Ew-4hh"/>
                         <outlet property="passwordConfirmText" destination="cMm-ax-Hbe" id="KDU-Bf-VAn"/>
                         <outlet property="passwordText" destination="FyI-yg-hps" id="u7B-7P-Itt"/>
                         <outlet property="usernameText" destination="gDq-8q-m0Q" id="WIn-nc-4PR"/>
@@ -185,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FTUELogo" width="213" height="64"/>
         <image name="HomeBackground" width="320" height="341"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

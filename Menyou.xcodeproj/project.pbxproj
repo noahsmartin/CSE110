@@ -24,6 +24,7 @@
 		4F5D5F9A18FCB0D00042A0BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5D5F7918FCB0D00042A0BA /* UIKit.framework */; };
 		4F5D5FA218FCB0D00042A0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA018FCB0D00042A0BA /* InfoPlist.strings */; };
 		4F5D5FA418FCB0D00042A0BA /* QuickMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */; };
+		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		4F5D5F9F18FCB0D00042A0BA /* MenyouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenyouTests-Info.plist"; sourceTree = "<group>"; };
 		4F5D5FA118FCB0D00042A0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickMenuTests.m; sourceTree = "<group>"; };
+		4F80A21C19009B510012A60F /* MenyouApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenyouApi.h; sourceTree = "<group>"; };
+		4F80A21D19009B510012A60F /* MenyouApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenyouApi.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -125,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				4F80A21C19009B510012A60F /* MenyouApi.h */,
+				4F80A21D19009B510012A60F /* MenyouApi.m */,
 				4F5A493218FDEE420053D0B8 /* HomeTableViewController.h */,
 				4F5A493318FDEE420053D0B8 /* HomeTableViewController.m */,
 				4F5D5F8A18FCB0D00042A0BA /* Main_iPad.storyboard */,
@@ -272,6 +277,7 @@
 				4F5D5F8618FCB0D00042A0BA /* AppDelegate.m in Sources */,
 				4F5D5F8218FCB0D00042A0BA /* main.m in Sources */,
 				4F0C6DFE18FD023900A0F186 /* HomeViewController.m in Sources */,
+				4F80A21E19009B510012A60F /* MenyouApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
