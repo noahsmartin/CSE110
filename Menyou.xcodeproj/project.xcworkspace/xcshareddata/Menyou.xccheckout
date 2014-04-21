@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>56487FF0-CDD8-49A0-B24B-2567FC6E8B05</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Menyou</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EE0003C9-CB6E-4933-A6C7-82BA5281055B</key>
+		<string>https://github.com/noahsmartin/CSE110.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Menyou.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EE0003C9-CB6E-4933-A6C7-82BA5281055B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/noahsmartin/CSE110.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EE0003C9-CB6E-4933-A6C7-82BA5281055B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EE0003C9-CB6E-4933-A6C7-82BA5281055B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QuickMenu</string>
+		</dict>
+	</array>
+</dict>
+</plist>

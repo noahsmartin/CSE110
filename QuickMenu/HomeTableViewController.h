@@ -10,6 +10,6 @@
 
 @interface HomeTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) NSArray *titles;
+@property (weak, nonatomic) NSArray *restaurants; // An array of Restaurant objects
 
 @end

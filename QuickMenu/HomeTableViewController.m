@@ -7,25 +7,31 @@
 //
 
 #import "HomeTableViewController.h"
+#import "Restaurant.h"
 
 @implementation HomeTableViewController
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.titles count];
+    return [self.restaurants count];
+}
+
+-(void)setRestaurants:(NSArray *)restaurants
+{
+    _restaurants = restaurants;
+    [self.tableView reloadData];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"TableItem";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [self.titles objectAtIndex:indexPath.row];
+    cell.textLabel.text = ((Restaurant*)[self.restaurants objectAtIndex:indexPath.row]).title;
     return cell;
 }
 
