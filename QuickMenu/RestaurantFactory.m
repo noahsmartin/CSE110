@@ -20,8 +20,8 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for(NSDictionary *item in [json objectForKey:@"businesses"])
     {
-      // TODO: add checks for if it is a restuaraunt and if it is not closed
-      [list addObject:[[Restaurant alloc] initWithData:item]];
+      if(![[item objectForKey:@"is_closed"] boolValue])
+          [list addObject:[[Restaurant alloc] initWithData:item]];
     }
     return list;
     // TODO: have this start a new thread that loads the images then calls the callback
