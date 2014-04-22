@@ -46,12 +46,14 @@
 }
 - (IBAction)createAccountButton:(id)sender {
     
-    if(self.passwordText.text != self.passwordConfirmText.text){
+    
+    if([self.passwordText.text isEqualToString:self.passwordConfirmText.text] == NO){
         self.passwordText.text = nil;
         self.passwordConfirmText.text = nil;
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"Passwords don't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
+        
     }
 }
 
