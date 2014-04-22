@@ -161,6 +161,25 @@
             </objects>
             <point key="canvasLocation" x="335" y="-3"/>
         </scene>
+        <!--My Menu View Controller - My Menu-->
+        <scene sceneID="Aco-Hy-iNh">
+            <objects>
+                <viewController id="r3J-qC-ynO" customClass="MyMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="upJ-NL-0hi"/>
+                        <viewControllerLayoutGuide type="bottom" id="wjc-JQ-vrb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w2G-Ni-sWG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Menu" id="UdM-T8-szm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLG-zV-7ZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="772"/>
+        </scene>
         <!--View Controller - Item 1-->
         <scene sceneID="tdd-T2-h9f">
             <objects>
@@ -184,8 +203,14 @@
         <scene sceneID="8zC-yI-cIy">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="fOc-KQ-Lfd" customClass="MenuTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="pa4-E9-NFt"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" id="pa4-E9-NFt">
+                        <barButtonItem key="rightBarButtonItem" title="My Menu" id="z5e-xO-nfk">
+                            <connections>
+                                <segue destination="r3J-qC-ynO" kind="push" identifier="showMyMenuSegue" id="cm8-gQ-rBy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cNl-Op-GDh">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

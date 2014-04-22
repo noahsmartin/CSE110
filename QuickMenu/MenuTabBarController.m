@@ -7,17 +7,22 @@
 //
 
 #import "MenuTabBarController.h"
+#import "MyMenuViewController.h"
 
 @implementation MenuTabBarController
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    UIBarButtonItem *comment = [[UIBarButtonItem alloc]
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize
-                                target:self
-                                action:nil];
     
-    self.navigationItem.rightBarButtonItem = comment;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"showMyMenuSegue"])
+    {
+        MyMenuViewController* newController = ((MyMenuViewController*) segue.destinationViewController);
+        newController.myMenu = self.menu;
+    }
 }
 
 @end
