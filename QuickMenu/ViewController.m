@@ -44,6 +44,18 @@
     UIView   *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
     [firstResponder resignFirstResponder];
 }
+- (IBAction)createAccountButton:(id)sender {
+    
+    
+    if([self.passwordText.text isEqualToString:self.passwordConfirmText.text] == NO){
+        self.passwordText.text = nil;
+        self.passwordConfirmText.text = nil;
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"Passwords don't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+        
+    }
+}
 
 - (IBAction)createAccount:(id)sender {
     [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -51,7 +63,9 @@
          self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
      } completion:^(BOOL finished) {
      }];
+    
 }
+
 
 - (IBAction)continue:(id)sender {
     [self continueHome];
