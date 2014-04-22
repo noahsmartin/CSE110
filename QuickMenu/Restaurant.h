@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Menu.h"
 
 @interface Restaurant : NSObject
 
@@ -14,6 +15,7 @@
 @property NSString* title;
 @property NSString* description;
 @property UIImage* image;
+@property Menu* menu;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 

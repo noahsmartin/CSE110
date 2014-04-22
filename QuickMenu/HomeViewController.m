@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "HomeTableViewController.h"
 #import "RestaurantFactory.h"
+#import "MenuTabBarController.h"
+#import "Restaurant.h"
 
 #import "OAuthConsumer.h"
 
@@ -141,6 +143,16 @@
     [self.locationManager stopUpdatingLocation];
 
     [self updateYelp];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"showMenuSegue"])
+    {
+        MenuTabBarController* newController = ((MenuTabBarController*) segue.destinationViewController);
+        newController.title = ((UITableViewCell*)sender).textLabel.text;
+        newController.menu = ((Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row]).menu;
+    }
 }
 
 @end
