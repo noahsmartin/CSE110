@@ -37,12 +37,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if (true) {
+    if (![@"1" isEqualToString:[[NSUserDefaults standardUserDefaults]
+                                objectForKey:@"firstOpening"]]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
         ViewController *startupVC = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
         
         [self.window.rootViewController presentViewController:startupVC animated:NO completion:nil];
-        // animate = NO because we don't want to see the mainVC's view
     }
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 

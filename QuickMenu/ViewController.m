@@ -54,6 +54,12 @@
 }
 
 - (IBAction)continue:(id)sender {
+    [self continueHome];
+}
+
+-(void)continueHome {
+    [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"firstOpening"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.logoView]];
     gravityBehavior.magnitude = 8;
@@ -62,13 +68,6 @@
     [self.animator addBehavior:gravityBehavior];
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;   // your choice here from UIModalTransitionStyle
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -13,7 +13,7 @@
 #import "OAuthConsumer.h"
 
 @interface HomeViewController()
-@property CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property double longtidude;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) HomeTableViewController *tableController;
@@ -36,13 +36,15 @@
     return _factory;
 }
 
+-(CLLocationManager*)locationManager
+{
+    if(_locationManager)
+        return _locationManager;
+    return _locationManager = [[CLLocationManager alloc] init];
+}
+
 -(void)viewDidLoad
 {
-    // Create the location manager if this object does not
-    // already have one.
-    if (nil == self.locationManager)
-        self.locationManager = [[CLLocationManager alloc] init];
-    
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
@@ -101,7 +103,7 @@
 
 -(void)updateYelp
 {
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?sort=1&ll=%f,%f", self.latitude, self.longtidude]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?term=food&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"iIixPO3MfoeJp2NOyTlpVw" secret:@"LOn-ZnCRWv_4xU_4-CR0Zjf6CmU"];
     OAToken *token = [[OAToken alloc] initWithKey:@"f_MXBL42HAdYTfSP4bGx0WOxGYuFPr60" secret:@"ob9tIi9tc40InGRM-qPtfwVrTYc"];
     
