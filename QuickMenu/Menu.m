@@ -10,4 +10,15 @@
 
 @implementation Menu
 
+-(int)numberSelected
+{
+    int count = 0;
+    for(id Obj in self.menu)
+    {
+        // TODO: actually make sure it is selected
+        count++;
+    }
+    return count;
+}
+
 @end

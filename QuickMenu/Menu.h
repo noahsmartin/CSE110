@@ -10,4 +10,8 @@
 
 @interface Menu : NSObject
 
+@property (strong, nonatomic) NSArray* menu;  // This is the menu, an array of categories
+
+-(int)numberSelected;
+
 @end

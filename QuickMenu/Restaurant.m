@@ -16,6 +16,10 @@
   {
       // TODO: set up restuarant
       self.title = [data objectForKey:@"name"];
+      self.identifier = [data objectForKey:@"id"];
+      self.rating = [[data objectForKey:@"rating"] doubleValue];
+      self.distance = [[data objectForKey:@"distance"] doubleValue];
+      self.numberReviews = [[data objectForKey:@"review_count"] doubleValue];
       return self;
   }
   else
