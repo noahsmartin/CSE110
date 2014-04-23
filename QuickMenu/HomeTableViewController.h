@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define NO_ERROR 0
+#define NO_LOCATION 1
+#define NO_INTERNET 2
+
 @interface HomeTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) NSArray *restaurants; // An array of Restaurant objects
+
+@property int error;
 
 @end
