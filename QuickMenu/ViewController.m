@@ -32,6 +32,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    //disabling the three textfields so keyboard doesn't show up when not supposed to
+    _usernameText.enabled = NO;
+    _passwordText.enabled = NO;
+    _passwordConfirmText.enabled = NO;
+    
+    //disabling the create button associated with the textfields
+    _createAccountButton.enabled = NO;
+    
     self.backgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundImage.layer.shadowOpacity = 0.38;
     self.backgroundImage.layer.shadowRadius = 4;
@@ -64,6 +72,13 @@
      } completion:^(BOOL finished) {
      }];
     
+    //enabling the three textfields for user input
+    _usernameText.enabled = YES;
+    _passwordText.enabled = YES;
+    _passwordConfirmText.enabled = YES;
+    
+    //enabling the create button associated with the textfields
+    _createAccountButton.enabled = YES;
 }
 
 
