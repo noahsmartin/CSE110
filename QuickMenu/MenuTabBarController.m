@@ -16,6 +16,21 @@
     
 }
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"showMyMenuSegue"])
+    {
+        if(!([self.menu numberSelected] > 0))
+        {
+            UIAlertView *errorAlert = [[UIAlertView alloc]
+                                       initWithTitle:@"No items in your menu" message:@"You haven't added anything to your menu!" delegate:nil cancelButtonTitle:@"Add food!" otherButtonTitles:nil];
+            [errorAlert show];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([[segue identifier] isEqualToString:@"showMyMenuSegue"])

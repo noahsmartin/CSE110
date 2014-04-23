@@ -15,6 +15,9 @@
 @property NSString* title;
 @property NSString* description;
 @property UIImage* image;
+@property double rating;
+@property double distance;
+@property int numberReviews;
 @property Menu* menu;
 
 -(instancetype)initWithData:(NSDictionary*)data;
