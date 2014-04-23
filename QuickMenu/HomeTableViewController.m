@@ -30,8 +30,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    
-    cell.textLabel.text = ((Restaurant*)[self.restaurants objectAtIndex:indexPath.row]).title;
+    Restaurant* res = ((Restaurant*)[self.restaurants objectAtIndex:indexPath.row]);
+    cell.imageView.image = res.image;
+    cell.textLabel.text = res.title;
     return cell;
 }
 

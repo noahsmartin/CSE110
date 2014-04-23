@@ -33,7 +33,7 @@
 {
     if(!_factory)
     {
-        return _factory = [[RestaurantFactory alloc] init];
+        return _factory = [[RestaurantFactory alloc] initWithDelegate:self];
     }
     return _factory;
 }
@@ -121,7 +121,7 @@
     
     _responseData = [[NSMutableData alloc] init];
 
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    (void) [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -153,6 +153,11 @@
         newController.title = ((UITableViewCell*)sender).textLabel.text;
         newController.menu = ((Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row]).menu;
     }
+}
+
+-(void)loadedDataForId:(NSString *)identifier
+{
+    [self.table performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 @end

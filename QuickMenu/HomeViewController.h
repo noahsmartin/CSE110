@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "RestaurantFactory.h"
 
-@interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate>
+@interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate, RestaurantFactoryDelegate>
 
 @end

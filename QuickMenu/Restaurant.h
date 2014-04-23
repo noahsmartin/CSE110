@@ -18,6 +18,7 @@
 @property double rating;
 @property double distance;
 @property int numberReviews;
+@property NSString* imageUrl;
 @property Menu* menu;
 
 -(instancetype)initWithData:(NSDictionary*)data;

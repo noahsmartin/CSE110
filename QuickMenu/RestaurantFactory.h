@@ -15,15 +15,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RestaurantFactory : NSObject
-
--(NSMutableArray*)restaurantsForData:(NSData*)data;
-
-@end
-
 @protocol RestaurantFactoryDelegate <NSObject>
 
 @required
--(void)loadedDataForId:(NSString*)id;
+-(void)loadedDataForId:(NSString*)identifier;
+
+@end
+
+@interface RestaurantFactory : NSObject
+
+-(instancetype)initWithDelegate:(id<RestaurantFactoryDelegate>)delegate;
+
+-(NSMutableArray*)restaurantsForData:(NSData*)data;
 
 @end
