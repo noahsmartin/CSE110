@@ -91,7 +91,6 @@
     // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
     // Then the menus that are not found should be removed and everything else should be stored by this class
     self.tableController.restaurants = self.data;
-    NSLog(@"why here");
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     self.responseData = NULL;  // Stop referencing this for the GC
     
