@@ -40,6 +40,7 @@
     //disabling the create button associated with the textfields
     _createAccountButton.enabled = NO;
     
+    self.usernameText.placeholder = @"Email";
     self.backgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundImage.layer.shadowOpacity = 0.38;
     self.backgroundImage.layer.shadowRadius = 4;
@@ -63,6 +64,18 @@
         [errorAlert show];
         
     }
+    
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL b = [emailTest evaluateWithObject:self.usernameText.text];
+    if(b == NO){
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"Invalid email address" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+    
+    
+    
 }
 
 - (IBAction)createAccount:(id)sender {
