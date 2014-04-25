@@ -26,6 +26,6 @@
 
 -(instancetype)initWithDelegate:(id<RestaurantFactoryDelegate>)delegate;
 
--(NSMutableArray*)restaurantsForData:(NSData*)data;
+-(NSMutableArray*)restaurantsForData:(NSData*)data withOldList:(NSArray*)previousList;
 
 @end

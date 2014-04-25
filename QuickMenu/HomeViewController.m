@@ -87,7 +87,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.data = [self.factory restaurantsForData:self.responseData];
+    self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
     // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
     // Then the menus that are not found should be removed and everything else should be stored by this class
     self.tableController.restaurants = self.data;

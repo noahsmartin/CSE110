@@ -26,20 +26,31 @@
     return nil;
 }
 
--(NSMutableArray*)restaurantsForData:(NSData *)data
+-(NSMutableArray*)restaurantsForData:(NSData *)data withOldList:(NSArray*)previousList
 {
     if(!data)
         return nil;
     NSMutableArray* list = [[NSMutableArray alloc] init];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSMutableDictionary* previous = [[NSMutableDictionary alloc] init];
+    for(Restaurant* r in previousList)
+    {
+        [previous setObject:r forKey:r.identifier];
+    }
     for(NSDictionary *item in [json objectForKey:@"businesses"])
     {
       if(![[item objectForKey:@"is_closed"] boolValue])
       {
           Restaurant* restaurant = [[Restaurant alloc] initWithData:item];
+          Restaurant* r = nil;
+          if((r = [previous objectForKey:restaurant.identifier]))
+          {
+              [list addObject:r];
+              continue;  // This restaurant was already found, don't need to reload it just add the old one
+          }
           // We don't want to show a restaurant that does not have a picture
           if(!restaurant.imageUrl)
-              break;
+              continue;
           [list addObject:restaurant];
           // Use weak references in the block
           __weak Restaurant* tempRestaurant = restaurant;
