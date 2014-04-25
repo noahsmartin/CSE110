@@ -53,29 +53,40 @@
     UIView   *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
     [firstResponder resignFirstResponder];
 }
+
 - (IBAction)createAccountButton:(id)sender {
-    
-    
     if([self.passwordText.text isEqualToString:self.passwordConfirmText.text] == NO){
         self.passwordText.text = nil;
         self.passwordConfirmText.text = nil;
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"Passwords don't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
-        
     }
-    
+    else if([self.passwordText.text isEqualToString:@""] || [self.passwordConfirmText.text isEqualToString:@""]
+        || [self.usernameText.text isEqualToString:@""])
+    {
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"All fields must be filled out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+    else if([self validateEmail:self.usernameText.text])
+    {
+        // Call api here
+    }
+}
+
+-(BOOL)validateEmail:(NSString*) email
+{
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    BOOL b = [emailTest evaluateWithObject:self.usernameText.text];
-    if(b == NO){
+    BOOL b = [emailTest evaluateWithObject:email];
+    if(!b)
+    {
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"Invalid email address" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
-    
-    
-    
+    return b;
 }
 
 - (IBAction)createAccount:(id)sender {
