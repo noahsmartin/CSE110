@@ -25,7 +25,14 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) RestaurantFactory* factory;
 @property double latitude;
+@property (strong, nonatomic) NSMutableArray *searchData;
+@property (strong, nonatomic) NSOperationQueue *searchQueue;
 @end
+
+NSString* consumer_key = @"iIixPO3MfoeJp2NOyTlpVw";
+NSString* consumer_secret = @"LOn-ZnCRWv_4xU_4-CR0Zjf6CmU";
+NSString* token_key = @"f_MXBL42HAdYTfSP4bGx0WOxGYuFPr60";
+NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 @implementation HomeViewController
 
@@ -36,6 +43,22 @@
         return _factory = [[RestaurantFactory alloc] initWithDelegate:self];
     }
     return _factory;
+}
+
+-(NSMutableArray*)searchData
+{
+    if(!_searchData)
+        return _searchData = [[NSMutableArray alloc] init];
+    return _searchData;
+}
+
+-(NSOperationQueue*)searchQueue
+{
+    if(!_searchQueue)
+    {
+        return _searchQueue = [NSOperationQueue new];
+    }
+    return _searchQueue;
 }
 
 -(CLLocationManager*)locationManager
@@ -58,10 +81,9 @@
     
     [self.table setDataSource:self.tableController];
     [self.table setDelegate:self.tableController];
-    [self.tableController setTableView:self.table];
     
     [self.locationManager startUpdatingLocation];
-
+    //self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 -(void)refreshView:(UIRefreshControl*)refresh
@@ -91,6 +113,7 @@
     // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
     // Then the menus that are not found should be removed and everything else should be stored by this class
     self.tableController.restaurants = self.data;
+    [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     self.responseData = NULL;  // Stop referencing this for the GC
     
@@ -107,8 +130,8 @@
 -(void)updateYelp
 {
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?term=food&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"iIixPO3MfoeJp2NOyTlpVw" secret:@"LOn-ZnCRWv_4xU_4-CR0Zjf6CmU"];
-    OAToken *token = [[OAToken alloc] initWithKey:@"f_MXBL42HAdYTfSP4bGx0WOxGYuFPr60" secret:@"ob9tIi9tc40InGRM-qPtfwVrTYc"];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
+    OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
     
     id<OASignatureProviding, NSObject> provider = [[OAHMAC_SHA1SignatureProvider alloc] init];
     NSString *realm = nil;
@@ -146,6 +169,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"prepare");
     if([[segue identifier] isEqualToString:@"showMenuSegue"])
     {
         MenuTabBarController* newController = ((MenuTabBarController*) segue.destinationViewController);
@@ -157,6 +181,64 @@
 -(void)loadedDataForId:(NSString *)identifier
 {
     [self.table performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+   // NSLog(@"%lu", (unsigned long)[self.searchData count]);
+    return [self.searchData count];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"TableItem";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+    }
+    Restaurant* res = ((Restaurant*)[self.searchData objectAtIndex:indexPath.row]);
+    cell.textLabel.text = res.title;
+    cell.detailTextLabel.text = res.location;
+    return cell;
+}
+
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?term=%@&ll=%f,%f&limit=10", searchString, self.latitude, self.longtidude]];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
+    OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
+    
+    id<OASignatureProviding, NSObject> provider = [[OAHMAC_SHA1SignatureProvider alloc] init];
+    NSString *realm = nil;
+    
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:URL
+                                                                   consumer:consumer
+                                                                      token:token
+                                                                      realm:realm
+                                                          signatureProvider:provider];
+    [request prepare];
+    [self.searchQueue cancelAllOperations];
+    [self.searchQueue addOperationWithBlock:^{
+        NSArray* data = [self.factory loadRestaurantsForData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.searchData removeAllObjects];
+            [self.searchData addObjectsFromArray:data];
+            [controller.searchResultsTableView reloadData];
+        }];
+    }];
+    return NO;
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    [self.searchQueue cancelAllOperations];
+}
+
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return YES;
 }
 
 @end

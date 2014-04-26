@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "RestaurantFactory.h"
 
-@interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate, RestaurantFactoryDelegate>
+@interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate,
+    RestaurantFactoryDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

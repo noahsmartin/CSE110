@@ -28,4 +28,6 @@
 
 -(NSMutableArray*)restaurantsForData:(NSData*)data withOldList:(NSArray*)previousList;
 
+-(NSMutableArray*)loadRestaurantsForData:(NSData*)data;
+
 @end

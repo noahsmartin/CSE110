@@ -13,12 +13,12 @@
 
 @property NSString* identifier;
 @property NSString* title;
-@property NSString* description;
 @property UIImage* image;
 @property double rating;
 @property double distance;
 @property int numberReviews;
 @property NSString* imageUrl;
+@property NSString* location;
 @property Menu* menu;
 
 -(instancetype)initWithData:(NSDictionary*)data;

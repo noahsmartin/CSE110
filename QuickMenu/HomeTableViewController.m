@@ -47,12 +47,6 @@
     return header;
 }
 
--(void)setRestaurants:(NSArray *)restaurants
-{
-    _restaurants = restaurants;
-    [self.tableView reloadData];
-}
-
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"TableItem";

@@ -25,10 +25,25 @@
       self.distance = [[data objectForKey:@"distance"] doubleValue];
       self.numberReviews = [[data objectForKey:@"review_count"] doubleValue];
       self.imageUrl = [data objectForKey:@"image_url"];
+      NSDictionary* loc = [data objectForKey:@"location"];
+      NSArray* address = [loc objectForKey:@"address"];
+      NSArray* neighborhoods = [loc objectForKey:@"neighborhoods"];
+      NSString *line1 = @"", *line2 = @"";
+      if([address count])
+          line1 = [address objectAtIndex:0];
+      if([neighborhoods count])
+          line2 = [neighborhoods objectAtIndex:0];
+      
+      self.location = [NSString stringWithFormat:@"%@, %@", line1, line2];
       return self;
   }
   else
       return nil;
+}
+
+-(NSString*)description
+{
+    return self.identifier;
 }
 
 @end
