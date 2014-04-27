@@ -161,6 +161,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 {
     self.tableController.error = NO_LOCATION;
     [self.table reloadData];
+	[self.refreshControl endRefreshing];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
