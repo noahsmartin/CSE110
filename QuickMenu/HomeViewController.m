@@ -12,6 +12,8 @@
 #import "MenuTabBarController.h"
 #import "Restaurant.h"
 
+#import "UIViewController+ECSlidingViewController.h"
+
 #import "OAuthConsumer.h"
 
 @interface HomeViewController()
@@ -84,6 +86,13 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     
     [self.locationManager startUpdatingLocation];
     //self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+    self.slidingViewController.customAnchoredGestures = @[];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
 -(void)refreshView:(UIRefreshControl*)refresh
@@ -169,12 +178,12 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"prepare");
     if([[segue identifier] isEqualToString:@"showMenuSegue"])
     {
         MenuTabBarController* newController = ((MenuTabBarController*) segue.destinationViewController);
         newController.title = ((UITableViewCell*)sender).textLabel.text;
         newController.menu = ((Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row]).menu;
+        [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     }
 }
 

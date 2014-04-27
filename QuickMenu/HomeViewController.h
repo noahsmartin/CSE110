@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "RestaurantFactory.h"
+#import "ECSlidingViewController.h"
 
 @interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate,
-    RestaurantFactoryDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+    RestaurantFactoryDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate,
+    ECSlidingViewControllerDelegate>
 
 @end

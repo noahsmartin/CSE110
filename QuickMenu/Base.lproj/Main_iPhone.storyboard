@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pbW-Cd-ryA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="852" y="696"/>
         </scene>
-        <!--Home View Controller - Suggested-->
+        <!--Home View Controller - Title-->
         <scene sceneID="EpJ-Id-gmD">
             <objects>
                 <viewController id="Wgl-z3-ilq" customClass="HomeViewController" sceneMemberID="viewController">
@@ -144,13 +144,21 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Suggested" id="kr5-qv-47p"/>
+                    <navigationItem key="navigationItem" title="Title" id="duE-tr-7nV">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerMenu" id="vB3-Kg-Xy4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="Eon-gL-X9W" kind="unwind" unwindAction="unwindToMenuViewController:" id="90Z-oO-725"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="yHe-j1-zXm" id="iCE-27-iPJ"/>
                         <outlet property="table" destination="p8t-q1-dpk" id="vT0-76-SDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNt-hU-s3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Eon-gL-X9W" userLabel="Exit" sceneMemberID="exit"/>
                 <searchDisplayController id="oqG-43-sYP">
                     <connections>
                         <outlet property="delegate" destination="Wgl-z3-ilq" id="Spp-7T-rEZ"/>
@@ -254,10 +262,82 @@
             </objects>
             <point key="canvasLocation" x="1887" y="363"/>
         </scene>
+        <!--Sliding View Controller-->
+        <scene sceneID="th7-8p-pzh">
+            <objects>
+                <viewController id="DUe-a7-EY8" customClass="ECSlidingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r3a-zD-uDn"/>
+                        <viewControllerLayoutGuide type="bottom" id="swr-NO-JA0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Unv-cq-JQg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="topViewControllerStoryboardId" value="HomeNavigationController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="underLeftViewControllerStoryboardId" value="MenuViewController"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ljo-bh-47V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370" y="-79"/>
+        </scene>
+        <!--Left Table View Controller-->
+        <scene sceneID="B0Y-7s-oB2">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="9YV-uw-X2i" customClass="LeftTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pgl-gw-cO3"/>
+                        <viewControllerLayoutGuide type="bottom" id="vhM-LY-uSq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DJS-cO-tXB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-03-o32">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerCell" textLabel="nE5-T3-Aez" style="IBUITableViewCellStyleDefault" id="Jz7-U4-pJW">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jz7-U4-pJW" id="4aD-rx-YQg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nE5-T3-Aez">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9YV-uw-X2i" id="AcH-IM-kxj"/>
+                                    <outlet property="delegate" destination="9YV-uw-X2i" id="I2N-4G-o5H"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.35742293870000003" blue="0.2265210875" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f0L-oE-ZfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-354" y="824"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hW3-lg-DoI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pbW-Cd-ryA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="pbW-Cd-ryA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vb2-CT-La6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -276,6 +356,7 @@
     </scenes>
     <resources>
         <image name="FTUELogo" width="213" height="64"/>
+        <image name="HamburgerMenu" width="33" height="30"/>
         <image name="HomeBackground" width="320" height="341"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
