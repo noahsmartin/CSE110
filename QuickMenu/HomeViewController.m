@@ -95,9 +95,16 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
+
+
 -(void)refreshView:(UIRefreshControl*)refresh
 {
-    [self.locationManager startUpdatingLocation];
+    if([CLLocationManager locationServicesEnabled])
+    {
+        [self.locationManager startUpdatingLocation];
+    }
+    else
+        [self.refreshControl endRefreshing];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -195,7 +202,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   // NSLog(@"%lu", (unsigned long)[self.searchData count]);
     return [self.searchData count];
 }
 
