@@ -302,7 +302,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerCell" textLabel="nE5-T3-Aez" style="IBUITableViewCellStyleDefault" id="Jz7-U4-pJW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerCell" textLabel="nE5-T3-Aez" imageView="D0d-a8-CZE" style="IBUITableViewCellStyleDefault" id="Jz7-U4-pJW">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jz7-U4-pJW" id="4aD-rx-YQg">
@@ -310,14 +310,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nE5-T3-Aez">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
+                                                    <rect key="frame" x="74" y="0.0" width="231" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Icon" id="D0d-a8-CZE">
+                                                    <rect key="frame" x="15" y="0.0" width="44" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -327,7 +334,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.35742293870000003" blue="0.2265210875" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.44705882352941173" green="0.42745098039215684" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0L-oE-ZfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,7 +349,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vb2-CT-La6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.35742293870000003" blue="0.2265210875" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.18823529411764706" blue="0.091725593065693431" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -358,6 +366,7 @@
         <image name="FTUELogo" width="213" height="64"/>
         <image name="HamburgerMenu" width="33" height="30"/>
         <image name="HomeBackground" width="320" height="341"/>
+        <image name="Icon" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

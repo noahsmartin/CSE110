@@ -26,10 +26,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     cell.textLabel.text = @"Home";
-    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
-    cell.layer.shadowOffset = CGSizeMake(0, 1);
-    cell.layer.shadowOpacity = 0.4;
-    cell.layer.shadowRadius = 0;
+    // Hack because I didn't want to subclass UIView for this... probably should be fixed later
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 240, 0.5)];
+    [view setBackgroundColor:[UIColor darkGrayColor]];
+    UIView *mainView = [[[[cell subviews] objectAtIndex:0] subviews] objectAtIndex:1];
+    [mainView addSubview:view];
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor darkGrayColor];
+    [cell setSelectedBackgroundView:bgColorView];
     return cell;
 }
 
