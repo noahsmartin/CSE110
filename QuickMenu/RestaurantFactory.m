@@ -58,8 +58,12 @@
         Restaurant* r = nil;
         if((r = [previous objectForKey:restaurant.identifier]))
         {
-            [list replaceObjectAtIndex:i withObject:r];
-            continue;  // This restaurant was already found, don't need to reload it just add the old one
+            // This change is what was discussed in code review 1A
+            if([r.imageUrl isEqualToString:restaurant.imageUrl] && r.image)
+            {
+                restaurant.image = r.image;
+                continue;  // This restaurant was already found, don't need to reload it just add the old one
+            }
         }
         // We don't want to show a restaurant that does not have a picture
         if(!restaurant.imageUrl)
