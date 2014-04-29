@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmText;
+@property bool isClicked; 
 
 @end
 
@@ -90,11 +91,17 @@
 }
 
 - (IBAction)createAccount:(id)sender {
+    if(self.isClicked)
+    {
+        return;
+    }
     [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
          self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
+        
      } completion:^(BOOL finished) {
      }];
+    self.isClicked = YES;
     
     //enabling the three textfields for user input
     _usernameText.enabled = YES;
