@@ -145,7 +145,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)updateYelp
 {
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?term=food&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?category_filter=food,restaurants&limit=10&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
     OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
     
