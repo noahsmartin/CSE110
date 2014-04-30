@@ -187,8 +187,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     if([[segue identifier] isEqualToString:@"showMenuSegue"])
     {
         MenuTabBarController* newController = ((MenuTabBarController*) segue.destinationViewController);
-        newController.title = ((UITableViewCell*)sender).textLabel.text;
-        newController.menu = ((Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row]).menu;
+        Restaurant *r = (Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row];
+        newController.title = r.title;
+        newController.menu = r.menu;
         [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     }
 }
