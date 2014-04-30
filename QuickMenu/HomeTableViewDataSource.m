@@ -59,7 +59,12 @@
     Restaurant* res = ((Restaurant*)[self.restaurants objectAtIndex:indexPath.row]);
     cell.mainImage.image = res.image;
     cell.title.text = res.title;
-    cell.distance.text = [NSString stringWithFormat:@"%3.2f mi", res.distance];
+    NSString* dist;
+    if(res.distance < 0.1)
+        dist = [NSString stringWithFormat:@"%3.0f ft", res.distance * 5280];
+    else
+        dist = [NSString stringWithFormat:@"%3.2f mi", res.distance];
+    cell.distance.text = dist;
     return cell;
 }
 
