@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Noah Martin. All rights reserved.
 //
 
-#import "HomeTableViewController.h"
+#import "HomeTableViewDataSource.h"
 #import "Restaurant.h"
+#import "HomeTableViewCell.h"
 
-@implementation HomeTableViewController
+@implementation HomeTableViewDataSource
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -49,15 +50,16 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"TableItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    static NSString *simpleTableIdentifier = @"HomeTableViewCell";
+    HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     Restaurant* res = ((Restaurant*)[self.restaurants objectAtIndex:indexPath.row]);
-    cell.imageView.image = res.image;
-    cell.textLabel.text = res.title;
+    cell.mainImage.image = res.image;
+    cell.title.text = res.title;
+    cell.distance.text = [NSString stringWithFormat:@"%3.2f mi", res.distance];
     return cell;
 }
 

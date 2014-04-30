@@ -25,7 +25,6 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    cell.textLabel.text = @"Home";
     // Hack because I didn't want to subclass UIView for this... probably should be fixed later
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 240, 0.5)];
     [view setBackgroundColor:[UIColor darkGrayColor]];

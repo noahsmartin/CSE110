@@ -11,7 +11,7 @@
 #import "RestaurantFactory.h"
 #import "ECSlidingViewController.h"
 
-@interface HomeViewController : UIViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate,
+@interface HomeViewController : UITableViewController <CLLocationManagerDelegate, NSURLConnectionDataDelegate,
     RestaurantFactoryDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate,
     ECSlidingViewControllerDelegate>
 

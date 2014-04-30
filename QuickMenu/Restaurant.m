@@ -22,7 +22,7 @@
       self.title = [data objectForKey:@"name"];
       self.identifier = [data objectForKey:@"id"];
       self.rating = [[data objectForKey:@"rating"] doubleValue];
-      self.distance = [[data objectForKey:@"distance"] doubleValue];
+      self.distance = [[data objectForKey:@"distance"] doubleValue] * 0.000621371;
       self.numberReviews = [[data objectForKey:@"review_count"] doubleValue];
       self.imageUrl = [data objectForKey:@"image_url"];
       NSDictionary* loc = [data objectForKey:@"location"];

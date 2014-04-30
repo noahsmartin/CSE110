@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "HomeTableViewController.h"
+#import "HomeTableViewDataSource.h"
 #import "RestaurantFactory.h"
 #import "MenuTabBarController.h"
 #import "Restaurant.h"
@@ -20,9 +20,8 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property double longtidude;
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) HomeTableViewController *tableController;
+@property (strong, nonatomic) HomeTableViewDataSource *tableController;
 @property (strong, nonatomic) NSMutableArray* data; // The resturants from Yelp
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSURLConnection *conn;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) RestaurantFactory* factory;
@@ -75,11 +74,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    self.tableController = [[HomeTableViewController alloc] init];
+    self.tableController = [[HomeTableViewDataSource alloc] init];
     self.refreshControl = [[UIRefreshControl alloc]
                                         init];
     [self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    [self.table addSubview:self.refreshControl];
     
     [self.table setDataSource:self.tableController];
     [self.table setDelegate:self.tableController];

@@ -12,7 +12,7 @@
 #define NO_LOCATION 1
 #define NO_INTERNET 2
 
-@interface HomeTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface HomeTableViewDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) NSArray *restaurants; // An array of Restaurant objects
 
