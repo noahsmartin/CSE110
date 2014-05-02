@@ -28,6 +28,7 @@
 @property double latitude;
 @property (strong, nonatomic) NSMutableArray *searchData;
 @property (strong, nonatomic) NSOperationQueue *searchQueue;
+@property BOOL loadingYelp;
 @end
 
 NSString* consumer_key = @"iIixPO3MfoeJp2NOyTlpVw";
@@ -69,12 +70,18 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     return _locationManager = [[CLLocationManager alloc] init];
 }
 
+-(HomeTableViewDataSource*)tableController
+{
+    if(_tableController)
+        return _tableController;
+    return _tableController = [[HomeTableViewDataSource alloc] init];
+}
+
 -(void)viewDidLoad
 {
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    self.tableController = [[HomeTableViewDataSource alloc] init];
     self.refreshControl = [[UIRefreshControl alloc]
                                         init];
     [self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
@@ -83,7 +90,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.table setDelegate:self.tableController];
     
     [self.locationManager startUpdatingLocation];
-    //self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];
 }
@@ -92,8 +99,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 {
     [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
-
-
 
 -(void)refreshView:(UIRefreshControl*)refresh
 {
@@ -123,15 +128,41 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
-    // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
-    // Then the menus that are not found should be removed and everything else should be stored by this class
+   // if(self.loadingYelp)
+   // {
+        self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
+        NSString *urlString = @"http://acsweb.ucsd.edu/~gplin/cs110x/action.php?do=fetchMenu&menuname=";
+        for (int i = 0; i < self.data.count; i++) {
+            urlString = [urlString stringByAppendingString:((Restaurant*) self.data[i]).identifier];
+            if(i != self.data.count-1)
+                urlString = [urlString stringByAppendingString:@","];
+        }
     self.tableController.restaurants = self.data;
     [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
+    [self.refreshControl endRefreshing];
+        //NSLog(@"%@", urlString);
+        //NSURL *URL = [NSURL URLWithString:urlString];
+        //self.loadingYelp = NO;
+       // (void) [[NSURLConnection alloc] initWithRequest:[[NSURLRequest alloc] initWithURL:URL] delegate:self];
+   // }
+    /*else
+    {
+        // remove any restaurants from the list that don't have restaurant data and add the menu data for restaurants
+        //self.data = [self.factory loadMenusForData:self.responseData withRestuarants:self.data];
+        if(self.responseData)
+            NSLog(@"yelp data");
+        else
+            NSLog(@"its nil...");
+        self.tableController.restaurants = self.data;
+        [self.table reloadData];
+        self.tableController.error = NO_ERROR;  // Clear any error on the table
+        [self.refreshControl endRefreshing];
+    }
+    // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
+    // Then the menus that are not found should be removed and everything else should be stored by this class*/
     self.responseData = NULL;  // Stop referencing this for the GC
     
-    [self.refreshControl endRefreshing];
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -143,7 +174,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)updateYelp
 {
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?category_filter=food,restaurants&limit=10&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?category_filter=food,restaurants&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
     OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
     
@@ -159,7 +190,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     
     _responseData = [[NSMutableData alloc] init];
 
-    (void) [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.loadingYelp = YES;
+    [self.conn cancel];
+    self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -171,13 +204,13 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    [self.locationManager stopUpdatingLocation];
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
         self.longtidude = currentLocation.coordinate.longitude;
         self.latitude = currentLocation.coordinate.latitude;
     }
-    [self.locationManager stopUpdatingLocation];
 
     [self updateYelp];
 }
