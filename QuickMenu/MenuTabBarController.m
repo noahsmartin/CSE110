@@ -35,6 +35,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"%d", [self.menu numberSelected]);
     if([[segue identifier] isEqualToString:@"showMyMenuSegue"])
     {
         MyMenuViewController* newController = ((MyMenuViewController*) segue.destinationViewController);
@@ -49,7 +50,8 @@
     }
     else{
         // pick random set of menu items
-     //   [self.menu. randomMenuItem]
+        [self.menu pickRandomItems];
+        [self performSegueWithIdentifier:@"showMyMenuSegue" sender:self];
     }
 
     

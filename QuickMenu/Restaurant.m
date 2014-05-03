@@ -7,6 +7,8 @@
 //
 
 #import "Restaurant.h"
+#import "Categories.h"
+#import "Dish.h"
 
 #define DEBUG_Restaurant NO
 
@@ -35,6 +37,14 @@
           line2 = [neighborhoods objectAtIndex:0];
       
       self.location = [NSString stringWithFormat:@"%@, %@", line1, line2];
+      self.menu = [[Menu alloc] init];
+      Categories* c = [[Categories alloc] init];
+      Dish* d = [[Dish alloc] init];
+      c.dishes = @[d];
+      Categories* c1 = [[Categories alloc] init];
+      Dish* d1 = [[Dish alloc] init];
+      c1.dishes = @[d1];
+      self.menu.categories = @[c, c1];
       return self;
   }
   else

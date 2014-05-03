@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Dishes.h"
+#import "Dish.h"
 
 @interface Categories : NSObject
 
-@property Dishes* dishes;
-@property NSString* category;
-
+@property NSArray* dishes;
+@property NSString* title;
+@property NSString* description;
 
 @end
