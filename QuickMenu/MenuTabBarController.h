@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Menu.h"
 
-@interface MenuTabBarController : UITabBarController
+@interface MenuTabBarController : UITabBarController <UIAlertViewDelegate>
 
 @property Menu* menu;
 

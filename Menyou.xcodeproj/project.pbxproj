@@ -56,6 +56,8 @@
 		4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3010C190C72860053EA95 /* UIViewController+ECSlidingViewController.m */; };
 		4FE30115190C7A5F0053EA95 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */; };
 		4FFDD6281907268B008DEE69 /* MyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD6271907268B008DEE69 /* MyMenuViewController.m */; };
+		72CCDCAD19131C9D00A5681D /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAC19131C9D00A5681D /* Categories.m */; };
+		72CCDCB019131CE400A5681D /* Dishes.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dishes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,10 @@
 		4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
 		4FFDD6261907268B008DEE69 /* MyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMenuViewController.h; sourceTree = "<group>"; };
 		4FFDD6271907268B008DEE69 /* MyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMenuViewController.m; sourceTree = "<group>"; };
+		72CCDCAB19131C9D00A5681D /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		72CCDCAC19131C9D00A5681D /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		72CCDCAE19131CE400A5681D /* Dishes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dishes.h; sourceTree = "<group>"; };
+		72CCDCAF19131CE400A5681D /* Dishes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dishes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,10 @@
 			isa = PBXGroup;
 			children = (
 				4F240B361905F05F00A405E2 /* Menu.h */,
+				72CCDCAB19131C9D00A5681D /* Categories.h */,
+				72CCDCAC19131C9D00A5681D /* Categories.m */,
+				72CCDCAE19131CE400A5681D /* Dishes.h */,
+				72CCDCAF19131CE400A5681D /* Dishes.m */,
 				4F240B371905F05F00A405E2 /* Menu.m */,
 			);
 			name = Model;
@@ -510,8 +520,10 @@
 				4FE3010E190C72860053EA95 /* ECSlidingAnimationController.m in Sources */,
 				4F26DFB91901BDFA002C4FEC /* Restaurant.m in Sources */,
 				4FBF3D0319033BF100A51204 /* sha1.c in Sources */,
+				72CCDCAD19131C9D00A5681D /* Categories.m in Sources */,
 				4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */,
 				4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */,
+				72CCDCB019131CE400A5681D /* Dishes.m in Sources */,
 				4F5D5F8F18FCB0D00042A0BA /* ViewController.m in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
 				4F5A493418FDEE420053D0B8 /* HomeTableViewDataSource.m in Sources */,

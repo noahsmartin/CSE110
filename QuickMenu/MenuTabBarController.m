@@ -22,8 +22,10 @@
     {
         if(!([self.menu numberSelected] > 0))
         {
+        
             UIAlertView *errorAlert = [[UIAlertView alloc]
-                                       initWithTitle:@"No dishes in your menu" message:@"You haven't added anything to your menu!" delegate:nil cancelButtonTitle:@"Add food!" otherButtonTitles:@"Feeling Lucky?", nil];
+                                       initWithTitle:@"No dishes in your menu" message:@"You haven't added anything to your menu!" delegate:self cancelButtonTitle:@"Add food!" otherButtonTitles:@"Feeling Lucky?", nil];
+            
             [errorAlert show];
             return NO;
         }
@@ -38,6 +40,20 @@
         MyMenuViewController* newController = ((MyMenuViewController*) segue.destinationViewController);
         newController.myMenu = self.menu;
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex == 0){
+        // back to the menu
+    }
+    else{
+        // pick random set of menu items
+     //   [self.menu. randomMenuItem]
+    }
+
+    
+    
 }
 
 @end
