@@ -262,7 +262,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showMenuSegue" sender:indexPath];
+    [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
