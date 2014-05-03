@@ -220,9 +220,18 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     if([[segue identifier] isEqualToString:@"showMenuSegue"])
     {
         MenuTabBarController* newController = ((MenuTabBarController*) segue.destinationViewController);
-        Restaurant *r = (Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row];
-        newController.title = r.title;
-        newController.menu = r.menu;
+        
+        if(self.searchDisplayController.active)
+        {
+            Restaurant *r = [self.searchData objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row];
+            newController.title = r.title;
+            newController.menu = r.menu;
+        } else {
+            Restaurant *r = (Restaurant*)[self.data objectAtIndex:[self. table indexPathForCell:(UITableViewCell*)sender].row];
+            newController.title = r.title;
+            newController.menu = r.menu;
+        }
+        
         [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     }
 }
@@ -251,6 +260,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     return cell;
 }
 
+- (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"showMenuSegue" sender:indexPath];
+}
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
