@@ -28,7 +28,6 @@
 -(void)pickRandomItems
 {
     for (Categories* cat in self.categories) {
-        NSLog(@"category loop");
         int length = (int) cat.dishes.count;
         int rand = arc4random() % (length);
         ((Dish*) cat.dishes[rand]).isSelected = YES;

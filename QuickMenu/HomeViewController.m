@@ -11,6 +11,7 @@
 #import "RestaurantFactory.h"
 #import "MenuTabBarController.h"
 #import "Restaurant.h"
+#import "MEDynamicTransition.h"
 
 #import "UIViewController+ECSlidingViewController.h"
 
@@ -25,9 +26,11 @@
 @property (strong, nonatomic) NSURLConnection *conn;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) RestaurantFactory* factory;
+@property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
 @property double latitude;
 @property (strong, nonatomic) NSMutableArray *searchData;
 @property (strong, nonatomic) NSOperationQueue *searchQueue;
+@property MEDynamicTransition* dynamicTransition;
 @property BOOL loadingYelp;
 @end
 
@@ -91,8 +94,16 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     
     [self.locationManager startUpdatingLocation];
     
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-    self.slidingViewController.customAnchoredGestures = @[];
+    self.dynamicTransition = [[MEDynamicTransition alloc] init];
+    self.dynamicTransition.slidingViewController = self.slidingViewController;
+    self.slidingViewController.delegate = self.dynamicTransition;
+    
+    self.dynamicTransitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.slidingViewController.delegate action:@selector(handlePanGesture:)];
+
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
+    self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
+    [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
+    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
 }
 
 -(void)viewWillAppear:(BOOL)animated
