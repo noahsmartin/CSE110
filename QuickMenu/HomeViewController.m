@@ -151,9 +151,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     [self.refreshControl endRefreshing];
-    [[MenyouApi getInstance] getMenuForId:@"test" withBlock:^(Menu *menu) {
-        NSLog(@"%@", menu);
-    }];
     // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
     // Then the menus that are not found should be removed and everything else should be stored by this class*/
     self.responseData = NULL;  // Stop referencing this for the GC
