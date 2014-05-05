@@ -103,13 +103,17 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
     self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
-    [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
 }
 
 -(void)refreshView:(UIRefreshControl*)refresh
@@ -221,7 +225,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         }
         newController.title = r.title;
         newController.restaurant = r;
-        [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     }
 }
 
