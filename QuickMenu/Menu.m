@@ -25,6 +25,26 @@
     return count;
 }
 
+-(instancetype)initWithData:(NSDictionary *)data
+{
+    if(self = [super init])
+    {
+        NSMutableArray* categories = [[NSMutableArray alloc] init];
+        for(NSDictionary* category in [data objectForKey:@"categories"])
+        {
+            Categories* newCategory = [[Categories alloc] initWithData:category];
+            [categories addObject:newCategory];
+        }
+        self.categories = categories;
+    }
+    return self;
+}
+
+-(NSString*)description
+{
+    return [self.categories description];
+}
+
 -(void)pickRandomItems
 {
     for (Categories* cat in self.categories) {

@@ -13,6 +13,8 @@
 
 @property NSArray* dishes;
 @property NSString* title;
-@property NSString* description;
+@property NSString* about;
+
+-(instancetype)initWithData:(NSDictionary*)data;
 
 @end

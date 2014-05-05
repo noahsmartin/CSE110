@@ -21,4 +21,6 @@
 
 -(void)pickRandomItems;
 
+-(instancetype)initWithData:(NSDictionary*)data;
+
 @end

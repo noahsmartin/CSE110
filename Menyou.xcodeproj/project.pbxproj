@@ -30,6 +30,7 @@
 		4F5D5FA218FCB0D00042A0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA018FCB0D00042A0BA /* InfoPlist.strings */; };
 		4F5D5FA418FCB0D00042A0BA /* QuickMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */; };
 		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
+		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 		4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDC19033BF100A51204 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -57,7 +58,7 @@
 		4FE30115190C7A5F0053EA95 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */; };
 		4FFDD6281907268B008DEE69 /* MyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD6271907268B008DEE69 /* MyMenuViewController.m */; };
 		72CCDCAD19131C9D00A5681D /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAC19131C9D00A5681D /* Categories.m */; };
-		72CCDCB019131CE400A5681D /* Dishes.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dishes.m */; };
+		72CCDCB019131CE400A5681D /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dish.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 		4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickMenuTests.m; sourceTree = "<group>"; };
 		4F80A21C19009B510012A60F /* MenyouApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenyouApi.h; sourceTree = "<group>"; };
 		4F80A21D19009B510012A60F /* MenyouApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenyouApi.m; sourceTree = "<group>"; };
+		4F91227C1915744100139F81 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
+		4F91227D1915744100139F81 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4FBF3CD919033BF100A51204 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
@@ -163,8 +166,8 @@
 		4FFDD6271907268B008DEE69 /* MyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMenuViewController.m; sourceTree = "<group>"; };
 		72CCDCAB19131C9D00A5681D /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		72CCDCAC19131C9D00A5681D /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
-		72CCDCAE19131CE400A5681D /* Dishes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dishes.h; sourceTree = "<group>"; };
-		72CCDCAF19131CE400A5681D /* Dishes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dishes.m; sourceTree = "<group>"; };
+		72CCDCAE19131CE400A5681D /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
+		72CCDCAF19131CE400A5681D /* Dish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dish.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,8 +201,8 @@
 				4F240B361905F05F00A405E2 /* Menu.h */,
 				72CCDCAB19131C9D00A5681D /* Categories.h */,
 				72CCDCAC19131C9D00A5681D /* Categories.m */,
-				72CCDCAE19131CE400A5681D /* Dishes.h */,
-				72CCDCAF19131CE400A5681D /* Dishes.m */,
+				72CCDCAE19131CE400A5681D /* Dish.h */,
+				72CCDCAF19131CE400A5681D /* Dish.m */,
 				4F240B371905F05F00A405E2 /* Menu.m */,
 			);
 			name = Model;
@@ -387,6 +390,8 @@
 		4FE300FF190C72860053EA95 /* ECSlidingViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4F91227C1915744100139F81 /* MEDynamicTransition.h */,
+				4F91227D1915744100139F81 /* MEDynamicTransition.m */,
 				4FE30100190C72860053EA95 /* ECPercentDrivenInteractiveTransition.h */,
 				4FE30101190C72860053EA95 /* ECPercentDrivenInteractiveTransition.m */,
 				4FE30102190C72860053EA95 /* ECSlidingAnimationController.h */,
@@ -523,7 +528,7 @@
 				72CCDCAD19131C9D00A5681D /* Categories.m in Sources */,
 				4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */,
 				4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */,
-				72CCDCB019131CE400A5681D /* Dishes.m in Sources */,
+				72CCDCB019131CE400A5681D /* Dish.m in Sources */,
 				4F5D5F8F18FCB0D00042A0BA /* ViewController.m in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
 				4F5A493418FDEE420053D0B8 /* HomeTableViewDataSource.m in Sources */,
@@ -535,6 +540,7 @@
 				4F5D5F8618FCB0D00042A0BA /* AppDelegate.m in Sources */,
 				4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */,
 				4F5D5F8218FCB0D00042A0BA /* main.m in Sources */,
+				4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */,
 				4FBF3D0019033BF100A51204 /* NSURL+Base.m in Sources */,
 				4FBF3D0D19033BF100A51204 /* OAToken.m in Sources */,
 				4F0C6DFE18FD023900A0F186 /* HomeViewController.m in Sources */,

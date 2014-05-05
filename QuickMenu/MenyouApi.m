@@ -10,4 +10,29 @@
 
 @implementation MenyouApi
 
+static MenyouApi* instance = nil;
+
++(MenyouApi*)getInstance
+{
+    if(instance == nil)
+    {
+        return instance = [[MenyouApi alloc] init];
+    }
+    return instance;
+}
+
+-(void)getMenuForId:(NSString *)restaurantId withBlock:(void (^)(Menu *))block
+{
+    NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
+    urlString = [urlString stringByAppendingString:restaurantId];
+    NSURL* URL = [NSURL URLWithString:urlString];
+    NSURLRequest *conn = [NSURLRequest requestWithURL:URL];
+    NSData* data = [NSURLConnection sendSynchronousRequest:conn returningResponse:nil error:nil];
+    NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil] objectAtIndex:0];
+    Menu* m = [[Menu alloc] initWithData:json];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(m);
+    });
+}
+
 @end

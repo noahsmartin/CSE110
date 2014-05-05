@@ -13,6 +13,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Menu.h"
 
 @interface MenyouApi : NSObject
 
@@ -29,10 +30,12 @@
 -(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block;
 
 // Log in a user
--(void)LogInWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block;
+-(void)logInWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block;
 
 // Log out a user - this should return instantly
 -(void)logout;
+
+-(void)getMenuForId:(NSString*)restaurantId withBlock:(void(^)(Menu* menu))block;
 
 // Request info about restaurants given list of ids from yelp
 // First callback is executed when it is determined which restaruants are available

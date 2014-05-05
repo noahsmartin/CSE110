@@ -12,6 +12,7 @@
 #import "MenuTabBarController.h"
 #import "Restaurant.h"
 #import "MEDynamicTransition.h"
+#import "MenyouApi.h"
 
 #import "UIViewController+ECSlidingViewController.h"
 
@@ -139,37 +140,22 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-   // if(self.loadingYelp)
-   // {
-        self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
-        NSString *urlString = @"http://acsweb.ucsd.edu/~gplin/cs110x/action.php?do=fetchMenu&menuname=";
-        for (int i = 0; i < self.data.count; i++) {
-            urlString = [urlString stringByAppendingString:((Restaurant*) self.data[i]).identifier];
-            if(i != self.data.count-1)
-                urlString = [urlString stringByAppendingString:@","];
-        }
+    self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
+    NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
+    for (int i = 0; i < self.data.count; i++) {
+        urlString = [urlString stringByAppendingString:((Restaurant*) self.data[i]).identifier];
+        if(i != self.data.count-1)
+            urlString = [urlString stringByAppendingString:@","];
+    }
     self.tableController.restaurants = self.data;
     [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     [self.refreshControl endRefreshing];
-        //NSLog(@"%@", urlString);
-        //NSURL *URL = [NSURL URLWithString:urlString];
-        //self.loadingYelp = NO;
-       // (void) [[NSURLConnection alloc] initWithRequest:[[NSURLRequest alloc] initWithURL:URL] delegate:self];
-   // }
-    /*else
-    {
-        // remove any restaurants from the list that don't have restaurant data and add the menu data for restaurants
-        //self.data = [self.factory loadMenusForData:self.responseData withRestuarants:self.data];
-        if(self.responseData)
-            NSLog(@"yelp data");
-        else
-            NSLog(@"its nil...");
-        self.tableController.restaurants = self.data;
-        [self.table reloadData];
-        self.tableController.error = NO_ERROR;  // Clear any error on the table
-        [self.refreshControl endRefreshing];
-    }
+    NSLog(@"here");
+    [[MenyouApi getInstance] getMenuForId:@"test" withBlock:^(Menu *menu) {
+        NSLog(@"%@", menu);
+    }];
+    NSLog(@"now here");
     // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
     // Then the menus that are not found should be removed and everything else should be stored by this class*/
     self.responseData = NULL;  // Stop referencing this for the GC
