@@ -15,6 +15,7 @@
     if(self = [super init])
     {
         self.title = [data objectForKey:@"title"];
+        // TODO: create the dish items
     }
     return self;
 }

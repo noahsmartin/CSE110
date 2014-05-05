@@ -12,12 +12,8 @@
 
 @property (strong, nonatomic) NSArray* categories;  // This is the menu, an array of categories
 
-
-// so still need to implement Dish class, and Category
-// categories , like breakfast, lunch , dinner etc
-//
-
 @property (nonatomic) int numberSelected;
+@property (nonatomic) int numCategories;
 
 -(void)pickRandomItems;
 

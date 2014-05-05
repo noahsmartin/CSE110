@@ -26,13 +26,14 @@ static MenyouApi* instance = nil;
     NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
     urlString = [urlString stringByAppendingString:restaurantId];
     NSURL* URL = [NSURL URLWithString:urlString];
-    NSURLRequest *conn = [NSURLRequest requestWithURL:URL];
-    NSData* data = [NSURLConnection sendSynchronousRequest:conn returningResponse:nil error:nil];
-    NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil] objectAtIndex:0];
-    Menu* m = [[Menu alloc] initWithData:json];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        block(m);
-    });
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil] objectAtIndex:0];
+        Menu* m = [[Menu alloc] initWithData:json];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(m);
+        });
+    }];
 }
 
 @end

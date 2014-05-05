@@ -19,10 +19,17 @@
         for(Dish* d in cat.dishes)
         {
             if([d isSelected])
+            {
                 count++;
+            }
         }
     }
     return count;
+}
+
+-(int)numCategories
+{
+    return (int) self.categories.count;
 }
 
 -(instancetype)initWithData:(NSDictionary *)data

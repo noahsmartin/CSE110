@@ -35,6 +35,8 @@
 // Log out a user - this should return instantly
 -(void)logout;
 
+// This retrieves menu information for one restaurant and returns instantly
+// The block is executed on the main thread when the connection is finished
 -(void)getMenuForId:(NSString*)restaurantId withBlock:(void(^)(Menu* menu))block;
 
 // Request info about restaurants given list of ids from yelp

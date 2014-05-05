@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Menu.h"
+#import "Restaurant.h"
 
 @interface MenuTabBarController : UITabBarController <UIAlertViewDelegate>
 
-@property Menu* menu;
+@property (weak) Restaurant* restaurant;
 
 @end

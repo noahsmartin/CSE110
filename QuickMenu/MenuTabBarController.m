@@ -8,19 +8,39 @@
 
 #import "MenuTabBarController.h"
 #import "MyMenuViewController.h"
+#import "MenyouApi.h"
+#import "Categories.h"
 
 @implementation MenuTabBarController
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    if(!self.restaurant.menu)
+    {
+        [[MenyouApi getInstance] getMenuForId:self.restaurant.identifier withBlock:^(Menu *menu) {
+            self.restaurant.menu = menu;
+            [self updateUI];
+        }];
+    }
+}
+
+-(void)updateUI
+{
+    NSMutableArray* controllers = [[NSMutableArray alloc] initWithCapacity:self.restaurant.menu.numCategories];
+    for(Categories* cat in self.restaurant.menu.categories)
+    {
+        UITableViewController* controller = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+        controller.title = cat.title;
+        [controllers addObject:controller];
+    }
+    [self setViewControllers:controllers];
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if([identifier isEqualToString:@"showMyMenuSegue"])
     {
-        if(!([self.menu numberSelected] > 0))
+        if(!([self.restaurant.menu numberSelected] > 0))
         {
         
             UIAlertView *errorAlert = [[UIAlertView alloc]
@@ -35,11 +55,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"%d", [self.menu numberSelected]);
     if([[segue identifier] isEqualToString:@"showMyMenuSegue"])
     {
         MyMenuViewController* newController = ((MyMenuViewController*) segue.destinationViewController);
-        newController.myMenu = self.menu;
+        newController.myMenu = self.restaurant.menu;
     }
 }
 
@@ -50,7 +69,7 @@
     }
     else{
         // pick random set of menu items
-        [self.menu pickRandomItems];
+        [self.restaurant.menu pickRandomItems];
         [self performSegueWithIdentifier:@"showMyMenuSegue" sender:self];
     }
 
