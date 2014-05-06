@@ -10,4 +10,14 @@
 
 @implementation Dish
 
+-(instancetype)initWithData:(NSDictionary *)data
+{
+    if(self = [super init])
+    {
+        self.title = [data objectForKey:@"title"];
+        self.itemDescription = [data objectForKey:@"description"];
+    }
+    return self;
+}
+
 @end

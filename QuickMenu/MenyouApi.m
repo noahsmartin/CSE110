@@ -23,7 +23,6 @@ static MenyouApi* instance = nil;
 
 -(void)getMenuForId:(NSString *)restaurantId withBlock:(void (^)(Menu *))block
 {
-    NSLog(@"get for id");
     NSArray* arr = @[restaurantId];
     [self getMenusForIds:arr withBlock:^(NSArray * newArr) {
         Menu* m = newArr[0];
@@ -53,7 +52,7 @@ static MenyouApi* instance = nil;
             urlString = [urlString stringByAppendingString:@","];
     }
     NSURL* URL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:60.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:4.0];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSArray* menus = [self createMenusForData:data];
         dispatch_async(dispatch_get_main_queue(), ^{

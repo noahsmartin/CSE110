@@ -227,6 +227,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         	CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
                                                   @"CategoryViewController"];
          	controller.title = cat.title;
+            controller.category = cat;
          	[controllers addObject:controller];
         }
         [newController setViewControllers:controllers];
