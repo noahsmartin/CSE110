@@ -21,6 +21,8 @@
             self.restaurant.menu = menu;
             [self updateUI];
         }];
+    } else {
+        [self updateUI];
     }
 }
 
