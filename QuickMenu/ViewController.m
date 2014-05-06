@@ -47,11 +47,8 @@
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIView   *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
-    [firstResponder resignFirstResponder];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (IBAction)createAccountButton:(id)sender {
