@@ -13,6 +13,7 @@
 		4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26DFB31901BBBD002C4FEC /* RestaurantFactory.m */; };
 		4F26DFB91901BDFA002C4FEC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26DFB81901BDFA002C4FEC /* Restaurant.m */; };
 		4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */; };
+		4F45DD241918A7FD00B0CB7F /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */; };
 		4F5A493418FDEE420053D0B8 /* HomeTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */; };
 		4F5D5F7618FCB0D00042A0BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5D5F7518FCB0D00042A0BA /* Foundation.framework */; };
 		4F5D5F7818FCB0D00042A0BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5D5F7718FCB0D00042A0BA /* CoreGraphics.framework */; };
@@ -84,6 +85,8 @@
 		4F26DFB81901BDFA002C4FEC /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		4F3D43E01910665B007EA7A2 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
 		4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		4F5A493218FDEE420053D0B8 /* HomeTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewDataSource.h; sourceTree = "<group>"; };
 		4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewDataSource.m; sourceTree = "<group>"; };
 		4F5D5F7218FCB0D00042A0BA /* Menyou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menyou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,6 +288,8 @@
 				4F0C6DFD18FD023900A0F186 /* HomeViewController.m */,
 				4F240B321905F01400A405E2 /* MenuTabBarController.h */,
 				4F240B331905F01400A405E2 /* MenuTabBarController.m */,
+				4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */,
+				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
 			);
 			path = QuickMenu;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				4FFDD6281907268B008DEE69 /* MyMenuViewController.m in Sources */,
 				4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */,
 				4FE3010E190C72860053EA95 /* ECSlidingAnimationController.m in Sources */,
+				4F45DD241918A7FD00B0CB7F /* CategoryViewController.m in Sources */,
 				4F26DFB91901BDFA002C4FEC /* Restaurant.m in Sources */,
 				4FBF3D0319033BF100A51204 /* sha1.c in Sources */,
 				72CCDCAD19131C9D00A5681D /* Categories.m in Sources */,

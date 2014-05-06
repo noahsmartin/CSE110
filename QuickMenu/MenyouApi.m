@@ -23,15 +23,41 @@ static MenyouApi* instance = nil;
 
 -(void)getMenuForId:(NSString *)restaurantId withBlock:(void (^)(Menu *))block
 {
+    NSLog(@"get for id");
+    NSArray* arr = @[restaurantId];
+    [self getMenusForIds:arr withBlock:^(NSArray * newArr) {
+        Menu* m = newArr[0];
+        block(m);
+    }];
+}
+
+-(NSArray*)createMenusForData:(NSData*)data
+{
+    NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSMutableArray* result = [[NSMutableArray alloc] init];
+    for(NSDictionary* d in json)
+    {
+        // TODO: check if the menu is found, add nil if it is not
+        Menu* m = [[Menu alloc] initWithData:d];
+        [result addObject:m];
+    }
+    return result;
+}
+
+-(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
+{
     NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
-    urlString = [urlString stringByAppendingString:restaurantId];
+    for (int i = 0; i < ids.count; i++) {
+        urlString = [urlString stringByAppendingString:ids[i]];
+        if(i != ids.count-1)
+            urlString = [urlString stringByAppendingString:@","];
+    }
     NSURL* URL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:60.0];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil] objectAtIndex:0];
-        Menu* m = [[Menu alloc] initWithData:json];
+        NSArray* menus = [self createMenusForData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
-            block(m);
+            block(menus);
         });
     }];
 }

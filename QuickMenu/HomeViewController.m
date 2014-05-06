@@ -13,8 +13,9 @@
 #import "Restaurant.h"
 #import "MEDynamicTransition.h"
 #import "MenyouApi.h"
-
+#import "CategoryViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "Categories.h"
 
 #import "OAuthConsumer.h"
 
@@ -145,20 +146,15 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     self.data = [self.factory restaurantsForData:self.responseData withOldList:self.data];
-    NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
-    for (int i = 0; i < self.data.count; i++) {
-        urlString = [urlString stringByAppendingString:((Restaurant*) self.data[i]).identifier];
-        if(i != self.data.count-1)
-            urlString = [urlString stringByAppendingString:@","];
-    }
+    self.responseData = NULL;  // Stop referencing this for the GC
+}
+
+-(void)loadedMenus
+{
     self.tableController.restaurants = self.data;
     [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     [self.refreshControl endRefreshing];
-    // TODO: at this point our api should be called on the list of restuarts to get a list of menus or null if the menu is not found
-    // Then the menus that are not found should be removed and everything else should be stored by this class*/
-    self.responseData = NULL;  // Stop referencing this for the GC
-    
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -225,6 +221,15 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         }
         newController.title = r.title;
         newController.restaurant = r;
+        NSMutableArray* controllers = [[NSMutableArray alloc] init];
+        for(Categories* cat in r.menu.categories)
+        {
+        	CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
+                                                  @"CategoryViewController"];
+         	controller.title = cat.title;
+         	[controllers addObject:controller];
+        }
+        [newController setViewControllers:controllers];
     }
 }
 
@@ -287,11 +292,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
     [self.searchQueue cancelAllOperations];
-}
-
--(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    return YES;
 }
 
 @end

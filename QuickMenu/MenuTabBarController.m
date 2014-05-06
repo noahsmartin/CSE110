@@ -10,33 +10,9 @@
 #import "MyMenuViewController.h"
 #import "MenyouApi.h"
 #import "Categories.h"
+#import "CategoryViewController.h"
 
 @implementation MenuTabBarController
-
--(void)viewWillAppear:(BOOL)animated
-{
-    if(!self.restaurant.menu)
-    {
-        [[MenyouApi getInstance] getMenuForId:self.restaurant.identifier withBlock:^(Menu *menu) {
-            self.restaurant.menu = menu;
-            [self updateUI];
-        }];
-    } else {
-        [self updateUI];
-    }
-}
-
--(void)updateUI
-{
-    NSMutableArray* controllers = [[NSMutableArray alloc] initWithCapacity:self.restaurant.menu.numCategories];
-    for(Categories* cat in self.restaurant.menu.categories)
-    {
-        UITableViewController* controller = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-        controller.title = cat.title;
-        [controllers addObject:controller];
-    }
-    [self setViewControllers:controllers];
-}
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
