@@ -9,6 +9,7 @@
 
 #import "RestaurantFactory.h"
 #import "Restaurant.h"
+#import "MenyouApi.h"
 
 @interface RestaurantFactory()
 @property (weak, nonatomic) id<RestaurantFactoryDelegate> delegate;
@@ -81,6 +82,21 @@
             [weakSelf.delegate loadedDataForId:tempRestaurant.identifier];
         });
     }
+    NSMutableArray* ids = [[NSMutableArray alloc] init];
+    for(Restaurant* r in list)
+    {
+        [ids addObject:r.identifier];
+    }
+    __weak RestaurantFactory* weakSelf = self;
+    [[MenyouApi getInstance] getMenusForIds:ids withBlock:^(NSArray *arr) {
+        for(int i = 0; i < arr.count; i++)
+        {
+            Menu* m = arr[i];
+            // TODO: remove from array if nil
+            ((Restaurant*) list[i]).menu = m;
+        }
+        [weakSelf.delegate loadedMenus];
+    }];
     return list;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "Categories.h"
+#import "Dish.h"
 
 @implementation Categories
 
@@ -15,9 +16,20 @@
     if(self = [super init])
     {
         self.title = [data objectForKey:@"title"];
-        // TODO: create the dish items
+        NSMutableArray* arr = [[NSMutableArray alloc] init];
+        NSArray *a = [data objectForKey:@"dishes"];
+        for(NSDictionary* d in a)
+        {
+            [arr addObject:[[Dish alloc] initWithData:d]];
+        }
+        self.dishes = arr;
     }
     return self;
+}
+
+-(NSInteger)count
+{
+    return self.dishes.count;
 }
 
 -(NSString*)description

@@ -39,6 +39,8 @@
 // The block is executed on the main thread when the connection is finished
 -(void)getMenuForId:(NSString*)restaurantId withBlock:(void(^)(Menu* menu))block;
 
+-(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block;
+
 // Request info about restaurants given list of ids from yelp
 // First callback is executed when it is determined which restaruants are available
 -(void)requestInfo:(NSArray*)restuarantIds;

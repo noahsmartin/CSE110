@@ -12,6 +12,7 @@
 @interface Categories : NSObject
 
 @property NSArray* dishes;
+@property (nonatomic) NSInteger count;
 @property NSString* title;
 @property NSString* about;
 

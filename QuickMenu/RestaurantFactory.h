@@ -19,6 +19,7 @@
 
 @required
 -(void)loadedDataForId:(NSString*)identifier;
+-(void)loadedMenus;
 
 @end
 

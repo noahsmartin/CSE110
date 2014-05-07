@@ -12,4 +12,10 @@
 
 @property BOOL isSelected;
 
+@property NSString* title;
+@property NSString* price;
+@property NSString* itemDescription;
+
+-(instancetype)initWithData:(NSDictionary*)data;
+
 @end
