@@ -349,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ljo-bh-47V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="-79"/>
+            <point key="canvasLocation" x="-670" y="-3"/>
         </scene>
         <!--Left Table View Controller-->
         <scene sceneID="B0Y-7s-oB2">
@@ -400,7 +400,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-3v-ODD">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="Cogs" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-3v-ODD">
                                                     <rect key="frame" x="8" y="6" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -477,6 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptO-JC-Njt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-30" y="-663"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="D0U-Eb-wfL">
@@ -497,6 +498,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cogs" width="32" height="32"/>
         <image name="FTUELogo" width="213" height="64"/>
         <image name="HamburgerMenu" width="33" height="30"/>
         <image name="HomeBackground" width="320" height="341"/>
