@@ -8,18 +8,23 @@
 
 #import "LeftTableViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "ECSlidingSegue.h"
 
 @implementation LeftTableViewController
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue { }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"DrawerCell";
+    NSString *simpleTableIdentifier;
+    if(indexPath.row == 0){
+        simpleTableIdentifier = @"DrawerCell";
+    }
+    else simpleTableIdentifier = @"SettingsCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
@@ -39,6 +44,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.slidingViewController resetTopViewAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
 @end
