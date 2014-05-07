@@ -464,7 +464,7 @@
         <!--View Controller-->
         <scene sceneID="FIa-Sx-pTf">
             <objects>
-                <viewController id="3d0-Zw-9g1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="3d0-Zw-9g1" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sZa-Gq-RXC"/>
                         <viewControllerLayoutGuide type="bottom" id="3xg-LZ-C09"/>

@@ -42,8 +42,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row == 0){
     [self.slidingViewController resetTopViewAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    else{
+        [self.slidingViewController resetTopViewAnimated:YES];
+        self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    }
     
 }
 
