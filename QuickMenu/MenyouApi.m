@@ -32,8 +32,10 @@ static MenyouApi* instance = nil;
 
 -(NSArray*)createMenusForData:(NSData*)data
 {
-    NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSMutableArray* result = [[NSMutableArray alloc] init];
+    if(!data)
+        return result;
+    NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for(NSDictionary* d in json)
     {
         // TODO: check if the menu is found, add nil if it is not
@@ -45,14 +47,15 @@ static MenyouApi* instance = nil;
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
-    NSString *urlString = @"http://noahmart.in/menyou.php?ids=";
+    NSString *urlString = @"http://www.noahmart.in/menyou.php?ids=test";
     for (int i = 0; i < ids.count; i++) {
         urlString = [urlString stringByAppendingString:ids[i]];
         if(i != ids.count-1)
             urlString = [urlString stringByAppendingString:@","];
     }
     NSURL* URL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:4.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [request setHTTPMethod:@"GET"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         NSArray* menus = [self createMenusForData:data];
         dispatch_async(dispatch_get_main_queue(), ^{

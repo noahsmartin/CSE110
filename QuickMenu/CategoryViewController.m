@@ -7,6 +7,7 @@
 //
 
 #import "CategoryViewController.h"
+#import "DishTableViewCell.h"
 
 @interface CategoryViewController ()
 
@@ -37,14 +38,15 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"TableItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    static NSString *simpleTableIdentifier = @"DishCell";
+    DishTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
-    cell.textLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
-    cell.detailTextLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
+    cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
+    cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
+    cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
     return cell;
 }
 
