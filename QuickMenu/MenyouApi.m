@@ -12,6 +12,8 @@
 
 static MenyouApi* instance = nil;
 
+BOOL DEBUG_API = NO;
+
 +(MenyouApi*)getInstance
 {
     if(instance == nil)
@@ -35,6 +37,8 @@ static MenyouApi* instance = nil;
     NSMutableArray* result = [[NSMutableArray alloc] init];
     if(!data)
         return result;
+    if(DEBUG_API)
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for(NSDictionary* d in json)
     {
@@ -47,7 +51,7 @@ static MenyouApi* instance = nil;
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
-    NSString *urlString = @"http://www.noahmart.in/menyou.php?ids=test";
+    NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=test";
     for (int i = 0; i < ids.count; i++) {
         urlString = [urlString stringByAppendingString:ids[i]];
         if(i != ids.count-1)
