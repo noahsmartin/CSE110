@@ -21,9 +21,14 @@
 
 -(void)setup
 {
-    self.contentView.layer.cornerRadius = 10;
-    self.contentView.layer.masksToBounds = YES;
-    [self.contentView setOpaque:YES];
+    UIView *mainView = self.contentView.subviews[0];
+    self.contentView.layer.shadowRadius = 1;
+    self.contentView.layer.shadowOpacity = 0.4;
+    self.contentView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    mainView.layer.cornerRadius = 10;
+    mainView.layer.masksToBounds = YES;
+    [mainView setOpaque:YES];
 }
 
 - (void)awakeFromNib
