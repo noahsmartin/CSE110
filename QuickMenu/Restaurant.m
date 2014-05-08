@@ -27,6 +27,7 @@
       self.distance = [[data objectForKey:@"distance"] doubleValue] * 0.000621371;
       self.numberReviews = [[data objectForKey:@"review_count"] doubleValue];
       self.imageUrl = [data objectForKey:@"image_url"];
+      self.phoneNumber = [[data objectForKey:@"phone"] doubleValue];
       NSDictionary* loc = [data objectForKey:@"location"];
       NSArray* address = [loc objectForKey:@"address"];
       NSArray* neighborhoods = [loc objectForKey:@"neighborhoods"];
