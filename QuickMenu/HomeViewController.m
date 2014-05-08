@@ -40,6 +40,7 @@ NSString* consumer_key = @"iIixPO3MfoeJp2NOyTlpVw";
 NSString* consumer_secret = @"LOn-ZnCRWv_4xU_4-CR0Zjf6CmU";
 NSString* token_key = @"f_MXBL42HAdYTfSP4bGx0WOxGYuFPr60";
 NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
+UIActivityIndicatorView *activityView;
 
 @implementation HomeViewController
 
@@ -231,6 +232,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
          	[controllers addObject:controller];
         }
         [newController setViewControllers:controllers];
+        
+        //stop animating the loading data icon
+        [activityView stopAnimating];
     }
 }
 
@@ -260,7 +264,38 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    Restaurant* temp = [self.searchData objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row];
+    
+    //Getting the menu for the selected restaurant from search
+    [[MenyouApi getInstance] getMenuForId: temp.identifier withBlock:^(Menu *menu) {
+        
+        //if the menu exists
+        if(menu != nil)
+        {
+            //setting the selected restaurants restaurant
+            temp.menu = menu;
+            
+            //loading data icon
+            activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+            activityView.center=self.view.center;
+            
+            [activityView startAnimating];
+            
+            [self.view addSubview:activityView];
+            
+            //calling th seque
+            [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+        }
+        else //else the menu doesn't exist
+        {
+            //popup that notifies the user
+            UIAlertView *errorAlert = [[UIAlertView alloc]
+                                       initWithTitle:@"No menu for this restaurant" message:@"This restarant has not yet create a Menyou." delegate:self cancelButtonTitle:@"Return" otherButtonTitles:@"Go to website", nil];
+            
+            [errorAlert show];
+        }
+    }];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -295,4 +330,14 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.searchQueue cancelAllOperations];
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex == 0){
+        // back to the menu
+    }
+    else{
+        //**TODO: Add something that takes you to the menyouapp.com website
+
+    }
+}
 @end

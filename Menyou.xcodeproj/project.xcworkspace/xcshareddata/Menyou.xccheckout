@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FFDB2E00-DD1A-4086-B56A-60402A3A6812</string>
+	<string>9050ED08-0177-4CE3-BDEC-B81BB2D6CC32</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Menyou</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1EC38301-D86F-4117-8DE1-FA9FCAE4E34E</key>
-		<string>https://github.com/noahsmartin/CSE110.git</string>
+		<key>553608B5-F56E-488B-932D-2D586069EC7C</key>
+		<string>https://github.com/noahsmartin/CSE110</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Menyou.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1EC38301-D86F-4117-8DE1-FA9FCAE4E34E</key>
+		<key>553608B5-F56E-488B-932D-2D586069EC7C</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/noahsmartin/CSE110.git</string>
+	<string>https://github.com/noahsmartin/CSE110</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1EC38301-D86F-4117-8DE1-FA9FCAE4E34E</string>
+	<string>553608B5-F56E-488B-932D-2D586069EC7C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1EC38301-D86F-4117-8DE1-FA9FCAE4E34E</string>
+			<string>553608B5-F56E-488B-932D-2D586069EC7C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>QuickMenu</string>
+			<string>CSE110</string>
 		</dict>
 	</array>
 </dict>

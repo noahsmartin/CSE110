@@ -17,6 +17,7 @@
 @property double rating;
 @property double distance;
 @property int numberReviews;
+@property int phoneNumber;
 @property NSString* imageUrl;
 @property NSString* location;
 @property Menu* menu;
