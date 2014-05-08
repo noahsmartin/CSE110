@@ -263,14 +263,16 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jET-bn-rkh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jET-bn-rkh">
                                 <rect key="frame" x="0.0" y="104" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DishCell" rowHeight="79" id="AA6-6U-gPn" customClass="DishTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DishCell" rowHeight="79" id="AA6-6U-gPn" customClass="DishTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AA6-6U-gPn" id="8si-Lh-1iz">
@@ -300,25 +302,28 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="0.35742293870000003" blue="0.2265210875" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="background" destination="qrB-uN-FFg" id="q1i-fE-mqs"/>
                                             <outlet property="descriptionLabel" destination="GIj-SD-Aho" id="PwL-LV-55m"/>
                                             <outlet property="priceLabel" destination="wvJ-EB-wyJ" id="Vnk-AO-6FS"/>
                                             <outlet property="titleLabel" destination="pCt-eZ-muG" id="XHL-Z7-zwz"/>
+                                            <segue destination="nuN-WH-ZWo" kind="push" identifier="dishDetailSegue" id="3Nm-J4-6EV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ugw-3D-GHN" id="nFe-UZ-9Ny"/>
+                                    <outlet property="delegate" destination="ugw-3D-GHN" id="6Fm-6l-mVd"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.58823529411764708" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="7gV-Lw-9up"/>
                     <connections>
@@ -328,6 +333,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGX-FM-XIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1919" y="6"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lVf-Kp-Hdx">
+            <objects>
+                <viewController id="nuN-WH-ZWo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="haB-sQ-5n1"/>
+                        <viewControllerLayoutGuide type="bottom" id="uCD-dJ-AzS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OZ9-7f-wtp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gc6-2Y-xpc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-at-ITe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="6"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="th7-8p-pzh">

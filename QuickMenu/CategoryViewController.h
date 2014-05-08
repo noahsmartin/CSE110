@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Categories.h"
 
-@interface CategoryViewController : UIViewController <UITableViewDataSource>
+@interface CategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) Categories* category;

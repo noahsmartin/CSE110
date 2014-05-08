@@ -8,6 +8,11 @@
 
 #import "DishTableViewCell.h"
 
+@interface DishTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *background;
+@property CAGradientLayer* gradient;
+@end
+
 @implementation DishTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -19,16 +24,34 @@
     return self;
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.gradient.frame = self.background.bounds;
+}
+
+-(void)setColor:(UIColor *)color
+{
+    [self.background setBackgroundColor:color];
+}
+
 -(void)setup
 {
-    UIView *mainView = self.contentView.subviews[0];
+    self.gradient = [CAGradientLayer layer];
+    self.gradient.frame = self.background.bounds;
+    self.gradient.colors = @[(id)[[UIColor colorWithWhite:1.0f alpha:0.2f] CGColor],
+                              (id)[[UIColor colorWithWhite:1.0f alpha:0.1f] CGColor],
+                              (id)[[UIColor clearColor] CGColor],
+                              (id)[[UIColor colorWithWhite:0.0f alpha:0.1f] CGColor]];
+    self.gradient.locations = @[@0.00f, @0.01f, @0.95f, @1.00f];
+    [self.background.layer insertSublayer:self.gradient atIndex:0];
     self.contentView.layer.shadowRadius = 1;
-    self.contentView.layer.shadowOpacity = 0.4;
+    self.contentView.layer.shadowOpacity = 0.3;
     self.contentView.layer.shadowOffset = CGSizeMake(0, 1);
     self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    mainView.layer.cornerRadius = 10;
-    mainView.layer.masksToBounds = YES;
-    [mainView setOpaque:YES];
+    self.background.layer.cornerRadius = 10;
+    self.background.layer.masksToBounds = YES;
+    [self.background setOpaque:YES];
 }
 
 - (void)awakeFromNib
