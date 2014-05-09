@@ -332,12 +332,18 @@ UIActivityIndicatorView *activityView;
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    //Return button, goes back to screen
     if(buttonIndex == 0){
         // back to the menu
     }
-    else{
-        //**TODO: Add something that takes you to the menyouapp.com website
-
+    else{ //Other button takes user to website
+        //First check if the website exists
+        bool temp = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"https://www.google.com/"]];
+        
+        //If the website does exists, go to it
+        if (temp) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.google.com/"]];
+        }
     }
 }
 @end
