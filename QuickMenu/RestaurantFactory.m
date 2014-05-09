@@ -101,28 +101,6 @@
             i--;
             continue;
         }
-
-        /*
-        // Loop through the restaurants already in the list
-        for (int j = 0; j < i ; j++) {
-            Restaurant* past = list[j];
-            
-            //If the phonenum of the past restaurant is the same as the current one, they're probably the same restaurant
-            if ([past.phoneNumber isEqualToString: restaurant.phoneNumber])
-            {
-                //If the past one has less reviews remove the duplicate
-                if (past.numberReviews < restaurant.numberReviews)
-                {
-                    [list removeObjectAtIndex:j];
-                    j--;
-                }
-                else //else remove the current one
-                {
-                    [list removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }*/
         
         // Use weak references in the block
         __weak Restaurant* tempRestaurant = restaurant;
