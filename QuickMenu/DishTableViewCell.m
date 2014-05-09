@@ -69,7 +69,10 @@
 -(void)handlePan:(UIPanGestureRecognizer*)gestureRecognizer
 {
     if(gestureRecognizer.state == UIGestureRecognizerStateBegan)
-      self.startCenter = self.center;
+    {
+        [self.animator removeAllBehaviors];
+        self.startCenter = self.center;
+    }
     else if(gestureRecognizer.state == UIGestureRecognizerStateChanged)
     {
       CGPoint translation = [gestureRecognizer translationInView:self];
@@ -77,13 +80,13 @@
     }
     else if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
     {
-        if (self.frame.origin.x <= self.frame.size.width/4) {
+        CGFloat vx = [gestureRecognizer velocityInView:self.superview].x;
+        if (self.frame.origin.x <= self.frame.size.width/4 || vx < 0) {
             UISnapBehavior* snap = [[UISnapBehavior alloc] initWithItem:self snapToPoint:self.startCenter];
             snap.damping = 0.5;
             UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:@[self]];
             item.allowsRotation = NO;
             item.resistance = 0.5;
-            [self.animator removeAllBehaviors];
             [self.animator addBehavior:snap];
             [self.animator addBehavior:item];
         }
@@ -101,12 +104,10 @@
             UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:@[self]];
             item.allowsRotation = NO;
             item.resistance = 0.5;
-            [self.animator removeAllBehaviors];
             [self.animator addBehavior:push];
             [self.animator addBehavior:item];
-            CGFloat vx = [gestureRecognizer velocityInView:self.superview].x;
-            if(vx < 5)
-              vx = 5;
+            if(vx < 10)
+              vx = 10;
             else if(vx > 30)
               vx = 30;
             push.pushDirection = CGVectorMake(vx, 0);
