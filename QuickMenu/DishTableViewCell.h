@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DishTableViewCell : UITableViewCell
+@protocol DishTableViewDelegate <NSObject>
+
+@required
+-(void)itemRemoved:(id)cell;
+
+@end
+
+@interface DishTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) id<DishTableViewDelegate> delegate;
+@property (weak) id data;  // The dish object, the view should not know anything about it
 
 -(void)setColor:(UIColor*)color;
 

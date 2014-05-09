@@ -37,4 +37,11 @@
     return self.title;
 }
 
+-(void)removeDish:(id)dish
+{
+    NSMutableArray* arr = [self.dishes mutableCopy];
+    [arr removeObject:dish];
+    self.dishes = arr;
+}
+
 @end

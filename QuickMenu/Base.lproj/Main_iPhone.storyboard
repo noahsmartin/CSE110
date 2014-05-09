@@ -327,6 +327,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="7gV-Lw-9up"/>
                     <connections>
+                        <outlet property="categoryTableView" destination="jET-bn-rkh" id="1fP-eF-rsO"/>
                         <outlet property="titleLabel" destination="6E7-9F-yzn" id="t1f-U7-WE7"/>
                     </connections>
                 </viewController>

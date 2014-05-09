@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Categories.h"
+#import "DishTableViewCell.h"
 
-@interface CategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DishTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) Categories* category;
+
 
 @end

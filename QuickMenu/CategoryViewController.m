@@ -10,6 +10,7 @@
 #import "DishTableViewCell.h"
 
 @interface CategoryViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 
 @end
 
@@ -59,7 +60,19 @@
     cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
     cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
     cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
+    cell.data = self.category.dishes[indexPath.row];
+    cell.delegate = self;
     return cell;
+}
+
+-(void)itemRemoved:(id)cell
+{
+    NSUInteger index = [self.category.dishes indexOfObject:((DishTableViewCell*) cell).data];
+    [self.category removeDish:((DishTableViewCell*) cell).data];
+    [self.categoryTableView beginUpdates];
+    [self.categoryTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationRight];
+    [self.categoryTableView endUpdates];
 }
 
 @end
