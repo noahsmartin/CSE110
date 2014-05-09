@@ -41,6 +41,34 @@
             [list addObject:restaurant];
         }
     }
+    
+    //Double for loop to compare through the array and remove duplicates
+    for (int i = 0; i < [list count]; i++)
+    {
+        //Iterate through the existing list and get one restaurant
+        Restaurant* temp = list[i];
+        for (int j = i + 1; j < [list count]; j ++)
+        {
+            //Get another restaurnt
+            Restaurant* temp1 = list[j];
+            //If the phonenum of the temp is the same as temp1, they're probably the same restaurant
+            if ([temp.phoneNumber isEqualToString: temp1.phoneNumber])
+            {
+                //If temp1 has less reviews remove the duplicate
+                if (temp1.numberReviews < temp.numberReviews)
+                {
+                    [list removeObjectAtIndex:j];
+                    j--;
+                }
+                else //else remove temp
+                {
+                    [list removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+        }
+    }
+    
     return list;
 }
 
@@ -73,18 +101,20 @@
             i--;
             continue;
         }
-/*
+
+        /*
         // Loop through the restaurants already in the list
         for (int j = 0; j < i ; j++) {
             Restaurant* past = list[j];
             
             //If the phonenum of the past restaurant is the same as the current one, they're probably the same restaurant
-            if (past.phoneNumber == restaurant.phoneNumber)
+            if ([past.phoneNumber isEqualToString: restaurant.phoneNumber])
             {
                 //If the past one has less reviews remove the duplicate
                 if (past.numberReviews < restaurant.numberReviews)
                 {
                     [list removeObjectAtIndex:j];
+                    j--;
                 }
                 else //else remove the current one
                 {
