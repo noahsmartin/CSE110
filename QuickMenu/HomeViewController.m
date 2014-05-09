@@ -34,6 +34,7 @@
 @property (strong, nonatomic) NSOperationQueue *searchQueue;
 @property MEDynamicTransition* dynamicTransition;
 @property BOOL loadingYelp;
+@property UIActivityIndicatorView *activityIndicator;
 @end
 
 NSString* consumer_key = @"iIixPO3MfoeJp2NOyTlpVw";
@@ -105,6 +106,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
     self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.color = [UIColor blackColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -260,7 +264,37 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    Restaurant* temp = [self.searchData objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row];
+    
+    //Getting the menu for the selected restaurant from search
+    if (!temp.menu) {
+        [[MenyouApi getInstance] getMenuForId: temp.identifier withBlock:^(Menu *menu) {
+            [self.activityIndicator stopAnimating];
+            [self.activityIndicator removeFromSuperview];
+            //if the menu exists
+            if(menu != nil)
+            {
+                //setting the selected restaurants menu
+                temp.menu = menu;
+                
+                //calling the seque
+                [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
+            }
+            else //else the menu doesn't exist
+            {
+                //popup that notifies the user
+                UIAlertView *errorAlert = [[UIAlertView alloc]
+                                           initWithTitle:@"No menu for this restaurant" message:@"This restarant has not yet created a Menyou." delegate:self cancelButtonTitle:@"Return" otherButtonTitles:@"Create a Menyou", nil];
+                
+                [errorAlert show];
+            }
+        }];
+        self.activityIndicator.center = self.view.center;
+        [self.view addSubview:self.activityIndicator];
+        [self.activityIndicator startAnimating];
+    }
+    else
+        [self performSegueWithIdentifier:@"showMenuSegue" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -295,4 +329,21 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.searchQueue cancelAllOperations];
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    //Return button, goes back to screen
+    if(buttonIndex == 0){
+        // back to the menu
+    }
+    else{ //Other button takes user to website
+        NSURL *url = [NSURL URLWithString:@"http://www.menyouapp.com"];
+        //First check if the website can be opened
+        bool temp = [[UIApplication sharedApplication] canOpenURL:url];
+        
+        //If the website does exists, go to it
+        if (temp) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
+}
 @end

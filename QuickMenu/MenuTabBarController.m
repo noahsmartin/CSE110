@@ -50,9 +50,6 @@
         [self.restaurant.menu pickRandomItems];
         [self performSegueWithIdentifier:@"showMyMenuSegue" sender:self];
     }
-
-    
-    
 }
 
 @end

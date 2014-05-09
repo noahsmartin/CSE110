@@ -18,4 +18,6 @@
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
+-(void)removeDish:(id)dish;
+
 @end
