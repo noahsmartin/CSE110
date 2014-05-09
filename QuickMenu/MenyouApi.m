@@ -27,7 +27,9 @@ BOOL DEBUG_API = NO;
 {
     NSArray* arr = @[restaurantId];
     [self getMenusForIds:arr withBlock:^(NSArray * newArr) {
-        if([NSNull null] == newArr[0])
+        if([newArr count] == 0)
+            block(nil);
+        else if([NSNull null] == newArr[0])
             block(nil);
         else
         {
