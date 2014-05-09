@@ -32,12 +32,23 @@
       NSArray* address = [loc objectForKey:@"address"];
       NSArray* neighborhoods = [loc objectForKey:@"neighborhoods"];
       NSString *line1 = @"", *line2 = @"";
+      NSString *noLocation = @"No address provided";
       if([address count])
           line1 = [address objectAtIndex:0];
       if([neighborhoods count])
           line2 = [neighborhoods objectAtIndex:0];
       
-      self.location = [NSString stringWithFormat:@"%@, %@", line1, line2];
+      if([line1 length] == 0 && [line2 length] == 0)
+          self.location = noLocation;
+      
+      else if([line1 length] == 0)
+          self.location = line2;
+      
+      else if([line2 length] == 0)
+          self.location = line1;
+      
+      else
+          self.location = [NSString stringWithFormat:@"%@, %@", line1, line2];
       return self;
   }
   else
