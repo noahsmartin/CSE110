@@ -15,6 +15,4 @@
     RestaurantFactoryDelegate, UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate,
     ECSlidingViewControllerDelegate>
 
-- (IBAction)openDaleDietrichDotCom:(id)sender;
-
 @end
