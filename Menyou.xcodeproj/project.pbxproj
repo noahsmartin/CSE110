@@ -34,6 +34,7 @@
 		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
+		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDC19033BF100A51204 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3D0019033BF100A51204 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDE19033BF100A51204 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -117,6 +118,8 @@
 		4F91227C1915744100139F81 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
 		4F91227D1915744100139F81 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4FA2C0AF191DB8C200793042 /* StarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
+		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
 		4FBF3CD919033BF100A51204 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		4FBF3CDB19033BF100A51204 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				4F240B351905F04300A405E2 /* Model */,
 				4F80A21C19009B510012A60F /* MenyouApi.h */,
 				4F80A21D19009B510012A60F /* MenyouApi.m */,
+				4FA2C0AF191DB8C200793042 /* StarView.h */,
+				4FA2C0B0191DB8C200793042 /* StarView.m */,
 			);
 			name = MenyouData;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 				4FBF3D0C19033BF100A51204 /* OAServiceTicket.m in Sources */,
 				4FBF3D0B19033BF100A51204 /* OARequestParameter.m in Sources */,
 				4FBF3D0519033BF100A51204 /* OAConsumer.m in Sources */,
+				4FA2C0B1191DB8C200793042 /* StarView.m in Sources */,
 				4FFDD6281907268B008DEE69 /* MyMenuViewController.m in Sources */,
 				4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */,
 				4FE3010E190C72860053EA95 /* ECSlidingAnimationController.m in Sources */,

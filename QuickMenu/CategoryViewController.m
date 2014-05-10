@@ -62,6 +62,7 @@
     cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
     cell.data = self.category.dishes[indexPath.row];
     cell.delegate = self;
+    [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];
     return cell;
 }
 
@@ -73,6 +74,12 @@
     [self.categoryTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
                           withRowAnimation:UITableViewRowAnimationRight];
     [self.categoryTableView endUpdates];
+}
+
+-(void)itemSelected:(id)cell
+{
+    Dish* d = ((Dish*) ((DishTableViewCell*) cell).data);
+    d.isSelected = !d.isSelected;
 }
 
 @end

@@ -301,6 +301,16 @@
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-pe-vFV">
+                                                            <rect key="frame" x="3" y="4" width="20" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="checkUnselected">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="addItem:" destination="AA6-6U-gPn" eventType="touchUpInside" id="afI-Z9-Jun"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.35742293870000003" blue="0.2265210875" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
@@ -310,6 +320,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="background" destination="qrB-uN-FFg" id="q1i-fE-mqs"/>
+                                            <outlet property="checkButton" destination="8pc-pe-vFV" id="d3h-g6-Xks"/>
                                             <outlet property="descriptionLabel" destination="GIj-SD-Aho" id="PwL-LV-55m"/>
                                             <outlet property="priceLabel" destination="wvJ-EB-wyJ" id="Vnk-AO-6FS"/>
                                             <outlet property="titleLabel" destination="pCt-eZ-muG" id="XHL-Z7-zwz"/>
@@ -542,6 +553,7 @@
         <image name="HamburgerMenu" width="33" height="30"/>
         <image name="HomeBackground" width="320" height="341"/>
         <image name="Icon" width="44" height="44"/>
+        <image name="checkUnselected" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

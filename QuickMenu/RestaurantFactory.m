@@ -76,7 +76,7 @@
 {
     if(!data)
         return nil;
-    NSMutableArray* list = [self loadRestaurantsForData:data];//[[NSMutableArray alloc] init];
+    NSMutableArray* list = [self loadRestaurantsForData:data];
     NSMutableDictionary* previous = [[NSMutableDictionary alloc] init];
     for(Restaurant* r in previousList)
     {

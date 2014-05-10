@@ -8,13 +8,17 @@
 
 #import "StarView.h"
 
+@interface StarView()
+@property NSArray* images;
+@end
+
 @implementation StarView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }

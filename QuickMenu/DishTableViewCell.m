@@ -13,6 +13,8 @@
 @property CAGradientLayer* gradient;
 @property CGPoint startCenter;
 @property UIDynamicAnimator* animator;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
+@property BOOL isSelected;
 @end
 
 @implementation DishTableViewCell
@@ -30,6 +32,24 @@
 {
     [super layoutSubviews];
     self.gradient.frame = self.background.bounds;
+}
+
+- (IBAction)addItem:(id)sender {
+    [self setDishSelected:!self.isSelected];  // Toggle selected state
+    [self.delegate itemSelected:self];
+}
+
+-(void)setDishSelected:(BOOL)selected
+{
+    self.isSelected = selected;
+    if(self.isSelected)
+    {
+        [self.checkButton setImage:[UIImage imageNamed:@"checkSelected"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.checkButton setImage:[UIImage imageNamed:@"checkUnselected"] forState:UIControlStateNormal];
+    }
 }
 
 -(void)setColor:(UIColor *)color

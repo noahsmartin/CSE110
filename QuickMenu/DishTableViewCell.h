@@ -12,6 +12,7 @@
 
 @required
 -(void)itemRemoved:(id)cell;
+-(void)itemSelected:(id)cell;
 
 @end
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) id<DishTableViewDelegate> delegate;
 @property (weak) id data;  // The dish object, the view should not know anything about it
 
+-(void)setDishSelected:(BOOL)selected;
 -(void)setColor:(UIColor*)color;
 
 @end

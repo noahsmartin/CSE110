@@ -58,7 +58,7 @@ BOOL DEBUG_API = NO;
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
-    NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=test";
+    NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=";
     for (int i = 0; i < ids.count; i++) {
         urlString = [urlString stringByAppendingString:ids[i]];
         if(i != ids.count-1)
