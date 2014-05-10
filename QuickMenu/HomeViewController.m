@@ -156,8 +156,8 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 -(void)loadedMenus
 {
     self.tableController.restaurants = self.data;
-    [self.table reloadData];
     self.tableController.error = NO_ERROR;  // Clear any error on the table
+    [self.table reloadData];
     [self.refreshControl endRefreshing];
 }
 
