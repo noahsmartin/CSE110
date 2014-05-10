@@ -50,18 +50,21 @@
     self.background.layer.cornerRadius = 8;
     self.background.layer.masksToBounds = YES;
     [self.background setOpaque:YES];
-    UIGestureRecognizer* gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    UIPanGestureRecognizer* gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     gestureRecognizer.delegate = self;
     [self addGestureRecognizer:gestureRecognizer];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.superview];
 }
 
--(BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    CGPoint p = [gestureRecognizer translationInView:[self superview]];
-    if(fabs(p.x) > fabs(p.y))
+    if([gestureRecognizer respondsToSelector:@selector(translationInView:)])
     {
-        return YES;
+        CGPoint p = [((UIPanGestureRecognizer*) gestureRecognizer) translationInView:[self superview]];
+        if(fabs(p.x) > fabs(p.y))
+        {
+            return YES;
+        }
     }
     return NO;
 }
