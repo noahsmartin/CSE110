@@ -498,10 +498,10 @@
             </objects>
             <point key="canvasLocation" x="335" y="-3"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="D0U-Eb-wfL">
             <objects>
-                <viewController id="9F9-Iq-eto" sceneMemberID="viewController">
+                <viewController id="9F9-Iq-eto" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ptf-bg-lSW"/>
                         <viewControllerLayoutGuide type="bottom" id="r7V-CS-mdD"/>
