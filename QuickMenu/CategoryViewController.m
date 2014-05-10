@@ -28,8 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 104, 320, 0.5)];
+    view.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.4];
+    [self.view addSubview:view];
     self.titleLabel.text = self.title;
-    // Do any additional setup after loading the view.
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
