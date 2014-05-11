@@ -18,18 +18,46 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self setUp];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(void)awakeFromNib
 {
-    // Drawing code
+    [self setUp];
 }
-*/
+
+-(void)setRating:(double)rating
+{
+    _rating = rating;
+    int i = 0;
+    while(i < 5)
+    {
+        if(i+1 <= rating)
+            [self.images[i] setImage:[UIImage imageNamed:@"starFull"]];
+        else if(i < rating)
+            [self.images[i] setImage:[UIImage imageNamed:@"starHalf"]];
+        else
+            [self.images[i] setImage:[UIImage imageNamed:@"starEmpty"]];
+        i++;
+    }
+    [self setNeedsDisplay];
+}
+
+-(void)setUp
+{
+    NSMutableArray* array = [NSMutableArray array];
+    for(int i = 0; i < 5; i++)
+        [array addObject:[[UIImageView alloc] initWithImage:nil]];
+    int i = 0;
+    for(UIImageView *v in array)
+    {
+        [v setFrame:CGRectMake(i*20, 0, 20, 20)];
+        [self addSubview:v];
+        i++;
+    }
+    self.images = array;
+}
 
 @end

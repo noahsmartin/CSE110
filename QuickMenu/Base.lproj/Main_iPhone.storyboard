@@ -155,11 +155,17 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXB-4O-fIk" customClass="StarView">
+                                            <rect key="frame" x="69" y="30" width="160" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="distance" destination="2Je-tM-3yu" id="5G2-D4-nyN"/>
                                     <outlet property="mainImage" destination="S1b-0O-v9X" id="9aa-iN-DFj"/>
+                                    <outlet property="starView" destination="cXB-4O-fIk" id="V6S-fI-dt2"/>
                                     <outlet property="title" destination="JgW-ly-vUM" id="Pml-bj-7Dq"/>
                                     <segue destination="fOc-KQ-Lfd" kind="push" identifier="showMenuSegue" id="UYK-bU-nZ0"/>
                                 </connections>

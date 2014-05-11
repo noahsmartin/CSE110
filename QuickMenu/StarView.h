@@ -10,4 +10,6 @@
 
 @interface StarView : UIView
 
+@property (nonatomic) double rating;
+
 @end

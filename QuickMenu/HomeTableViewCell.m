@@ -7,6 +7,11 @@
 //
 
 #import "HomeTableViewCell.h"
+#import "StarView.h"
+
+@interface HomeTableViewCell()
+@property (weak, nonatomic) IBOutlet StarView *starView;
+@end
 
 @implementation HomeTableViewCell
 
@@ -26,6 +31,11 @@
     self.mainImage.layer.masksToBounds = YES;
     self.mainImage.layer.borderColor = [[UIColor whiteColor] CGColor];
     [self.mainImage setOpaque:YES];
+}
+
+-(void)setRating:(double)rating
+{
+    self.starView.rating = rating;
 }
 
 - (void)awakeFromNib

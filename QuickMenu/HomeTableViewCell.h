@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 
+-(void)setRating:(double)rating;
+
 @end
