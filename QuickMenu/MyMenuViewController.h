@@ -10,7 +10,7 @@
 #import "Restaurant.h"
 #import "Menu.h"
 
-@interface MyMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MyMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) Restaurant* restaurant;  // Weak reference to the Restaurant
 

@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="846"/>
+            <point key="canvasLocation" x="1218" y="1374"/>
         </scene>
         <!--Home View Controller - Recommended-->
         <scene sceneID="EpJ-Id-gmD">
@@ -395,7 +395,7 @@
             </objects>
             <point key="canvasLocation" x="1919" y="6"/>
         </scene>
-        <!--Dish View Controller - My Menu-->
+        <!--Dish View Controller - Dish-->
         <scene sceneID="lVf-Kp-Hdx">
             <objects>
                 <viewController id="nuN-WH-ZWo" customClass="DishViewController" sceneMemberID="viewController">
@@ -408,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Menu" id="Gc6-2Y-xpc"/>
+                    <navigationItem key="navigationItem" title="Dish" id="Gc6-2Y-xpc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-at-ITe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
