@@ -49,9 +49,14 @@ BOOL DEBUG_API = NO;
     NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     for(NSDictionary* d in json)
     {
-        // TODO: check if the menu is found, add nil if it is not
-        Menu* m = [[Menu alloc] initWithData:d];
-        [result addObject:m];
+        // if menu is not found, add a nil object
+        if([[d objectForKey:@"found"] isEqual:[NSNumber numberWithBool:false]]){
+            [result addObject:[NSNull null]];
+        }
+        else{ // else create menu oject and add to result
+            Menu* m = [[Menu alloc] initWithData:d];
+            [result addObject:m];
+        }
     }
     return result;
 }

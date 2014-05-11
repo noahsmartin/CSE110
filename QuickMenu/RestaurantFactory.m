@@ -118,11 +118,18 @@
     }
     __weak RestaurantFactory* weakSelf = self;
     [[MenyouApi getInstance] getMenusForIds:ids withBlock:^(NSArray *arr) {
+        
+        int offset = 0;  //used to account for deletion of null objects in array
         for(int i = 0; i < arr.count; i++)
         {
             Menu* m = arr[i];
-            // TODO: remove from array if nil
-            ((Restaurant*) list[i]).menu = m;
+            if([m isEqual:[NSNull null]]){
+                offset++;
+                [list removeObjectAtIndex:i];
+            }
+            else{
+                ((Restaurant*) list[i-offset]).menu = m;
+            }
         }
         [weakSelf.delegate loadedMenus];
     }];
