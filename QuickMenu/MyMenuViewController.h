@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Restaurant.h"
 #import "Menu.h"
 
-@interface MyMenuViewController : UIViewController
+@interface MyMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) Menu* myMenu;  // Weak reference to the Menu, each item in the menu may be selected, this will iterate through them
+@property (weak, nonatomic) Restaurant* restaurant;  // Weak reference to the Restaurant
 
 @end

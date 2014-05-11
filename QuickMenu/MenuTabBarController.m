@@ -36,7 +36,7 @@
     if([[segue identifier] isEqualToString:@"showMyMenuSegue"])
     {
         MyMenuViewController* newController = ((MyMenuViewController*) segue.destinationViewController);
-        newController.myMenu = self.restaurant.menu;
+        newController.restaurant = self.restaurant;
     }
 }
 

@@ -218,9 +218,52 @@
                     <view key="view" contentMode="scaleToFill" id="w2G-Ni-sWG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3vz-fO-x3p">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="priceCell" textLabel="09F-EE-oNi" detailTextLabel="lTg-cm-hjs" style="IBUITableViewCellStyleValue2" id="ENK-w6-UaK">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ENK-w6-UaK" id="zK5-mR-JbG">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="09F-EE-oNi">
+                                                    <rect key="frame" x="15" y="14" width="91" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lTg-cm-hjs">
+                                                    <rect key="frame" x="112" y="14" width="37" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="r3J-qC-ynO" id="6Pq-1k-V2T"/>
+                                    <outlet property="delegate" destination="r3J-qC-ynO" id="dE1-tV-5Yi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Menu" id="UdM-T8-szm"/>
+                    <navigationItem key="navigationItem" title="My Menu" id="UdM-T8-szm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="335-oT-cQH">
+                            <connections>
+                                <action selector="share:" destination="r3J-qC-ynO" id="7uq-Z8-FK9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLG-zV-7ZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -352,10 +395,10 @@
             </objects>
             <point key="canvasLocation" x="1919" y="6"/>
         </scene>
-        <!--View Controller-->
+        <!--Dish View Controller - My Menu-->
         <scene sceneID="lVf-Kp-Hdx">
             <objects>
-                <viewController id="nuN-WH-ZWo" sceneMemberID="viewController">
+                <viewController id="nuN-WH-ZWo" customClass="DishViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="haB-sQ-5n1"/>
                         <viewControllerLayoutGuide type="bottom" id="uCD-dJ-AzS"/>
@@ -365,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Gc6-2Y-xpc"/>
+                    <navigationItem key="navigationItem" title="My Menu" id="Gc6-2Y-xpc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-at-ITe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

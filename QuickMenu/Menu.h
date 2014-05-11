@@ -19,4 +19,8 @@
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
+-(NSArray*)selectedItems;
+
+-(NSNumber*)totalCost;
+
 @end

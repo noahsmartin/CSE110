@@ -8,6 +8,7 @@
 
 #import "CategoryViewController.h"
 #import "DishTableViewCell.h"
+#import "DishViewController.h"
 
 @interface CategoryViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
@@ -82,6 +83,14 @@
 {
     Dish* d = ((Dish*) ((DishTableViewCell*) cell).data);
     d.isSelected = !d.isSelected;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"dishDetailSegue"])
+    {
+        ((DishViewController*) segue.destinationViewController).dish = ((DishTableViewCell*) sender).data;
+    }
 }
 
 @end
