@@ -53,7 +53,7 @@
     int i = 0;
     for(UIImageView *v in array)
     {
-        [v setFrame:CGRectMake(i*20, 0, 20, 20)];
+        [v setFrame:CGRectMake(i*15, 0, 15, 15)];
         [self addSubview:v];
         i++;
     }
