@@ -10,6 +10,7 @@
 
 @interface StarView()
 @property NSArray* images;
+@property UILabel* noRating;
 @end
 
 @implementation StarView
@@ -31,16 +32,29 @@
 -(void)setRating:(double)rating
 {
     _rating = rating;
-    int i = 0;
-    while(i < 5)
+    if(_rating >= 0)
     {
-        if(i+1 <= rating)
-            [self.images[i] setImage:[UIImage imageNamed:@"starFull"]];
-        else if(i < rating)
-            [self.images[i] setImage:[UIImage imageNamed:@"starHalf"]];
-        else
-            [self.images[i] setImage:[UIImage imageNamed:@"starEmpty"]];
-        i++;
+        int i = 0;
+        while(i < 5)
+        {
+            if(i+1 <= rating)
+                [self.images[i] setImage:[UIImage imageNamed:@"starFull"]];
+            else if(i < rating)
+                [self.images[i] setImage:[UIImage imageNamed:@"starHalf"]];
+            else
+                [self.images[i] setImage:[UIImage imageNamed:@"starEmpty"]];
+            [self.images[i] setHidden:NO];
+            i++;
+        }
+        [self.noRating setHidden:YES];
+    }
+    else
+    {
+        [self.noRating setHidden:NO];
+        for(UIView *v in self.images)
+        {
+            [v setHidden:YES];
+        }
     }
     [self setNeedsDisplay];
 }
@@ -58,6 +72,10 @@
         i++;
     }
     self.images = array;
+    self.noRating = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
+    self.noRating.text = @"No Rating";
+    [self.noRating setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [self addSubview:self.noRating];
 }
 
 @end

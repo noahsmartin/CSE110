@@ -17,6 +17,8 @@
         self.title = [data objectForKey:@"title"];
         self.price = [[data objectForKey:@"price"] stringValue];
         self.itemDescription = [data objectForKey:@"description"];
+        self.rating = -1;
+        self.myRating = -1;
     }
     return self;
 }

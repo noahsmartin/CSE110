@@ -15,6 +15,8 @@
 @property NSString* title;
 @property NSString* price;
 @property NSString* itemDescription;
+@property double rating;
+@property double myRating;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 

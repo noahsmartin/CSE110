@@ -14,6 +14,7 @@
 		4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26DFB31901BBBD002C4FEC /* RestaurantFactory.m */; };
 		4F26DFB91901BDFA002C4FEC /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26DFB81901BDFA002C4FEC /* Restaurant.m */; };
 		4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */; };
+		4F45466A1921D89600F65094 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4546691921D89600F65094 /* LoginViewController.m */; };
 		4F45DD241918A7FD00B0CB7F /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */; };
 		4F496F70191F44B700424343 /* DishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F496F6F191F44B700424343 /* DishViewController.m */; };
 		4F5A493418FDEE420053D0B8 /* HomeTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */; };
@@ -91,6 +92,8 @@
 		4F26DFB81901BDFA002C4FEC /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		4F3D43E01910665B007EA7A2 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
 		4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		4F4546681921D89600F65094 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4F4546691921D89600F65094 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		4F496F6E191F44B700424343 /* DishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishViewController.h; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
 				4F26DFB51901BDD0002C4FEC /* ApiData */,
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				4F4546681921D89600F65094 /* LoginViewController.h */,
+				4F4546691921D89600F65094 /* LoginViewController.m */,
 				4F496F6E191F44B700424343 /* DishViewController.h */,
 				4F496F6F191F44B700424343 /* DishViewController.m */,
 				4FEAB18A191EB8AE00B9314E /* SettingsViewController.h */,
@@ -546,6 +551,7 @@
 				4FBF3D0C19033BF100A51204 /* OAServiceTicket.m in Sources */,
 				4FBF3D0B19033BF100A51204 /* OARequestParameter.m in Sources */,
 				4FBF3D0519033BF100A51204 /* OAConsumer.m in Sources */,
+				4F45466A1921D89600F65094 /* LoginViewController.m in Sources */,
 				4FA2C0B1191DB8C200793042 /* StarView.m in Sources */,
 				4FFDD6281907268B008DEE69 /* MyMenuViewController.m in Sources */,
 				4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */,
