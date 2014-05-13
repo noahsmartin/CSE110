@@ -51,6 +51,11 @@
     return [UIColor colorWithRed: 1.0 green:val blue:0.20 alpha:1.0];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.categoryTableView reloadData];
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"DishCell";

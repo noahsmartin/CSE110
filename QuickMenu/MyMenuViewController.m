@@ -53,7 +53,10 @@
         UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.restaurant.title] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];    }
     else {
-        [self startCameraControllerFromViewController:self usingDelegate:self];
+        if(![self startCameraControllerFromViewController:self usingDelegate:self])
+        {
+            [[[UIAlertView alloc] initWithTitle:@"No Camera" message:@"Could not find a camera for your device" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        }
     }
 }
 
