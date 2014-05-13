@@ -109,6 +109,11 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.color = [UIColor blackColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    //start the loading indicator until the list of restaurants is loaded
+    self.activityIndicator.center = self.view.center;
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -189,6 +194,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.loadingYelp = YES;
     [self.conn cancel];
     self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    //Once the app actually recieves restaurant data, stop the loading indicator
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
