@@ -11,6 +11,6 @@
 
 @interface MenuTabBarController : UITabBarController <UIAlertViewDelegate>
 
-@property (weak) Restaurant* restaurant;
+@property (strong) Restaurant* restaurant;
 
 @end
