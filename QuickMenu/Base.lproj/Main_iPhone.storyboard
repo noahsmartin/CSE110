@@ -438,28 +438,43 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqk-zJ-p22">
-                                <rect key="frame" x="88" y="125" width="145" height="30"/>
+                                <rect key="frame" x="88" y="131" width="145" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Leave a Review">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hii-uw-1Xu" kind="modal" id="ILW-hT-0Bl"/>
+                                    <action selector="leaveReview:" destination="nuN-WH-ZWo" eventType="touchUpInside" id="ddd-gK-2Xi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Rating:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAY-kz-D7a">
+                                <rect key="frame" x="69" y="135" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBM-CZ-jCd" customClass="StarView">
+                                <rect key="frame" x="151" y="136" width="100" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dish" id="Gc6-2Y-xpc"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
+                        <outlet property="leaveReviewButton" destination="dqk-zJ-p22" id="eIZ-mQ-8mt"/>
                         <outlet property="starView" destination="VID-aS-tZN" id="43d-bk-AWl"/>
                         <outlet property="titleView" destination="0hk-0e-kK2" id="wjY-1Z-Ax2"/>
+                        <outlet property="yourReview" destination="EAY-kz-D7a" id="cXT-Mu-4Q1"/>
+                        <outlet property="yourReviewStars" destination="kBM-CZ-jCd" id="fZv-w6-L1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-at-ITe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="47"/>
+            <point key="canvasLocation" x="2382" y="6"/>
         </scene>
         <!--Login View Controller - Login to Menyou-->
         <scene sceneID="dmo-dW-0cY">

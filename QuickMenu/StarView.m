@@ -73,7 +73,7 @@
     }
     self.images = array;
     self.noRating = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
-    self.noRating.text = @"No Rating";
+    self.noRating.text = @"No Ratings";
     [self.noRating setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [self addSubview:self.noRating];
 }
