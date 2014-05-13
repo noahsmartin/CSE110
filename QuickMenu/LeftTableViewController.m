@@ -9,6 +9,7 @@
 #import "LeftTableViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "ECSlidingSegue.h"
+#import "MenyouApi.h"
 
 @interface LeftTableViewController()
 @property UIViewController* homeViewController;
@@ -57,8 +58,18 @@
         [self.slidingViewController resetTopViewAnimated:YES];
     }
     else{
-        self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-        [self.slidingViewController resetTopViewAnimated:YES];
+        if([[MenyouApi getInstance] loggedIn])
+        {
+            self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+            [self.slidingViewController resetTopViewAnimated:YES];
+        }
+        else
+        {
+            [self presentViewController:[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"] animated:YES completion:^{
+                // Return to the home MVC
+                [self.slidingViewController resetTopViewAnimated:YES];
+            }];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

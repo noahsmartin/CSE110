@@ -41,8 +41,7 @@
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block;
 
-// Request info about restaurants given list of ids from yelp
-// First callback is executed when it is determined which restaruants are available
--(void)requestInfo:(NSArray*)restuarantIds;
+// Returns true if you are logged in, false otherwise
+-(BOOL)loggedIn;
 
 @end

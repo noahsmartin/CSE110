@@ -8,6 +8,11 @@
 
 #import "MenyouApi.h"
 
+@interface MenyouApi()
+@property NSString* session;
+
+@end
+
 @implementation MenyouApi
 
 static MenyouApi* instance = nil;
@@ -78,6 +83,13 @@ BOOL DEBUG_API = NO;
             block(menus);
         });
     }];
+}
+
+-(BOOL)loggedIn
+{
+    if(self.session)
+        return YES;
+    return NO;
 }
 
 @end
