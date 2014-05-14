@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
+#import "LeftTableViewController.h"
 
 @interface SettingsViewController : UIViewController <ECSlidingViewControllerDelegate>
-
+@property UIViewController* homeViewController;
 @end

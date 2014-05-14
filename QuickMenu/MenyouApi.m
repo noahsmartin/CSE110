@@ -93,7 +93,7 @@ BOOL DEBUG_API = NO;
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
-    [self processAccountRequest:request block:block];
+    [self processAccountRequest:request username:username block:block];
 }
 
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
@@ -103,10 +103,10 @@ BOOL DEBUG_API = NO;
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
-    [self processAccountRequest:request block:block];
+    [self processAccountRequest:request username:username block:block];
 }
 
--(void)processAccountRequest:(NSURLRequest*)request block:(void (^)(BOOL))block
+-(void)processAccountRequest:(NSURLRequest*)request username:(NSString*)username block:(void (^)(BOOL))block
 {
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data)
@@ -114,6 +114,7 @@ BOOL DEBUG_API = NO;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
+                _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(YES);
@@ -135,6 +136,12 @@ BOOL DEBUG_API = NO;
             });
         }
     }];
+}
+
+-(void)logout
+{
+    _username = nil;
+    self.session = nil;
 }
 
 -(BOOL)loggedIn

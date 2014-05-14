@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "MEDynamicTransition.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "MenyouApi.h"
 
 @interface SettingsViewController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
@@ -36,6 +37,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
+}
+
+- (IBAction)logout:(id)sender {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Logged out" message:@"Logged out successfully" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [[MenyouApi getInstance] logout];
+    ECSlidingViewController *slidingController = self.slidingViewController;
+    
+    [slidingController anchorTopViewToRightAnimated:YES];
+    slidingController.topViewController = self.homeViewController;
 }
 
 -(void)viewWillDisappear:(BOOL)animated

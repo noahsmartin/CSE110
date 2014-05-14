@@ -10,6 +10,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "ECSlidingSegue.h"
 #import "MenyouApi.h"
+#import "SettingsViewController.h"
 
 @interface LeftTableViewController()
 @property UIViewController* homeViewController;
@@ -60,7 +61,9 @@
     else{
         if([[MenyouApi getInstance] loggedIn])
         {
-            self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+            UINavigationController* settingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+            ((SettingsViewController*) settingsViewController.topViewController).homeViewController = self.homeViewController;
+            self.slidingViewController.topViewController = settingsViewController;
             [self.slidingViewController resetTopViewAnimated:YES];
         }
         else
