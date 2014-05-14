@@ -359,8 +359,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-pe-vFV">
-                                                            <rect key="frame" x="3" y="3" width="30" height="30"/>
+                                                            <rect key="frame" x="3" y="3" width="41" height="41"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="11" maxY="12"/>
                                                             <state key="normal" image="checkUnselected">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
