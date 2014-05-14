@@ -1,79 +1,80 @@
 <?php 
+    // These variables define the connection information
+    $username = "stepshep"; 
+    $password = "menyoucs110"; 
+    $host = "users.csss5n4ctp7b.us-east-1.rds.amazonaws.com"; 
+    $dbname = "innodb"; 
 
-    // First we execute our common code to connection to the database and start the session 
-    require("common.php"); 
+    // By passing the following $options array to the database connection code we 
+    // are telling the MySQL server that we want to communicate with it using UTF-8 
+    $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
+    
+    try 
+    { 
+        $db = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password, $options); 
+    } 
+    catch(PDOException $ex) 
+    { 
+        die("Failed to connect to the database: " . $ex->getMessage()); 
+    } 
      
-        // Ensure that the user has entered a non-empty username 
-        if(empty($_GET['username'])) 
+    // This statement configures PDO to throw an exception when it encounters 
+    // an error.
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+     
+    // This statement configures PDO to return database rows from your database using an associative 
+    // array. 
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
+     
+    // This block of code is used to undo magic quotes.
+    if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) 
+    { 
+        function undo_magic_quotes_gpc(&$array) 
         { 
-            // Note that die() is generally a terrible way of handling user errors 
-            // like this.  It is much better to display the error with the form 
-            // and allow the user to correct their mistake.  However, that is an 
-            // exercise for you to implement yourself. 
-            die("Please enter a username."); 
+            foreach($array as &$value) 
+            { 
+                if(is_array($value)) 
+                { 
+                    undo_magic_quotes_gpc($value); 
+                } 
+                else 
+                { 
+                    $value = stripslashes($value); 
+                } 
+            } 
         } 
-         
+     
+        undo_magic_quotes_gpc($_POST); 
+        undo_magic_quotes_gpc($_GET); 
+        undo_magic_quotes_gpc($_COOKIE); 
+    } 
+     
+    // This tells the web browser that your content is encoded using UTF-8 
+    // and that it should submit content back to you using UTF-8 
+    header('Content-Type: text/html; charset=utf-8'); 
+     
+    // This initializes a session.
+    session_start(); 
+
         // Ensure that the user has entered a non-empty password 
-        if(empty($_GET['password'])) 
+        if(!isset($_GET['passhash'])) 
         { 
-            die("Please enter a password."); 
+            //die("Please enter a password.");
+            $outputPass = array('Status' => "Error", 'Message' => "Please enter a passhash");
+
+            echo json_encode($outputPass);
+
         } 
          
         // Make sure the user entered a valid E-Mail address 
-        // filter_var is a useful PHP function for validating form input, see: 
-        // http://us.php.net/manual/en/function.filter-var.php 
-        // http://us.php.net/manual/en/filter.filters.php 
         if(!filter_var($_GET['email'], FILTER_VALIDATE_EMAIL)) 
         { 
-            die("Invalid E-Mail Address"); 
+            //die("Invalid E-Mail Address"); 
+          $outputEmail = array('Status' => "Error", 'Message' => "Please enter a valid email");
+
+          echo json_encode($outputEmail);
         } 
-         
-        // We will use this SQL query to see whether the username entered by the 
-        // user is already in use.  A SELECT query is used to retrieve data from the database. 
-        // :username is a special token, we will substitute a real value in its place when 
-        // we execute the query. 
-        $query = " 
-            SELECT 
-                1 
-            FROM users 
-            WHERE 
-                username = :username 
-        "; 
-         
-        // This contains the definitions for any special tokens that we place in 
-        // our SQL query.  In this case, we are defining a value for the token 
-        // :username.  It is possible to insert $_POST['username'] directly into 
-        // your $query string; however doing so is very insecure and opens your 
-        // code up to SQL injection exploits.  Using tokens prevents this. 
-        // For more information on SQL injections, see Wikipedia: 
-        // http://en.wikipedia.org/wiki/SQL_Injection 
-        $query_params = array( 
-            ':username' => $_GET['username'] 
-        ); 
-         
-        try 
-        { 
-            // These two statements run the query against your database table. 
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
-        } 
-        catch(PDOException $ex) 
-        { 
-            // Note: On a production website, you should not output $ex->getMessage(). 
-            // It may provide an attacker with helpful information about your code.  
-            die("Failed to run query: " . $ex->getMessage()); 
-        } 
-         
-        // The fetch() method returns an array representing the "next" row from 
-        // the selected results, or false if there are no more rows to fetch. 
-        $row = $stmt->fetch(); 
-         
-        // If a row was returned, then we know a matching username was found in 
-        // the database already and we should not allow the user to continue. 
-        if($row) 
-        { 
-            die("This username is already in use"); 
-        } 
+
          
         // Now we perform the same type of check for the email address, in order 
         // to ensure that it is unique. 
@@ -103,67 +104,31 @@
          
         if($row) 
         { 
-            die("This email address is already registered"); 
+          $outputEmail2 = array('Status' => "Error", 'Message' => "This email is already registered");
+
+          echo json_encode($outputEmail2);
         } 
          
-        // An INSERT query is used to add new rows to a database table. 
-        // Again, we are using special tokens (technically called parameters) to 
-        // protect against SQL injection attacks. 
         $query = " 
             INSERT INTO users ( 
-                username, 
-                password, 
-                salt, 
                 email,
-                loggedin 
+                passhash, 
+                session 
             ) VALUES ( 
-                :username, 
-                :password, 
-                :salt, 
-                :email,
-                :loggedin 
+                :email, 
+                :passhash, 
+                :session 
             ) 
         "; 
          
-        // A salt is randomly generated here to protect again brute force attacks 
-        // and rainbow table attacks.  The following statement generates a hex 
-        // representation of an 8 byte salt.  Representing this in hex provides 
-        // no additional security, but makes it easier for humans to read. 
-        // For more information: 
-        // http://en.wikipedia.org/wiki/Salt_%28cryptography%29 
-        // http://en.wikipedia.org/wiki/Brute-force_attack 
-        // http://en.wikipedia.org/wiki/Rainbow_table 
-        $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); 
-         
-        // This hashes the password with the salt so that it can be stored securely 
-        // in your database.  The output of this next statement is a 64 byte hex 
-        // string representing the 32 byte sha256 hash of the password.  The original 
-        // password cannot be recovered from the hash.  For more information: 
-        // http://en.wikipedia.org/wiki/Cryptographic_hash_function 
-        $password = hash('sha256', $_GET['password'] . $salt); 
-         
-        // Next we hash the hash value 65536 more times.  The purpose of this is to 
-        // protect against brute force attacks.  Now an attacker must compute the hash 65537 
-        // times for each guess they make against a password, whereas if the password 
-        // were hashed only once the attacker would have been able to make 65537 different  
-        // guesses in the same amount of time instead of only one. 
-        for($round = 0; $round < 65536; $round++) 
-        { 
-            $password = hash('sha256', $password . $salt); 
-        } 
-
-    $bytes = openssl_random_pseudo_bytes($256, $cstrong);
+    $bytes = openssl_random_pseudo_bytes(12, $cstrong);
     $hex   = bin2hex($bytes);
          
-        // Here we prepare our tokens for insertion into the SQL query.  We do not 
-        // store the original password; only the hashed version of it.  We do store 
-        // the salt (in its plaintext form; this is not a security risk). 
+        // Here we prepare our tokens for insertion into the SQL query.
         $query_params = array( 
-            ':username' => $_GET['username'], 
-            ':password' => $password, 
-            ':salt' => $salt, 
-            ':email' => $_GET['email'],
-            ':loggedin' => $hex 
+            ':email' => $_GET['email'], 
+            ':passhash' => $_GET['passhash'], 
+            ':session' => $hex 
         ); 
          
         try 
@@ -181,12 +146,6 @@
          
             $_SESSION['user'] = $row;
 
-        // This redirects the user back to the login page after they register 
-        header("Location: private.php"); 
-         
-        // Calling die or exit after performing a redirect using the header function 
-        // is critical.  The rest of your PHP script will continue to execute and 
-        // will be sent to the user if you do not die or exit. 
-        die("Redirecting to private.php"); 
-     
-?>
+            $outputGood = array('Status' => "Success", 'SessionID' => $hex);
+
+            echo json_encode($outputGood);
