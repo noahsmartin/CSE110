@@ -63,6 +63,7 @@
             $outputPass = array('Status' => "Error", 'Message' => "Please enter a passhash");
 
             echo json_encode($outputPass);
+            die();
 
         } 
          
@@ -73,6 +74,7 @@
           $outputEmail = array('Status' => "Error", 'Message' => "Please enter a valid email");
 
           echo json_encode($outputEmail);
+          die();
         } 
 
          
@@ -107,6 +109,7 @@
           $outputEmail2 = array('Status' => "Error", 'Message' => "This email is already registered");
 
           echo json_encode($outputEmail2);
+          die();
         } 
          
         $query = " 
@@ -149,3 +152,4 @@
             $outputGood = array('Status' => "Success", 'SessionID' => $hex);
 
             echo json_encode($outputGood);
+            die();

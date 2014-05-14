@@ -139,10 +139,12 @@
           $loginGood = array('Status' => "Success", 'Message' => "User is now logged in", 'SessionID' => $hex);
 
           echo json_encode($loginGood);
+          die();
         } 
         else 
         { 
           $loginBad = array('Status' => "Failure", 'Message' => "User did not log in");
 
           echo json_encode($loginBad);
+          die();
         }
