@@ -84,6 +84,8 @@
 {
     for (Categories* cat in self.categories) {
         int length = (int) cat.dishes.count;
+        if(length == 0)
+            continue;
         int rand = arc4random() % (length);
         ((Dish*) cat.dishes[rand]).isSelected = YES;
     }
