@@ -164,6 +164,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.tableController.error = NO_ERROR;  // Clear any error on the table
     [self.table reloadData];
     [self.refreshControl endRefreshing];
+    
+    //Once the app is done displying the restaurants, stop the loading indicator
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -175,6 +179,11 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)updateYelp
 {
+    //start the loading indicator as the app gets data from yelp & menyou
+    self.activityIndicator.center = self.view.center;
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?category_filter=food,restaurants&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
     OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
@@ -194,10 +203,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.loadingYelp = YES;
     [self.conn cancel];
     self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    //Once the app actually recieves restaurant data, stop the loading indicator
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -205,6 +210,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.tableController.error = NO_LOCATION;
     [self.table reloadData];
 	[self.refreshControl endRefreshing];
+    
+    //When the app can't determine the loc, stop animating
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
