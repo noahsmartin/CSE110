@@ -93,6 +93,21 @@ BOOL DEBUG_API = NO;
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
+    [self processAccountRequest:request block:block];
+}
+
+-(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
+{
+    // TODO: hash the password
+    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, password];
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [request setHTTPMethod:@"GET"];
+    [self processAccountRequest:request block:block];
+}
+
+-(void)processAccountRequest:(NSURLRequest*)request block:(void (^)(BOOL))block
+{
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data)
         {

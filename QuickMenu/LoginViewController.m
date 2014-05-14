@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "MenyouApi.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
@@ -33,9 +34,8 @@
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
-- (IBAction)login:(id)sender {
-    
 
+- (IBAction)login:(id)sender {
     if([self.passwordText.text isEqualToString:@""] || [self.emailText.text isEqualToString:@""])
     {
         UIAlertView *errorAlert = [[UIAlertView alloc]
@@ -44,12 +44,12 @@
     }
     else if([self validateEmail:self.emailText.text])
     {
-        // Call api here
+        [[MenyouApi getInstance] logInWithUsername:self.emailText.text Password:self.passwordText.text block:^(BOOL success) {
+            if(success)
+                [self dismissViewControllerAnimated:YES completion:^{}];
+        }];
     }
-
-    
 }
-
 
 - (IBAction)createAccount:(id)sender {
     
@@ -69,7 +69,10 @@
     }
     else if([self validateEmail:self.createAccountEmailText.text])
     {
-        // Call api here
+        [[MenyouApi getInstance] createAccountWithUsername:[self.createAccountEmailText text] Password:[self.createAccountPasswordText text] block:^(BOOL success) {
+            if(success)
+                [self dismissViewControllerAnimated:YES completion:^{}];
+        }];
     }
 }
 
