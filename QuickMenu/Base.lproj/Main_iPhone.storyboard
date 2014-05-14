@@ -160,19 +160,11 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-lc-lLc">
-                                            <rect key="frame" x="156" y="27" width="91" height="23"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="distance" destination="2Je-tM-3yu" id="5G2-D4-nyN"/>
                                     <outlet property="mainImage" destination="S1b-0O-v9X" id="9aa-iN-DFj"/>
-                                    <outlet property="numberReviews" destination="Gfe-lc-lLc" id="f2Z-5o-Vx8"/>
                                     <outlet property="starView" destination="cXB-4O-fIk" id="V6S-fI-dt2"/>
                                     <outlet property="title" destination="JgW-ly-vUM" id="Pml-bj-7Dq"/>
                                     <segue destination="fOc-KQ-Lfd" kind="push" identifier="showMenuSegue" id="UYK-bU-nZ0"/>
@@ -460,12 +452,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="277" translatesAutoresizingMaskIntoConstraints="NO" id="ObW-ap-9BW">
+                                <rect key="frame" x="23" y="166" width="277" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dish" id="Gc6-2Y-xpc"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
+                        <outlet property="descriptionView" destination="ObW-ap-9BW" id="KQ9-2F-z7w"/>
                         <outlet property="leaveReviewButton" destination="dqk-zJ-p22" id="eIZ-mQ-8mt"/>
                         <outlet property="starView" destination="VID-aS-tZN" id="43d-bk-AWl"/>
                         <outlet property="titleView" destination="0hk-0e-kK2" id="wjY-1Z-Ax2"/>

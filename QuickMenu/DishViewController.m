@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yourReview;
 @property (weak, nonatomic) IBOutlet StarView *yourReviewStars;
 @property (weak, nonatomic) IBOutlet UIButton *leaveReviewButton;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionView;
 
 @end
 
@@ -30,6 +31,7 @@
     self.titleView.text = self.title;
     self.starView.rating = self.dish.rating;
     self.scrollView.contentSize = CGSizeMake(272, 550);
+    self.descriptionView.text = self.dish.itemDescription;
 }
 
 -(void)viewWillAppear:(BOOL)animated
