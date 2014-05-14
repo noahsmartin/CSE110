@@ -165,9 +165,12 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.table reloadData];
     [self.refreshControl endRefreshing];
     
-    //Once the app is done displying the restaurants, stop the loading indicator
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
+    if(self.activityIndicator.isAnimating)
+    {
+        //Once the app is done displying the restaurants, stop the loading indicator
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator removeFromSuperview];
+    }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -175,15 +178,17 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.refreshControl endRefreshing];
     self.tableController.error = NO_INTERNET;
     [self.table reloadData];
+    
+    if(self.activityIndicator.isAnimating)
+    {
+        //Once the app is done displying the restaurants, stop the loading indicator
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator removeFromSuperview];
+    }
 }
 
 -(void)updateYelp
 {
-    //start the loading indicator as the app gets data from yelp & menyou
-    self.activityIndicator.center = self.view.center;
-    [self.view addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
-    
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.yelp.com/v2/search?category_filter=food,restaurants&sort=1&ll=%f,%f", self.latitude, self.longtidude]];
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumer_key secret:consumer_secret];
     OAToken *token = [[OAToken alloc] initWithKey:token_key secret:token_secret];
@@ -211,9 +216,12 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.table reloadData];
 	[self.refreshControl endRefreshing];
     
-    //When the app can't determine the loc, stop animating
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
+    if(self.activityIndicator.isAnimating)
+    {
+        //When the app can't determine the loc, stop animating
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator removeFromSuperview];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation

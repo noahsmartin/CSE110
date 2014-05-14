@@ -33,6 +33,16 @@
 		4F5D5F9A18FCB0D00042A0BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5D5F7918FCB0D00042A0BA /* UIKit.framework */; };
 		4F5D5FA218FCB0D00042A0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA018FCB0D00042A0BA /* InfoPlist.strings */; };
 		4F5D5FA418FCB0D00042A0BA /* QuickMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */; };
+		4F64C69B1923251400F8B0F0 /* UIImage+QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C69A1923251400F8B0F0 /* UIImage+QRCodeGenerator.m */; };
+		4F64C6B1192326FD00F8B0F0 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C69D192326FD00F8B0F0 /* bitstream.c */; };
+		4F64C6B2192326FD00F8B0F0 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6A0192326FD00F8B0F0 /* mask.c */; };
+		4F64C6B3192326FD00F8B0F0 /* mmask.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6A2192326FD00F8B0F0 /* mmask.c */; };
+		4F64C6B4192326FD00F8B0F0 /* mqrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6A4192326FD00F8B0F0 /* mqrspec.c */; };
+		4F64C6B5192326FD00F8B0F0 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6A6192326FD00F8B0F0 /* qrencode.c */; };
+		4F64C6B6192326FD00F8B0F0 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6A9192326FD00F8B0F0 /* qrinput.c */; };
+		4F64C6B7192326FD00F8B0F0 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6AB192326FD00F8B0F0 /* qrspec.c */; };
+		4F64C6B8192326FD00F8B0F0 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6AD192326FD00F8B0F0 /* rscode.c */; };
+		4F64C6B9192326FD00F8B0F0 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C6AF192326FD00F8B0F0 /* split.c */; };
 		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
@@ -120,6 +130,28 @@
 		4F5D5F9F18FCB0D00042A0BA /* MenyouTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenyouTests-Info.plist"; sourceTree = "<group>"; };
 		4F5D5FA118FCB0D00042A0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F5D5FA318FCB0D00042A0BA /* QuickMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickMenuTests.m; sourceTree = "<group>"; };
+		4F64C6991923251400F8B0F0 /* UIImage+QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QRCodeGenerator.h"; sourceTree = "<group>"; };
+		4F64C69A1923251400F8B0F0 /* UIImage+QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QRCodeGenerator.m"; sourceTree = "<group>"; };
+		4F64C69D192326FD00F8B0F0 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		4F64C69E192326FD00F8B0F0 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		4F64C69F192326FD00F8B0F0 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		4F64C6A0192326FD00F8B0F0 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		4F64C6A1192326FD00F8B0F0 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		4F64C6A2192326FD00F8B0F0 /* mmask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mmask.c; sourceTree = "<group>"; };
+		4F64C6A3192326FD00F8B0F0 /* mmask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmask.h; sourceTree = "<group>"; };
+		4F64C6A4192326FD00F8B0F0 /* mqrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mqrspec.c; sourceTree = "<group>"; };
+		4F64C6A5192326FD00F8B0F0 /* mqrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mqrspec.h; sourceTree = "<group>"; };
+		4F64C6A6192326FD00F8B0F0 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		4F64C6A7192326FD00F8B0F0 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		4F64C6A8192326FD00F8B0F0 /* qrencode_inner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode_inner.h; sourceTree = "<group>"; };
+		4F64C6A9192326FD00F8B0F0 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		4F64C6AA192326FD00F8B0F0 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		4F64C6AB192326FD00F8B0F0 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		4F64C6AC192326FD00F8B0F0 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		4F64C6AD192326FD00F8B0F0 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		4F64C6AE192326FD00F8B0F0 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		4F64C6AF192326FD00F8B0F0 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		4F64C6B0192326FD00F8B0F0 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		4F80A21C19009B510012A60F /* MenyouApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenyouApi.h; sourceTree = "<group>"; };
 		4F80A21D19009B510012A60F /* MenyouApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenyouApi.m; sourceTree = "<group>"; };
 		4F91227C1915744100139F81 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
@@ -290,6 +322,8 @@
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
 				4F4546681921D89600F65094 /* LoginViewController.h */,
 				4F4546691921D89600F65094 /* LoginViewController.m */,
+				4F64C6991923251400F8B0F0 /* UIImage+QRCodeGenerator.h */,
+				4F64C69A1923251400F8B0F0 /* UIImage+QRCodeGenerator.m */,
 				4F496F6E191F44B700424343 /* DishViewController.h */,
 				4F496F6F191F44B700424343 /* DishViewController.m */,
 				4FEAB18A191EB8AE00B9314E /* SettingsViewController.h */,
@@ -309,6 +343,7 @@
 				4F5D5F7C18FCB0D00042A0BA /* Supporting Files */,
 				4FFDD6261907268B008DEE69 /* MyMenuViewController.h */,
 				4FFDD6271907268B008DEE69 /* MyMenuViewController.m */,
+				4F64C69C192326FD00F8B0F0 /* qrencode */,
 				4F0C6DFC18FD023900A0F186 /* HomeViewController.h */,
 				4F0C6DFD18FD023900A0F186 /* HomeViewController.m */,
 				4F240B321905F01400A405E2 /* MenuTabBarController.h */,
@@ -348,6 +383,33 @@
 				4F5D5FA018FCB0D00042A0BA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F64C69C192326FD00F8B0F0 /* qrencode */ = {
+			isa = PBXGroup;
+			children = (
+				4F64C69D192326FD00F8B0F0 /* bitstream.c */,
+				4F64C69E192326FD00F8B0F0 /* bitstream.h */,
+				4F64C69F192326FD00F8B0F0 /* config.h */,
+				4F64C6A0192326FD00F8B0F0 /* mask.c */,
+				4F64C6A1192326FD00F8B0F0 /* mask.h */,
+				4F64C6A2192326FD00F8B0F0 /* mmask.c */,
+				4F64C6A3192326FD00F8B0F0 /* mmask.h */,
+				4F64C6A4192326FD00F8B0F0 /* mqrspec.c */,
+				4F64C6A5192326FD00F8B0F0 /* mqrspec.h */,
+				4F64C6A6192326FD00F8B0F0 /* qrencode.c */,
+				4F64C6A7192326FD00F8B0F0 /* qrencode.h */,
+				4F64C6A8192326FD00F8B0F0 /* qrencode_inner.h */,
+				4F64C6A9192326FD00F8B0F0 /* qrinput.c */,
+				4F64C6AA192326FD00F8B0F0 /* qrinput.h */,
+				4F64C6AB192326FD00F8B0F0 /* qrspec.c */,
+				4F64C6AC192326FD00F8B0F0 /* qrspec.h */,
+				4F64C6AD192326FD00F8B0F0 /* rscode.c */,
+				4F64C6AE192326FD00F8B0F0 /* rscode.h */,
+				4F64C6AF192326FD00F8B0F0 /* split.c */,
+				4F64C6B0192326FD00F8B0F0 /* split.h */,
+			);
+			path = qrencode;
 			sourceTree = "<group>";
 		};
 		4FBF3CD619033BD800A51204 /* Libraries */ = {
@@ -540,13 +602,18 @@
 				4FBF3D0219033BF100A51204 /* hmac.c in Sources */,
 				4FE3010D190C72860053EA95 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				4F23B5F91919A39E006C0B58 /* DishTableViewCell.m in Sources */,
+				4F64C6B2192326FD00F8B0F0 /* mask.c in Sources */,
+				4F64C69B1923251400F8B0F0 /* UIImage+QRCodeGenerator.m in Sources */,
 				4FE30111190C72860053EA95 /* ECSlidingViewController.m in Sources */,
+				4F64C6B7192326FD00F8B0F0 /* qrspec.c in Sources */,
 				4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */,
+				4F64C6B9192326FD00F8B0F0 /* split.c in Sources */,
 				4F240B341905F01400A405E2 /* MenuTabBarController.m in Sources */,
 				4FBF3D0619033BF100A51204 /* OADataFetcher.m in Sources */,
 				4FBF3D0919033BF100A51204 /* OAPlaintextSignatureProvider.m in Sources */,
 				4FBF3D0119033BF100A51204 /* Base64Transcoder.c in Sources */,
 				4FBF3D0A19033BF100A51204 /* OAProblem.m in Sources */,
+				4F64C6B8192326FD00F8B0F0 /* rscode.c in Sources */,
 				4FBF3D0819033BF100A51204 /* OAMutableURLRequest.m in Sources */,
 				4FBF3D0C19033BF100A51204 /* OAServiceTicket.m in Sources */,
 				4FBF3D0B19033BF100A51204 /* OARequestParameter.m in Sources */,
@@ -557,6 +624,7 @@
 				4F3D43E21910665B007EA7A2 /* HomeTableViewCell.m in Sources */,
 				4FE3010E190C72860053EA95 /* ECSlidingAnimationController.m in Sources */,
 				4F45DD241918A7FD00B0CB7F /* CategoryViewController.m in Sources */,
+				4F64C6B3192326FD00F8B0F0 /* mmask.c in Sources */,
 				4F26DFB91901BDFA002C4FEC /* Restaurant.m in Sources */,
 				4FBF3D0319033BF100A51204 /* sha1.c in Sources */,
 				72CCDCAD19131C9D00A5681D /* Categories.m in Sources */,
@@ -566,14 +634,18 @@
 				4F5D5F8F18FCB0D00042A0BA /* ViewController.m in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
 				4FBF3D0419033BF100A51204 /* OACall.m in Sources */,
+				4F64C6B1192326FD00F8B0F0 /* bitstream.c in Sources */,
 				4F240B381905F05F00A405E2 /* Menu.m in Sources */,
 				4FE30110190C72860053EA95 /* ECSlidingSegue.m in Sources */,
 				4FBF3D0719033BF100A51204 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				4FE30115190C7A5F0053EA95 /* LeftTableViewController.m in Sources */,
+				4F64C6B4192326FD00F8B0F0 /* mqrspec.c in Sources */,
 				4F5D5F8618FCB0D00042A0BA /* AppDelegate.m in Sources */,
 				4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */,
 				4F5D5F8218FCB0D00042A0BA /* main.m in Sources */,
+				4F64C6B6192326FD00F8B0F0 /* qrinput.c in Sources */,
 				39F090351921C4390023B2B7 /* HomeTableViewDataSource.m in Sources */,
+				4F64C6B5192326FD00F8B0F0 /* qrencode.c in Sources */,
 				4FEAB18C191EB8AE00B9314E /* SettingsViewController.m in Sources */,
 				4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */,
 				4F496F70191F44B700424343 /* DishViewController.m in Sources */,

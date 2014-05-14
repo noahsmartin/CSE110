@@ -16,6 +16,7 @@
 @implementation MenyouApi
 
 static MenyouApi* instance = nil;
+static NSString* baseUrl = @"http://menyouapp.com";
 
 BOOL DEBUG_API = NO;
 
@@ -82,6 +83,42 @@ BOOL DEBUG_API = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             block(menus);
         });
+    }];
+}
+
+-(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block
+{
+    // TODO: hash the password
+    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, password];
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [request setHTTPMethod:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data)
+        {
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
+            {
+                self.session = [json objectForKey:@"SessionID"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    block(YES);
+                });
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *errorAlert = [[UIAlertView alloc]
+                                               initWithTitle:@"Error" message:[json objectForKey:@"Message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [errorAlert show];
+                    block(NO);
+                });
+            }
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(NO);
+            });
+        }
     }];
 }
 
