@@ -514,6 +514,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="login:" destination="AIT-NI-Wcx" eventType="touchUpInside" id="dvi-zy-qgz"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iBt-6O-Uj2">
                                 <rect key="frame" x="88" y="391" width="145" height="30"/>
@@ -557,6 +560,9 @@
                                 <state key="normal" title="Create">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccount:" destination="AIT-NI-Wcx" eventType="touchUpInside" id="8wq-4i-Nf7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -568,6 +574,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="createAccountButton" destination="8R4-bZ-Ghn" id="dg9-ZF-Qak"/>
+                        <outlet property="createAccountEmailText" destination="iBt-6O-Uj2" id="Dmv-Na-mZ5"/>
+                        <outlet property="createAccountPasswordText" destination="cEM-Nk-PeD" id="vkR-Nw-1vK"/>
+                        <outlet property="emailText" destination="jCO-la-8dO" id="DRB-Gu-grm"/>
+                        <outlet property="loginButton" destination="FDK-0g-Bdm" id="I8W-VZ-2p4"/>
+                        <outlet property="passwordConfirmText" destination="uLE-O7-gYg" id="Rnc-xb-qpw"/>
+                        <outlet property="passwordText" destination="kMJ-DG-GJ4" id="4dG-Od-thh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VuG-8H-16K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
