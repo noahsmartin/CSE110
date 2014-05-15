@@ -19,6 +19,7 @@
         self.itemDescription = [data objectForKey:@"description"];
         self.rating = -1;
         self.myRating = -1;
+        self.identifier = 0;
     }
     return self;
 }

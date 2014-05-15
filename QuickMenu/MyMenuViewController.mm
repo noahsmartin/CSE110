@@ -9,6 +9,10 @@
 #import "MyMenuViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "Dish.h"
+#import "QREncoder.h"
+#import "DataMatrix.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+
 
 @interface MyMenuViewController()
 @property UIImage* img;
@@ -37,7 +41,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.restaurant.menu.numberSelected + 1;
+    return self.restaurant.menu.numberSelected + 1 + 2;
 }
 
 - (IBAction)share:(id)sender {
@@ -99,22 +103,55 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"priceCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    NSString *simpleTableIdentifier;
+    UITableViewCell *cell;
+    if(indexPath.row <= self.restaurant.menu.numberSelected)
+    {
+        simpleTableIdentifier = @"priceCell";
+    }
+    else
+    {
+        simpleTableIdentifier = @"QRCodeCell";
+    }
     
+    cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    if(indexPath.row != self.restaurant.menu.numberSelected)
+    
+    if(indexPath.row < self.restaurant.menu.numberSelected)
     {
         Dish* d = [self.restaurant.menu selectedItems][indexPath.row];
         cell.textLabel.text = d.title;
         cell.detailTextLabel.text = d.price;
     }
-    else
+    else if(indexPath.row == self.restaurant.menu.numberSelected)
     {
         cell.textLabel.text = @"Total:";
         cell.detailTextLabel.text = [self.restaurant.menu.totalCost stringValue];
+    }
+    else
+    {
+        //the qrcode is square. now we make it 250 pixels wide
+        int qrcodeImageDimension = 250;
+        
+        //the string can be very long
+        NSMutableArray* dishes = [NSMutableArray array];
+        for(Dish* d in [self.restaurant.menu selectedItems])
+        {
+            [dishes addObject:[NSNumber numberWithInt:d.identifier]];
+        }
+        NSDictionary* dict = @{@"name": self.restaurant.title, @"dishes": dishes};
+        NSData* d = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+        
+        NSString* toEncode = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+        
+        //first encode the string into a matrix of bools, TRUE for black dot and FALSE for white. Let the encoder decide the error correction level and version
+        DataMatrix* qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:toEncode];
+        
+        //then render the matrix
+        UIImage* qrcodeImage = [QREncoder renderDataMatrix:qrMatrix imageDimension:qrcodeImageDimension];
+        ((UIImageView*) cell.contentView.subviews[0]).image = qrcodeImage;
     }
     return cell;
 }
