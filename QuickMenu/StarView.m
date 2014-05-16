@@ -63,7 +63,7 @@
 -(void)setNumberReviews:(int)numberReviews
 {
     _numberReviews = numberReviews;
-    if(_numberReviews < 0)
+    if(_numberReviews <= 0)
         [self.reviewCount setHidden:YES];  // No need to show 0 Reviews, this label should just be hidden
     else
     {

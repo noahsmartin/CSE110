@@ -30,7 +30,7 @@
     self.title = self.dish.title;
     self.titleView.text = self.title;
     self.starView.rating = self.dish.rating;
-
+    self.starView.numberReviews = self.dish.numRatings;
     self.scrollView.contentSize = CGSizeMake(272, 550);
     self.descriptionView.text = self.dish.itemDescription;
 }

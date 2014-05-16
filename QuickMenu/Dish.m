@@ -17,7 +17,17 @@
         self.title = [data objectForKey:@"title"];
         self.price = [[data objectForKey:@"price"] stringValue];
         self.itemDescription = [data objectForKey:@"description"];
-        self.rating = -1;
+        if([data objectForKey:@"rating"])
+        {
+            self.rating = [[data objectForKey:@"rating"] intValue];
+            // This assumes if ratings are found review_count is set also
+            self.numRatings = [[data objectForKey:@"review_count"] intValue];
+        }
+        else
+        {
+            self.rating = -1;
+            self.numRatings = 0;
+        }
         self.myRating = -1;
         self.identifier = 0;
     }
