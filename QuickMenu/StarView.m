@@ -79,13 +79,13 @@
     [self addSubview:self.noRating];
     
     //_numberReviews = numberReviews;
+    self.reviewCount = [ [UILabel alloc] initWithFrame:CGRectMake(82, -2, 80, 20)];
     if(self.reviewCount < 0)
         self.reviewCount.text = @"No Reviews";
     else
         self.reviewCount.text = [NSString stringWithFormat:@"%d Reviews", self.numberReviews];
-    
-    self.reviewCount = [ [UILabel alloc] initWithFrame:CGRectMake(80, 0, 80, 20)];
-    self.reviewCount.backgroundColor = [UIColor redColor];
+    [self.reviewCount setFont:[UIFont fontWithName:@"HelveticaNeue-ThinItalic" size: 13]];
+    //self.reviewCount.backgroundColor = [UIColor redColor];
     [self addSubview:self.reviewCount];
 
     

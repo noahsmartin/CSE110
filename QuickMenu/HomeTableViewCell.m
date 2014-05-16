@@ -38,7 +38,8 @@
     self.starView.rating = rating;
 }
 
--(void)setReviewCount:(int)reviewCount{
+-(void)setReviewCount:(int)reviewCount
+{
     self.starView.numberReviews = reviewCount;
 }
 
