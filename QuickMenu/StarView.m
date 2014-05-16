@@ -60,6 +60,23 @@
     [self setNeedsDisplay];
 }
 
+-(void)setNumberReviews:(int)numberReviews
+{
+    _numberReviews = numberReviews;
+    if(_numberReviews < 0)
+        [self.reviewCount setHidden:YES];  // No need to show 0 Reviews, this label should just be hidden
+    else
+    {
+        [self.reviewCount setHidden:NO];
+        if (_numberReviews == 1)
+            self.reviewCount.text = [NSString stringWithFormat:@"1 Review"];
+        else
+            self.reviewCount.text = [NSString stringWithFormat:@"%d Reviews", _numberReviews];
+    }
+    [self.reviewCount setFont:[UIFont fontWithName:@"HelveticaNeue-ThinItalic" size: 13]];
+    
+}
+
 -(void)setUp
 {
     NSMutableArray* array = [NSMutableArray array];
@@ -78,18 +95,9 @@
     [self.noRating setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [self addSubview:self.noRating];
     
-
     self.reviewCount = [ [UILabel alloc] initWithFrame:CGRectMake(82, 0, 80, 20)]; //-2 for ycoord if center on home. 2 for dish
-    if(self.numberReviews < 0)
-        self.reviewCount.text = @"No Reviews";
-    else if (self.numberReviews == 1)
-        self.reviewCount.text = [NSString stringWithFormat:@"1 Review"];
-    else
-        self.reviewCount.text = [NSString stringWithFormat:@"%d Reviews", self.numberReviews];
-    [self.reviewCount setFont:[UIFont fontWithName:@"HelveticaNeue-ThinItalic" size: 13]];
-    //self.reviewCount.backgroundColor = [UIColor redColor];
     [self addSubview:self.reviewCount];
-    
+    [self.reviewCount setHidden:YES]; // Hide initalliy because count is 0
 }
 
 @end
