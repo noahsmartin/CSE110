@@ -38,6 +38,10 @@
     self.starView.rating = rating;
 }
 
+-(void)setReviewCount:(int)reviewCount{
+    self.starView.numberReviews = reviewCount;
+}
+
 - (void)awakeFromNib
 {
     [self setup];

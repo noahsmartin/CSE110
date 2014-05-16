@@ -11,5 +11,6 @@
 @interface StarView : UIView
 
 @property (nonatomic) double rating;
+@property (nonatomic) int numberReviews;
 
 @end

@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 
 -(void)setRating:(double)rating;
+-(void)setReviewCount:(int)reviewCount;
 
 @end

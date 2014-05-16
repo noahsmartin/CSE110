@@ -11,6 +11,7 @@
 @interface StarView()
 @property NSArray* images;
 @property UILabel* noRating;
+@property UILabel* reviewCount;
 @end
 
 @implementation StarView
@@ -76,6 +77,19 @@
     self.noRating.text = @"No Ratings";
     [self.noRating setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [self addSubview:self.noRating];
+    
+    //_numberReviews = numberReviews;
+    if(self.reviewCount < 0)
+        self.reviewCount.text = @"No Reviews";
+    else
+        self.reviewCount.text = [NSString stringWithFormat:@"%d Reviews", self.numberReviews];
+    
+    self.reviewCount = [ [UILabel alloc] initWithFrame:CGRectMake(80, 0, 80, 20)];
+    self.reviewCount.backgroundColor = [UIColor redColor];
+    [self addSubview:self.reviewCount];
+
+    
+    
 }
 
 @end

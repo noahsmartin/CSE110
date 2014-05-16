@@ -66,7 +66,7 @@
         dist = [NSString stringWithFormat:@"%3.2f mi", res.distance];
     cell.distance.text = dist;
     [cell setRating:res.rating];
-    
+    [cell setReviewCount:res.numberReviews];
     return cell;
 }
 
