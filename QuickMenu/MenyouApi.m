@@ -29,6 +29,15 @@ BOOL DEBUG_API = NO;
     return instance;
 }
 
+-(instancetype)init
+{
+    if(self = [super init])
+    {
+        self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
+    }
+    return self;
+}
+
 -(void)getMenuForId:(NSString *)restaurantId withBlock:(void (^)(Menu *))block
 {
     NSArray* arr = @[restaurantId];
@@ -116,6 +125,8 @@ BOOL DEBUG_API = NO;
             {
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(YES);
                 });
@@ -142,6 +153,8 @@ BOOL DEBUG_API = NO;
 {
     _username = nil;
     self.session = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(BOOL)loggedIn
