@@ -98,7 +98,6 @@ BOOL DEBUG_API = NO;
 
 -(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block
 {
-    // TODO: hash the password
     NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
@@ -108,7 +107,6 @@ BOOL DEBUG_API = NO;
 
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
 {
-    // TODO: hash the password
     NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
