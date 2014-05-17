@@ -7,6 +7,7 @@
 //
 
 #import "MenyouApi.h"
+#include <CommonCrypto/CommonDigest.h>
 
 @interface MenyouApi()
 @property NSString* session;
@@ -98,7 +99,7 @@ BOOL DEBUG_API = NO;
 -(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block
 {
     // TODO: hash the password
-    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, password];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -108,7 +109,7 @@ BOOL DEBUG_API = NO;
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
 {
     // TODO: hash the password
-    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, password];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -162,6 +163,20 @@ BOOL DEBUG_API = NO;
     if(self.session)
         return YES;
     return NO;
+}
+
+-(NSString*) sha256:(NSString *)string{
+    const char *s=[string cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData=[NSData dataWithBytes:s length:strlen(s)];
+    
+    uint8_t digest[CC_SHA256_DIGEST_LENGTH]={0};
+    CC_SHA256(keyData.bytes, (unsigned int) keyData.length, digest);
+    NSData *out=[NSData dataWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
+    NSString *hash = [out description];
+    hash = [hash stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hash = [hash stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hash = [hash stringByReplacingOccurrencesOfString:@">" withString:@""];
+    return hash;
 }
 
 @end
