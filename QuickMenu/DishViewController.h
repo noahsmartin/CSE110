@@ -12,5 +12,6 @@
 @interface DishViewController : UIViewController
 
 @property (weak) Dish* dish;
+@property NSString* restaurant;
 
 @end

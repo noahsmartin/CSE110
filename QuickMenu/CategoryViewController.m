@@ -95,6 +95,7 @@
     if([[segue identifier] isEqualToString:@"dishDetailSegue"])
     {
         ((DishViewController*) segue.destinationViewController).dish = ((DishTableViewCell*) sender).data;
+        ((DishViewController*) segue.destinationViewController).restaurant = self.restaurant;
     }
 }
 

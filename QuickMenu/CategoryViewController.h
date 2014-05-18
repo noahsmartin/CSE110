@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) Categories* category;
+@property NSString* restaurant;
 
 
 @end

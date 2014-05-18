@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Dish.h"
 
 @interface AddRatingViewController : UIViewController
-
+@property Dish* dish;
+@property NSString* restaurant;
 @end

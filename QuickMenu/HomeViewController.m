@@ -258,6 +258,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
                                                   @"CategoryViewController"];
          	controller.title = cat.title;
             controller.category = cat;
+            controller.restaurant = r.identifier;
          	[controllers addObject:controller];
         }
         [newController setViewControllers:controllers];

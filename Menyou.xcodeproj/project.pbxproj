@@ -38,6 +38,7 @@
 		4F64B89019257E1A0059E55F /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F64B88D19257E1A0059E55F /* QREncoder.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4F64B892192582060059E55F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F64B891192582060059E55F /* MobileCoreServices.framework */; };
 		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
+		4F8AEAA619283A4800479B23 /* AddRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AEAA519283A4800479B23 /* AddRatingViewController.m */; };
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
@@ -135,6 +136,8 @@
 		4F64B891192582060059E55F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4F80A21C19009B510012A60F /* MenyouApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenyouApi.h; sourceTree = "<group>"; };
 		4F80A21D19009B510012A60F /* MenyouApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenyouApi.m; sourceTree = "<group>"; };
+		4F8AEAA419283A4800479B23 /* AddRatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRatingViewController.h; sourceTree = "<group>"; };
+		4F8AEAA519283A4800479B23 /* AddRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRatingViewController.m; sourceTree = "<group>"; };
 		4F91227C1915744100139F81 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
 		4F91227D1915744100139F81 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -304,6 +307,8 @@
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
 				4F26DFB51901BDD0002C4FEC /* ApiData */,
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				4F8AEAA419283A4800479B23 /* AddRatingViewController.h */,
+				4F8AEAA519283A4800479B23 /* AddRatingViewController.m */,
 				4F4546681921D89600F65094 /* LoginViewController.h */,
 				4F4546691921D89600F65094 /* LoginViewController.m */,
 				4F496F6E191F44B700424343 /* DishViewController.h */,
@@ -596,6 +601,7 @@
 				4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */,
 				72CCDCB019131CE400A5681D /* Dish.m in Sources */,
 				4F5D5F8F18FCB0D00042A0BA /* ViewController.m in Sources */,
+				4F8AEAA619283A4800479B23 /* AddRatingViewController.m in Sources */,
 				4F64B88F19257E1A0059E55F /* QR_Encode.cpp in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
 				4FBF3D0419033BF100A51204 /* OACall.m in Sources */,

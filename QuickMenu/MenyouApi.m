@@ -163,6 +163,11 @@ BOOL DEBUG_API = NO;
     return NO;
 }
 
+-(void)addReview:(int)rating forRestaurant:(NSString *)restaurant item:(NSString *)item withBlock:(void (^)(BOOL))block
+{
+    block(YES);
+}
+
 -(NSString*) sha256:(NSString *)string{
     const char *s=[string cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *keyData=[NSData dataWithBytes:s length:strlen(s)];
