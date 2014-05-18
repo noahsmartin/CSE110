@@ -119,4 +119,36 @@
     [UIView commitAnimations];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    if(textField == self.emailText)
+    {
+        [self.passwordText becomeFirstResponder];
+    }
+    else if(textField == self.passwordText)
+    {
+        [self login:nil];
+    }
+    else if(textField == self.createAccountEmailText)
+    {
+        [self.createAccountPasswordText becomeFirstResponder];
+    }
+    else if(textField == self.createAccountPasswordText)
+    {
+        [self.passwordConfirmText becomeFirstResponder];
+    }
+    else if(textField == self.passwordConfirmText)
+    {
+        [self createAccount:nil];
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView setAnimationDuration:0.24];
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [UIView commitAnimations];
+    }
+    return YES;
+}
+
 @end

@@ -38,6 +38,10 @@
     {
         [[[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure you want to cancel your review?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"Continue reviewing", nil] show];
     }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
