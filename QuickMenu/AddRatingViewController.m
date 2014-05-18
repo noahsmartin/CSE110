@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *starThree;
 @property (weak, nonatomic) IBOutlet UIButton *starFour;
 @property (weak, nonatomic) IBOutlet UIButton *starFive;
+@property UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -49,12 +50,18 @@
 
 - (IBAction)save:(id)sender {
     [[MenyouApi getInstance] addReview:self.myRating forRestaurant:self.restaurant item:[NSString stringWithFormat:@"%d", self.dish.identifier] withBlock:^(BOOL success) {
+        [self.activityIndicator stopAnimating];
         if(success)
         {
             self.dish.myRating = self.myRating;
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
-        [self dismissViewControllerAnimated:YES completion:nil];
+        else
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not post review" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        }
     }];
+    [self.activityIndicator startAnimating];
 }
 
 - (IBAction)oneStar:(id)sender {
@@ -109,6 +116,10 @@
     self.rating.numberReviews = self.dish.numRatings;
     self.description.text = self.dish.itemDescription;
     self.myRating = 0;
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.color = [UIColor blackColor];
+    self.activityIndicator.center = self.view.center;
+    [self.view addSubview:self.activityIndicator];
 }
 
 @end

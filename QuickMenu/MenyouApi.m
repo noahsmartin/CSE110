@@ -165,7 +165,16 @@ BOOL DEBUG_API = NO;
 
 -(void)addReview:(int)rating forRestaurant:(NSString *)restaurant item:(NSString *)item withBlock:(void (^)(BOOL))block
 {
-    block(YES);
+    // Just a fake api call to get a little delay
+    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php", baseUrl];
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [request setHTTPMethod:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(YES);
+        });
+    }];
 }
 
 -(NSString*) sha256:(NSString *)string{
