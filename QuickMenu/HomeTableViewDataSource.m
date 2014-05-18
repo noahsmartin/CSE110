@@ -34,14 +34,13 @@
     if(self.error == NO_ERROR)
         return nil;
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
-    UITextField *text = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
     if(self.error == NO_INTERNET)
         text.text = @"No Internet Connection";
     else if(self.error == NO_LOCATION)
         text.text = @"Cannot Determine Location";
     text.textColor = [UIColor whiteColor];
     text.font = [UIFont fontWithName:@"Helvetica Neue Thin" size:20];
-    text.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     text.textAlignment = NSTextAlignmentCenter;
     [header addSubview:text];
     [header setBackgroundColor:[UIColor colorWithRed:0.21 green:0.21 blue:0.21 alpha:1]];
