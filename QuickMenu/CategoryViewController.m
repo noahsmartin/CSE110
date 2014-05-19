@@ -67,7 +67,8 @@
     [cell setColor:[self colorForIndex:indexPath.row]];
     cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
     cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
-    cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
+    NSString *dollar = @"$";
+    cell.priceLabel.text = [NSString stringWithFormat:@"%@%@",dollar,((Dish*) self.category.dishes[indexPath.row]).price];
     cell.data = self.category.dishes[indexPath.row];
     cell.delegate = self;
     [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];

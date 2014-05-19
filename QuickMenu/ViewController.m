@@ -68,7 +68,13 @@
     }
     else if([self validateEmail:self.usernameText.text])
     {
-        // Call api here
+      // call api
+        
+        [[MenyouApi getInstance] createAccountWithUsername:[self.usernameText text] Password:[self.passwordText text] block:^(BOOL success) {
+            if(success)
+                [self dismissViewControllerAnimated:YES completion:^{}];
+        }];
+        
     }
 }
 
