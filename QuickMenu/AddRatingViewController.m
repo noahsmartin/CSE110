@@ -70,47 +70,47 @@
 
 - (IBAction)oneStar:(id)sender {
     self.myRating = 1;
-    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
+    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
 }
 
 - (IBAction)twoStars:(id)sender {
     self.myRating = 2;
-    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
+    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
 }
 
 - (IBAction)threeStars:(id)sender {
     self.myRating = 3;
-    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
-    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
+    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
+    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
 }
 
 - (IBAction)fourStars:(id)sender {
     self.myRating = 4;
-    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmpty"] forState:UIControlStateNormal];
+    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starEmptyLarge"] forState:UIControlStateNormal];
 }
 
 - (IBAction)fiveStars:(id)sender {
     self.myRating = 5;
-    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
-    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starFull"] forState:UIControlStateNormal];
+    [self.starOne setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starTwo setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starThree setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starFour setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
+    [self.starFive setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad

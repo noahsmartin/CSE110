@@ -89,9 +89,9 @@
 - (IBAction)select:(id)sender {
     self.dish.isSelected = !self.dish.isSelected;
     if(self.dish.isSelected)
-        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkSelectedBlack"] forState:UIControlStateNormal];
+        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkselectedLarge"] forState:UIControlStateNormal];
     else
-        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkUnselectedBlack"] forState:UIControlStateNormal];
+        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkunselectedLarge"] forState:UIControlStateNormal];
 }
 
 @end
