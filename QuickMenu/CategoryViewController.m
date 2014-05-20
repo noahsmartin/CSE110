@@ -67,12 +67,24 @@
     [cell setColor:[self colorForIndex:indexPath.row]];
     cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
     cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
-    NSString *dollar = @"$";
-    cell.priceLabel.text = [NSString stringWithFormat:@"%@%@",dollar,((Dish*) self.category.dishes[indexPath.row]).price];
+    // Intentionally not explicitly adding a $, this should be a property of the dish the restaurant owner enters, also
+    // by adding a $ we would clearly not be supporting other currencies, this way we still are.
+    cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
     cell.data = self.category.dishes[indexPath.row];
     cell.delegate = self;
     [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];
     return cell;
+}
+
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    UIImage *img = [UIImage imageNamed:@"defaultCategory"];
+    //[img ]
+    //img.size = CGSizeMake(30, 30);
+    NSLog(@"%f", img.size.width);
+    [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
+    //[self setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0]];
 }
 
 -(void)itemRemoved:(id)cell
