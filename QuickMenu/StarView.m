@@ -92,7 +92,7 @@
     self.images = array;
     self.noRating = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
     self.noRating.text = @"No Ratings";
-    [self.noRating setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [self.noRating setFont:[UIFont fontWithName:@"HelveticaNeue-Italic" size:13]];
     [self addSubview:self.noRating];
     
     self.reviewCount = [ [UILabel alloc] initWithFrame:CGRectMake(82, 0, 80, 20)]; //-2 for ycoord if center on home. 2 for dish

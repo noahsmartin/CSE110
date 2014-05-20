@@ -42,7 +42,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 79;
+    return 90;
 }
 
 -(UIColor*)colorForIndex:(NSInteger) index {
@@ -73,6 +73,7 @@
     cell.data = self.category.dishes[indexPath.row];
     cell.delegate = self;
     [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];
+    cell.starView.rating = ((Dish*) self.category.dishes[indexPath.row]).rating;
     return cell;
 }
 

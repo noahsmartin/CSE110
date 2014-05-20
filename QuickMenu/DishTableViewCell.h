@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StarView.h"
 
 @protocol DishTableViewDelegate <NSObject>
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) id<DishTableViewDelegate> delegate;
 @property (weak) id data;  // The dish object, the view should not know anything about it
+@property (weak, nonatomic) IBOutlet StarView *starView;
 
 -(void)setDishSelected:(BOOL)selected;
 -(void)setColor:(UIColor*)color;
