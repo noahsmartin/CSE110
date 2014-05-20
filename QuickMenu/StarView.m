@@ -30,17 +30,26 @@
     [self setUp];
 }
 
+-(double)specialRounding:(double)rating;
+{
+    if(rating - floor(rating) >= 0.8)
+    {
+        rating = floor(rating) + 1;
+    }
+    return rating;
+}
+
 -(void)setRating:(double)rating
 {
-    _rating = rating;
+    _rating = [self specialRounding:rating];
     if(_rating >= 0)
     {
         int i = 0;
         while(i < 5)
         {
-            if(i+1 <= rating)
+            if(i+1 <= _rating)
                 [self.images[i] setImage:[UIImage imageNamed:@"starFull"]];
-            else if(i < rating)
+            else if(i < _rating)
                 [self.images[i] setImage:[UIImage imageNamed:@"starHalf"]];
             else
                 [self.images[i] setImage:[UIImage imageNamed:@"starEmpty"]];
