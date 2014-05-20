@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *leaveReviewButton;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionView;
 @property BOOL sentLogin;
+@property (weak, nonatomic) IBOutlet UIButton *selectedButton;
 
 @end
 
@@ -51,6 +52,7 @@
         [self.yourReview setHidden:YES];
         [self.yourReviewStars setHidden:YES];
     }
+    [self setButtonImage:self.selectedButton];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -88,10 +90,15 @@
 
 - (IBAction)select:(id)sender {
     self.dish.isSelected = !self.dish.isSelected;
+    [self setButtonImage:sender];
+}
+
+-(void)setButtonImage:(UIButton*)button
+{
     if(self.dish.isSelected)
-        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkselectedLarge"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"checkselectedLarge"] forState:UIControlStateNormal];
     else
-        [((UIButton*) sender) setBackgroundImage:[UIImage imageNamed:@"checkunselectedLarge"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"checkunselectedLarge"] forState:UIControlStateNormal];
 }
 
 @end
