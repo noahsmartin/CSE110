@@ -34,7 +34,8 @@
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    self.usernameView.text = [MenyouApi getInstance].username;
+    NSString* temp = @"Logged in as: ";
+    self.usernameView.text = [temp stringByAppendingString:[MenyouApi getInstance].username];
 }
 
 -(void)viewWillAppear:(BOOL)animated

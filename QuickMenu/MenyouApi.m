@@ -123,7 +123,6 @@ BOOL DEBUG_API = NO;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
-                NSLog(@"username = %@", username);
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
