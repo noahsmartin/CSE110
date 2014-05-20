@@ -34,4 +34,15 @@
     return self;
 }
 
+-(double)wilsonScore
+{
+    if(self.numRatings == 0)
+        return 0;
+    double average = self.rating - 1;  // Start rating at 0
+    average = average/4;  // Make all rating scalled from 0 - 1
+    double z = 1.96;  // z-score for 95%
+    double scaled = (average + (z*z/(2*self.numRatings)) - z*sqrt(average*(1-average)/self.numRatings + z*z/(4*self.numRatings*self.numRatings)))/(1+z*z/self.numRatings); // the formula...
+    return scaled * 4 + 1; // Scale the score back up to 1-4
+}
+
 @end

@@ -22,4 +22,6 @@
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
+-(double)wilsonScore;
+
 @end
