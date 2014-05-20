@@ -14,6 +14,7 @@
 @interface SettingsViewController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
 @property MEDynamicTransition* dynamicTransition;
+@property (weak, nonatomic) IBOutlet UILabel *usernameView;
 
 @end
 
@@ -32,6 +33,8 @@
     self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    self.usernameView.text = [MenyouApi getInstance].username;
 }
 
 -(void)viewWillAppear:(BOOL)animated
