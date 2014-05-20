@@ -81,11 +81,7 @@
 {
     [super setTitle:title];
     UIImage *img = [UIImage imageNamed:@"defaultCategory"];
-    //[img ]
-    //img.size = CGSizeMake(30, 30);
-    NSLog(@"%f", img.size.width);
     [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
-    //[self setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0]];
 }
 
 -(void)itemRemoved:(id)cell
