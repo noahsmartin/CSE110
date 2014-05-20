@@ -37,7 +37,7 @@
 -(double)wilsonScore
 {
     if(self.numRatings == 0)
-        return 0;
+        return -1;
     double average = self.rating - 1;  // Start rating at 0
     average = average/4;  // Make all rating scalled from 0 - 1
     double z = 1.96;  // z-score for 95%
