@@ -101,7 +101,13 @@
             { 
                 // If they do, then we flip this to true 
                 $login_ok = true; 
-            } 
+            }
+            else {
+          $loginBad = array('Status' => "Failure", 'Message' => "Wrong password");
+
+          echo json_encode($loginBad);
+          die();
+         }
         } 
          
         if($login_ok) 
@@ -143,7 +149,7 @@
         } 
         else 
         { 
-          $loginBad = array('Status' => "Failure", 'Message' => "User did not log in");
+          $loginBad = array('Status' => "Failure", 'Message' => "Email is not registered");
 
           echo json_encode($loginBad);
           die();
