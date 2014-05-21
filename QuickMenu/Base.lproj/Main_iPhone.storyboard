@@ -1159,6 +1159,7 @@
                                             <outlet property="priceLabel" destination="sD6-Nx-uI2" id="lNo-pT-Ddy"/>
                                             <outlet property="starView" destination="ued-yu-qp5" id="C70-WZ-K7o"/>
                                             <outlet property="titleLabel" destination="3Nh-Ld-G49" id="jYc-rF-HhW"/>
+                                            <segue destination="nuN-WH-ZWo" kind="push" identifier="dishDetailSegue" id="e3z-ke-HLF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1238,4 +1239,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="e3z-ke-HLF"/>
+    </inferredMetricsTieBreakers>
 </document>

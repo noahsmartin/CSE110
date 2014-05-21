@@ -90,6 +90,14 @@
     return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id data = [self.menu itemForTopPosition:indexPath.row];
+    if([data isKindOfClass:[NSString class]])
+        return NO;
+    return YES;
+}
+
 -(void)itemSelected:(id)cell
 {
     Dish* d = ((Dish*) ((DishTableViewCell*) cell).data);
