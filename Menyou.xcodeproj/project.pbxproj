@@ -42,6 +42,7 @@
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
+		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
 		4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDC19033BF100A51204 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3D0019033BF100A51204 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDE19033BF100A51204 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -143,6 +144,8 @@
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4FA2C0AF191DB8C200793042 /* StarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
 		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
+		4FA80C0D192C686D00737687 /* TopDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishesViewController.h; sourceTree = "<group>"; };
+		4FA80C0E192C686D00737687 /* TopDishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishesViewController.m; sourceTree = "<group>"; };
 		4FBF3CD919033BF100A51204 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		4FBF3CDB19033BF100A51204 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				4F240B321905F01400A405E2 /* MenuTabBarController.h */,
 				4F240B331905F01400A405E2 /* MenuTabBarController.m */,
 				4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */,
+				4FA80C0D192C686D00737687 /* TopDishesViewController.h */,
+				4FA80C0E192C686D00737687 /* TopDishesViewController.m */,
 				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
 			);
 			path = QuickMenu;
@@ -577,6 +582,7 @@
 				4FE3010D190C72860053EA95 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				4F23B5F91919A39E006C0B58 /* DishTableViewCell.m in Sources */,
 				4FE30111190C72860053EA95 /* ECSlidingViewController.m in Sources */,
+				4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */,
 				4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */,
 				4F240B341905F01400A405E2 /* MenuTabBarController.m in Sources */,
 				4FBF3D0619033BF100A51204 /* OADataFetcher.m in Sources */,

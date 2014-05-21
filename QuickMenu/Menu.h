@@ -25,6 +25,6 @@
 
 -(int)topItemCount;
 
--(id)itemForTopPosition:(int)position;
+-(id)itemForTopPosition:(long)position;
 
 @end

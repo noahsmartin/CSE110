@@ -16,6 +16,7 @@
 #import "CategoryViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "Categories.h"
+#import "TopDishesViewController.h"
 
 #import "OAuthConsumer.h"
 
@@ -252,6 +253,10 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         newController.title = r.title;
         newController.restaurant = r;
         NSMutableArray* controllers = [[NSMutableArray alloc] init];
+        TopDishesViewController* top = [self.storyboard instantiateViewControllerWithIdentifier:@"TopDishesViewController"];
+        [top setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0]];
+        top.menu = r.menu;
+        [controllers addObject:top];
         for(Categories* cat in r.menu.categories)
         {
         	CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:

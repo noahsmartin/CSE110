@@ -65,16 +65,17 @@
         }
         else
             total += c.count;
+        total += 1;  // Add this for the title
     }
     return total;
 }
 
--(id)itemForTopPosition:(int)position
+-(id)itemForTopPosition:(long)position
 {
     // Probably not the best way to do this, the method returns the object used by the controller to update the top items
-    int total = 0;
+    long total = 0;
     for (Categories* c in self.categories) {
-        int startTotal = total;
+        long startTotal = total;
         if(position == total)
         {
             return c.title;
@@ -83,8 +84,9 @@
             total += 3;
         else
             total += c.count;
-        if(position < total)
-            return [[c topItems] objectAtIndex:startTotal - total];
+        if(position <= total)
+            return [[c topItems] objectAtIndex:position-startTotal-1];
+        total += 1; // Add this for the title
     }
     return nil;
 }
