@@ -7,10 +7,11 @@
 //
 
 #import "TopDishesViewController.h"
-#import "DishTableViewCell.h"
 #import "Dish.h"
+#import "DishViewController.h"
 
 @interface TopDishesViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @end
 
@@ -25,20 +26,20 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id data = [self.menu itemForTopPosition:indexPath.row];
     if([data isKindOfClass:[NSString class]])
     {
-        return 90;
+        return 40;
     }
     return 90;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.table reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -46,24 +47,62 @@
     return [self.menu topItemCount];
 }
 
+-(UIColor*)colorForIndex:(NSInteger) index {
+    NSUInteger itemCount = self.menu.topItemCount;
+    float val = 0.288 + ((float)index / (float)itemCount) * 0.3;
+    return [UIColor colorWithRed: 1.0 green:val blue:0.20 alpha:1.0];
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"DishCell";
-    DishTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    DishTableViewCell *cell;
     
-    if (cell == nil) {
-        cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
-    }
     id data = [self.menu itemForTopPosition:indexPath.row];
     if([data isKindOfClass:[NSString class]])
     {
-        cell.titleLabel.text = data;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TitleCell"];
+        if (cell == nil) {
+            cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TitleCell"];
+        }
+        ((UILabel*) [[cell contentView] subviews][0]).text = data;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 0.5)];
+        view.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.4];
+        [cell.contentView addSubview:view];
     }
     else
     {
-        cell.titleLabel.text = ((Dish*) data).title;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"DishCell"];
+        if (cell == nil) {
+            cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DishCell"];
+        }
+        Dish* dish = ((Dish*) data);
+        cell.titleLabel.text = dish.title;
+        [cell setColor:[self colorForIndex:indexPath.row]];
+        cell.descriptionLabel.text = dish.itemDescription;
+        // Intentionally not explicitly adding a $, this should be a property of the dish the restaurant owner enters, also
+        // by adding a $ we would clearly not be supporting other currencies, this way we still are.
+        cell.priceLabel.text = dish.price;
+        cell.data = dish;
+        cell.delegate = self;
+        [cell setDishSelected:dish.isSelected];
+        cell.starView.rating = dish.rating;
     }
     return cell;
+}
+
+-(void)itemSelected:(id)cell
+{
+    Dish* d = ((Dish*) ((DishTableViewCell*) cell).data);
+    d.isSelected = !d.isSelected;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"dishDetailSegue"])
+    {
+        ((DishViewController*) segue.destinationViewController).dish = ((DishTableViewCell*) sender).data;
+        ((DishViewController*) segue.destinationViewController).restaurant = self.restaurant;
+    }
 }
 
 @end

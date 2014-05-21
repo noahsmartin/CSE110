@@ -256,6 +256,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         TopDishesViewController* top = [self.storyboard instantiateViewControllerWithIdentifier:@"TopDishesViewController"];
         [top setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0]];
         top.menu = r.menu;
+        top.restaurant = r.identifier;
         [controllers addObject:top];
         for(Categories* cat in r.menu.categories)
         {

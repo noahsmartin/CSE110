@@ -47,7 +47,7 @@
 
 -(UIColor*)colorForIndex:(NSInteger) index {
     NSUInteger itemCount = self.category.count;
-    float val = 0.288 + ((float)index / (float)itemCount) * 0.2;
+    float val = 0.288 + ((float)index / (float)itemCount) * 0.3;
     return [UIColor colorWithRed: 1.0 green:val blue:0.20 alpha:1.0];
 }
 

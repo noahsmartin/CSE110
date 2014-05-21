@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Menu.h"
+#import "DishTableViewCell.h"
 
-@interface TopDishesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TopDishesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DishTableViewDelegate>
 
 @property Menu* menu;
+@property NSString* restaurant;
 
 @end
