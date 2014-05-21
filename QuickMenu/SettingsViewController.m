@@ -35,7 +35,9 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     NSString* temp = @"Logged in as: ";
-    self.usernameView.text = [temp stringByAppendingString:[MenyouApi getInstance].username];
+    NSString* username = [MenyouApi getInstance].username;
+    if(username)
+        self.usernameView.text = [temp stringByAppendingString:username];
 }
 
 -(void)viewWillAppear:(BOOL)animated
