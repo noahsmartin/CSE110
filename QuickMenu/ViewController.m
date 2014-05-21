@@ -60,7 +60,7 @@
         [errorAlert show];
     }
     else if([self.passwordText.text isEqualToString:@""] || [self.passwordConfirmText.text isEqualToString:@""]
-        || [self.usernameText.text isEqualToString:@""])
+            || [self.usernameText.text isEqualToString:@""])
     {
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"All fields must be filled out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -68,7 +68,7 @@
     }
     else if([self validateEmail:self.usernameText.text])
     {
-      // call api
+        // call api
         
         [[MenyouApi getInstance] createAccountWithUsername:[self.usernameText text] Password:[self.passwordText text] block:^(BOOL success) {
             if(success)
@@ -92,13 +92,40 @@
     return b;
 }
 
+-(IBAction) login:(id)sender{
+    
+    UIAlertView* alert = [[UIAlertView alloc] init];
+    [alert setDelegate: self];
+    [alert setTitle: @"Login"];
+    [alert setMessage: @"Enter your Menyou account"];
+    [alert addButtonWithTitle:@"Login"];
+    [alert addButtonWithTitle:@"Cancel"];
+    alert.tag = 5;
+    
+    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeEmailAddress;
+    [alert textFieldAtIndex:1].keyboardType = UIKeyboardTypeAlphabet;
+    
+    CGAffineTransform moveUp = CGAffineTransformMakeTranslation(0.0, 0.0);
+    [alert setTransform: moveUp];
+    [alert show];
+    //[alert release];
+    
+}
+
+- (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        //do stuff here
+    }
+}
+
 - (IBAction)createAccount:(id)sender {
     [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-         self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
-         self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
+        self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
+        self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
         
-     } completion:^(BOOL finished) {
-     }];
+    } completion:^(BOOL finished) {
+    }];
     
     //enabling the three textfields for user input
     _usernameText.enabled = YES;

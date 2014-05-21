@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -105,7 +105,6 @@
                         <outlet property="backgroundImage" destination="DJ6-Kq-9FV" id="wWT-jt-Mv2"/>
                         <outlet property="continueButton" destination="32g-LX-Jiz" id="WkX-3W-lYn"/>
                         <outlet property="creatAccountButton" destination="Bsx-Fx-AHZ" id="33J-rU-C75"/>
-                        <outlet property="createAccountButton" destination="Kle-25-SkX" id="HJ5-q8-On2"/>
                         <outlet property="loginButton" destination="Kle-25-SkX" id="0k9-xh-rvP"/>
                         <outlet property="logoView" destination="BiS-IS-o5Q" id="73a-Ew-4hh"/>
                         <outlet property="passwordConfirmText" destination="cMm-ax-Hbe" id="KDU-Bf-VAn"/>
