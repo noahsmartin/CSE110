@@ -110,7 +110,6 @@
     [alert setTransform: moveUp];
     [alert show];
     //[alert release];
-    
 }
 
 - (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
