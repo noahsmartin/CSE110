@@ -12,8 +12,12 @@
 @protocol DishTableViewDelegate <NSObject>
 
 @required
--(void)itemRemoved:(id)cell;
+-(BOOL)canRemove:(id)cell;
 -(void)itemSelected:(id)cell;
+
+// Must be implemented if canRemove returns YES
+@optional
+-(void)itemRemoved:(id)cell;
 
 @end
 

@@ -83,7 +83,7 @@
         CGPoint p = [((UIPanGestureRecognizer*) gestureRecognizer) translationInView:[self superview]];
         if(fabs(p.x) > fabs(p.y))
         {
-            return YES;
+            return [self.delegate canRemove:self];
         }
     }
     return NO;

@@ -96,6 +96,11 @@
     d.isSelected = !d.isSelected;
 }
 
+-(BOOL)canRemove:(id)cell
+{
+    return NO;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([[segue identifier] isEqualToString:@"dishDetailSegue"])
