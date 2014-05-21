@@ -62,10 +62,13 @@
         if(c.count >= 3)
         {
             total += 3;
+            total += 1;  // Add this for the title
         }
-        else
+        else if(c.count > 0)
+        {
             total += c.count;
-        total += 1;  // Add this for the title
+            total += 1;  // Add this for the title
+        }
     }
     return total;
 }
@@ -75,6 +78,8 @@
     // Probably not the best way to do this, the method returns the object used by the controller to update the top items
     long total = 0;
     for (Categories* c in self.categories) {
+        if(!c.count)
+            continue;
         long startTotal = total;
         if(position == total)
         {
