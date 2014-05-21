@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmText;
+@property (weak, nonatomic) IBOutlet UIAlertView *loginPopup;
 
 @end
 
@@ -90,6 +91,18 @@
         [errorAlert show];
     }
     return b;
+}
+
+-(IBAction) login:(id)sender{
+    UIAlertView *alert = [[UIAlertView] initWithTitle:@"ROFL" message:@"Logins?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"what"];
+    [alert show];
+}
+
+- (void) alertView:(UIAlertView*) alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    //the user clicked okay
+    if(buttonIndex == 0){
+        //do stuff here
+    }
 }
 
 - (IBAction)createAccount:(id)sender {
