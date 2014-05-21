@@ -20,4 +20,6 @@
 
 -(void)removeDish:(id)dish;
 
+-(NSArray*)topItems;
+
 @end

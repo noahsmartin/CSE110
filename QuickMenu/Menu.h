@@ -23,4 +23,8 @@
 
 -(NSNumber*)totalCost;
 
+-(int)topItemCount;
+
+-(id)itemForTopPosition:(int)position;
+
 @end
