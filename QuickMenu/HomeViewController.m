@@ -86,6 +86,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
@@ -99,14 +100,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.locationManager startUpdatingLocation];
     
     self.dynamicTransition = [[MEDynamicTransition alloc] init];
-    self.dynamicTransition.slidingViewController = self.slidingViewController;
-    self.slidingViewController.delegate = self.dynamicTransition;
-    
-    self.dynamicTransitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.slidingViewController.delegate action:@selector(handlePanGesture:)];
 
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
-    self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
-    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.color = [UIColor blackColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -119,8 +113,14 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
-}
+    self.dynamicTransition.slidingViewController = self.slidingViewController;
+    self.slidingViewController.delegate = self.dynamicTransition;
+    
+    self.dynamicTransitionPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.slidingViewController.delegate action:@selector(handlePanGesture:)];
+    
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
+    self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
+    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
