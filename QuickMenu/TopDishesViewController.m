@@ -64,7 +64,8 @@
         if (cell == nil) {
             cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TitleCell"];
         }
-        ((UILabel*) [[cell contentView] subviews][0]).text = data;
+        UILabel* label = ((UILabel*) [[cell contentView] subviews][0]);
+        label.text = data;
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 0.5)];
         view.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.4];
         [cell.contentView addSubview:view];

@@ -40,6 +40,7 @@
 		4F80A21E19009B510012A60F /* MenyouApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F80A21D19009B510012A60F /* MenyouApi.m */; };
 		4F8AEAA619283A4800479B23 /* AddRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AEAA519283A4800479B23 /* AddRatingViewController.m */; };
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
+		4F94FEB7192D7ADD0091C3BC /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
@@ -141,6 +142,8 @@
 		4F8AEAA519283A4800479B23 /* AddRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRatingViewController.m; sourceTree = "<group>"; };
 		4F91227C1915744100139F81 /* MEDynamicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicTransition.h; sourceTree = "<group>"; };
 		4F91227D1915744100139F81 /* MEDynamicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEDynamicTransition.m; sourceTree = "<group>"; };
+		4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
+		4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4FA2C0AF191DB8C200793042 /* StarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
 		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
 				4F26DFB51901BDD0002C4FEC /* ApiData */,
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
+				4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */,
 				4F8AEAA419283A4800479B23 /* AddRatingViewController.h */,
 				4F8AEAA519283A4800479B23 /* AddRatingViewController.m */,
 				4F4546681921D89600F65094 /* LoginViewController.h */,
@@ -610,6 +615,7 @@
 				4F8AEAA619283A4800479B23 /* AddRatingViewController.m in Sources */,
 				4F64B88F19257E1A0059E55F /* QR_Encode.cpp in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
+				4F94FEB7192D7ADD0091C3BC /* AVCamPreviewView.m in Sources */,
 				4FBF3D0419033BF100A51204 /* OACall.m in Sources */,
 				4F240B381905F05F00A405E2 /* Menu.m in Sources */,
 				4FE30110190C72860053EA95 /* ECSlidingSegue.m in Sources */,

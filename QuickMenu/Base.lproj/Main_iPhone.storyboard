@@ -581,6 +581,30 @@
                                     <action selector="fiveStars:" destination="mbw-vJ-IuE" eventType="touchUpInside" id="yYN-cp-Gbk"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMY-Te-o9i">
+                                <rect key="frame" x="0.0" y="273" width="320" height="295"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnH-WI-Wn6" customClass="AVCamPreviewView">
+                                <rect key="frame" x="0.0" y="285" width="320" height="283"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTz-Gi-MRG">
+                                <rect key="frame" x="130" y="488" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="shutterButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePicture:" destination="mbw-vJ-IuE" eventType="touchUpInside" id="Nso-ir-cRJ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2e-w1-8or">
+                                <rect key="frame" x="0.0" y="273" width="320" height="295"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -598,12 +622,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="description" destination="IN5-vm-ES0" id="ehm-Wy-SmE"/>
+                        <outlet property="imageView" destination="r2e-w1-8or" id="04b-7E-azU"/>
                         <outlet property="rating" destination="Lmg-LA-QjV" id="n8b-g0-hDY"/>
                         <outlet property="starFive" destination="yi3-FY-Abe" id="TbO-TA-QmZ"/>
                         <outlet property="starFour" destination="6gU-QM-5ai" id="HyJ-2y-hUC"/>
                         <outlet property="starOne" destination="z9n-2D-9L6" id="lUk-89-w95"/>
                         <outlet property="starThree" destination="TIy-VW-oob" id="LVH-Nc-lB2"/>
                         <outlet property="starTwo" destination="FYU-9Q-Dgn" id="96C-Eg-uT2"/>
+                        <outlet property="videoLayer" destination="OnH-WI-Wn6" id="lDv-7f-cM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8g6-Ah-xlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1047,24 +1073,6 @@
             </objects>
             <point key="canvasLocation" x="515" y="1597"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Nf9-HO-r63">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gwh-Lw-0uL" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kep-hM-Sw1"/>
-                        <viewControllerLayoutGuide type="bottom" id="0xo-pq-09K"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2KM-UC-uTD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XMw-1Q-OEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
         <!--Top Dishes View Controller - Most Popular-->
         <scene sceneID="bgT-dn-eF8">
             <objects>
@@ -1232,6 +1240,7 @@
         <image name="Icon" width="44" height="44"/>
         <image name="checkUnselected" width="40" height="40"/>
         <image name="checkunselectedLarge" width="60" height="60"/>
+        <image name="shutterButton" width="60" height="60"/>
         <image name="starEmptyLarge" width="35" height="35"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

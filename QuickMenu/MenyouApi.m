@@ -82,7 +82,8 @@ BOOL DEBUG_API = NO;
 {
     NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=";
     for (int i = 0; i < ids.count; i++) {
-        urlString = [urlString stringByAppendingString:ids[i]];
+        if(ids[i] != nil)
+            urlString = [urlString stringByAppendingString:ids[i]];
         if(i != ids.count-1)
             urlString = [urlString stringByAppendingString:@","];
     }

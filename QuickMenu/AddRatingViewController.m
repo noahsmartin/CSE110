@@ -9,8 +9,10 @@
 #import "AddRatingViewController.h"
 #import "StarView.h"
 #import "MenyouApi.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface AddRatingViewController ()
+
+@interface AddRatingViewController () <AVCaptureFileOutputRecordingDelegate>
 @property (weak, nonatomic) IBOutlet StarView *rating;
 @property (weak, nonatomic) IBOutlet UILabel *description;
 @property int myRating;
@@ -20,6 +22,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *starFour;
 @property (weak, nonatomic) IBOutlet UIButton *starFive;
 @property UIActivityIndicatorView *activityIndicator;
+@property AVCaptureSession *session;
+@property (weak, nonatomic) IBOutlet UIView *videoLayer;
+@property dispatch_queue_t sessionQueue;
+@property AVCaptureStillImageOutput *stillImageOutput;
+@property AVCaptureDeviceInput *videoDeviceInput;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -112,10 +120,60 @@
     [self.starFour setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
     [self.starFive setBackgroundImage:[UIImage imageNamed:@"starFullLarge"] forState:UIControlStateNormal];
 }
+- (IBAction)takePicture:(id)sender {
+    dispatch_async([self sessionQueue], ^{
+		//[[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self videoLayer] layer] connection] videoOrientation]];
+		
+        if ([self.videoDeviceInput.device hasFlash] && [self.videoDeviceInput.device isFlashModeSupported:AVCaptureFlashModeAuto])
+        {
+            NSError *error = nil;
+            if ([self.videoDeviceInput.device lockForConfiguration:&error])
+            {
+                [self.videoDeviceInput.device setFlashMode:AVCaptureFlashModeAuto];
+                [self.videoDeviceInput.device unlockForConfiguration];
+            }
+            else
+            {
+                NSLog(@"%@", error);
+            }
+        }
+        
+        [[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self videoLayer] layer] connection] videoOrientation]];
+		
+		// Capture a still image.
+		[[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+			
+			if (imageDataSampleBuffer)
+			{
+				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                UIImage *image = [[UIImage alloc] initWithData:imageData];
+                [self.imageView setHidden:NO];
+                self.imageView.image = [self cropImage:image];
+			}
+		}];
+	});
+}
+
+- (UIImage *)cropImage:(UIImage *)oldImage {
+    CGSize imageSize = oldImage.size;
+    double ratio = imageSize.width / self.imageView.frame.size.width;
+    UIGraphicsBeginImageContextWithOptions( CGSizeMake( self.imageView.frame.size.width * ratio,
+                                                       self.imageView.frame.size.height * ratio),
+                                           NO,
+                                           0.);
+    [oldImage drawAtPoint:CGPointMake( 0, 0)
+                blendMode:kCGBlendModeCopy
+                    alpha:1.];
+    UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return croppedImage;
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.imageView setHidden:YES];
     self.rating.rating = self.dish.rating;
     self.rating.numberReviews = self.dish.numRatings;
     self.description.text = self.dish.itemDescription;
@@ -124,6 +182,46 @@
     self.activityIndicator.color = [UIColor blackColor];
     self.activityIndicator.center = self.view.center;
     [self.view addSubview:self.activityIndicator];
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    [self setSession:session];
+    [(AVCaptureVideoPreviewLayer*) [self.videoLayer layer] setSession:session];
+    self.sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
+	dispatch_async(self.sessionQueue, ^{
+        AVCaptureDevice *videoDevice = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] firstObject];
+        NSError *error;
+		AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
+        if(error)
+        {
+            NSLog(@"%@", error);
+        }
+        if ([session canAddInput:videoDeviceInput])
+		{
+			[session addInput:videoDeviceInput];
+            self.videoDeviceInput = videoDeviceInput;
+            
+			dispatch_async(dispatch_get_main_queue(), ^{
+                CGRect rect = CGRectMake(0, 450, 320, 215);
+                [(AVCaptureVideoPreviewLayer *) [self.videoLayer layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+                [[self.videoLayer layer] setFrame:rect];
+                //[[self.videoLayer layer] setPosition:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))];
+				//[[(AVCaptureVideoPreviewLayer *)[self.videoLayer layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)[self interfaceOrientation]];
+			});
+		}
+        AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
+		if ([session canAddOutput:stillImageOutput])
+		{
+			[stillImageOutput setOutputSettings:@{AVVideoCodecKey : AVVideoCodecJPEG}];
+			[session addOutput:stillImageOutput];
+			[self setStillImageOutput:stillImageOutput];
+		}
+    });
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    dispatch_async(self.sessionQueue, ^{
+		[[self session] startRunning];
+    });
 }
 
 @end
