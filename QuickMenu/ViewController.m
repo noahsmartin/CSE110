@@ -95,30 +95,10 @@
 
 -(IBAction) login:(id)sender{
     
-    UIAlertView* alert = [[UIAlertView alloc] init];
-    [alert setDelegate: self];
-    [alert setTitle: @"Login"];
-    [alert setMessage: @"Enter your Menyou account"];
-    [alert addButtonWithTitle:@"Login"];
-    [alert addButtonWithTitle:@"Cancel"];
-    alert.tag = 5;
-    
-    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeEmailAddress;
-    [alert textFieldAtIndex:1].keyboardType = UIKeyboardTypeAlphabet;
-    
-    CGAffineTransform moveUp = CGAffineTransformMakeTranslation(0.0, 0.0);
-    [alert setTransform: moveUp];
-    [alert show];
-    //[alert release];
+
     
 }
 
-- (void) alertView:(UIAlertView*) alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
-        //do stuff here
-    }
-}
 
 - (IBAction)createAccount:(id)sender {
     [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{

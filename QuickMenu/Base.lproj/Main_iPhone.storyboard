@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -210,7 +210,7 @@
             </objects>
             <point key="canvasLocation" x="810" y="-46"/>
         </scene>
-        <!--My Menu View Controller - My Menu-->
+        <!--My Menu View Controller - My Order-->
         <scene sceneID="Aco-Hy-iNh">
             <objects>
                 <viewController id="r3J-qC-ynO" customClass="MyMenuViewController" sceneMemberID="viewController">
@@ -274,7 +274,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Menu" id="UdM-T8-szm">
+                    <navigationItem key="navigationItem" title="My Order" id="UdM-T8-szm">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="335-oT-cQH">
                             <connections>
                                 <action selector="share:" destination="r3J-qC-ynO" id="7uq-Z8-FK9"/>
@@ -291,7 +291,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="fOc-KQ-Lfd" customClass="MenuTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="pa4-E9-NFt">
-                        <barButtonItem key="rightBarButtonItem" title="My Menu" id="z5e-xO-nfk">
+                        <barButtonItem key="rightBarButtonItem" title="My Order" id="z5e-xO-nfk">
                             <connections>
                                 <segue destination="r3J-qC-ynO" kind="push" identifier="showMyMenuSegue" id="cm8-gQ-rBy"/>
                             </connections>
@@ -1249,6 +1249,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="e3z-ke-HLF"/>
+        <segue reference="3Nm-J4-6EV"/>
     </inferredMetricsTieBreakers>
 </document>
