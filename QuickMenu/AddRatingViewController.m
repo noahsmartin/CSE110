@@ -122,7 +122,6 @@
 }
 - (IBAction)takePicture:(id)sender {
     dispatch_async([self sessionQueue], ^{
-		//[[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self videoLayer] layer] connection] videoOrientation]];
 		
         if ([self.videoDeviceInput.device hasFlash] && [self.videoDeviceInput.device isFlashModeSupported:AVCaptureFlashModeAuto])
         {
@@ -203,8 +202,6 @@
                 CGRect rect = CGRectMake(0, 450, 320, 215);
                 [(AVCaptureVideoPreviewLayer *) [self.videoLayer layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
                 [[self.videoLayer layer] setFrame:rect];
-                //[[self.videoLayer layer] setPosition:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))];
-				//[[(AVCaptureVideoPreviewLayer *)[self.videoLayer layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)[self interfaceOrientation]];
 			});
 		}
         AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
