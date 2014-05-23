@@ -22,7 +22,7 @@
         {
         
             UIAlertView *errorAlert = [[UIAlertView alloc]
-                                       initWithTitle:@"No dishes in your menu" message:@"You haven't added anything to your menu!" delegate:self cancelButtonTitle:@"Add food!" otherButtonTitles:@"Feeling Lucky?", nil];
+                                       initWithTitle:@"No dishes in your order" message:@"You haven't added anything to your order!" delegate:self cancelButtonTitle:@"Add food!" otherButtonTitles:@"Feeling Lucky?", nil];
             
             [errorAlert show];
             return NO;
