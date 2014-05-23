@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32g-LX-Jiz">
-                                        <rect key="frame" x="145" y="406" width="31" height="30"/>
+                                        <rect key="frame" x="145" y="415" width="31" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Skip">
@@ -33,7 +33,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kle-25-SkX">
-                                        <rect key="frame" x="42" y="317" width="81" height="36"/>
+                                        <rect key="frame" x="42" y="311" width="81" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Login">
@@ -44,7 +44,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bB7-aP-IIt">
-                                        <rect key="frame" x="124" y="320" width="150" height="30"/>
+                                        <rect key="frame" x="124" y="314" width="150" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Create Account">
@@ -84,6 +84,13 @@
                                         <connections>
                                             <action selector="createAccountButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bRC-2G-6X2"/>
                                         </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-8J-oHd">
+                                        <rect key="frame" x="68" y="353" width="183" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="facebook-login-button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.3529411764705882" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
@@ -1240,6 +1247,7 @@
         <image name="Icon" width="44" height="44"/>
         <image name="checkUnselected" width="40" height="40"/>
         <image name="checkunselectedLarge" width="60" height="60"/>
+        <image name="facebook-login-button" width="300" height="65"/>
         <image name="shutterButton" width="60" height="60"/>
         <image name="starEmptyLarge" width="35" height="35"/>
     </resources>
