@@ -11,6 +11,11 @@
 #import "MenyouApi.h"
 #import "Categories.h"
 #import "CategoryViewController.h"
+#import "WYPopoverController.h"
+
+@interface MenuTabBarController() <WYPopoverControllerDelegate>
+@property WYPopoverController* popover;
+@end
 
 @implementation MenuTabBarController
 
@@ -50,6 +55,29 @@
         [self.restaurant.menu pickRandomItems];
         [self performSegueWithIdentifier:@"showMyMenuSegue" sender:self];
     }
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.popover = [[WYPopoverController alloc] initWithContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"popover"]];
+    [self.popover setPopoverContentSize:CGSizeMake(150, 240)];    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"My Order" style:UIBarButtonItemStylePlain target:self action:@selector(myorderpressed:)];
+    [button setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:14] } forState:UIControlStateNormal];
+    UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithTitle:@"..." style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
+    [button2 setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica Bold" size:14] } forState:UIControlStateNormal];
+    [[self navigationItem] setRightBarButtonItems:[NSArray arrayWithObjects:button, button2, nil]];
+}
+
+-(void)myorderpressed:(id)sender
+{
+    if([self shouldPerformSegueWithIdentifier:@"showMyMenuSegue" sender:sender])
+        [self performSegueWithIdentifier:@"showMyMenuSegue" sender:sender];
+}
+
+-(void)showpopover:(UIBarButtonItem*)sender event:(UIEvent*)event;
+{
+    [self.popover presentPopoverFromRect:[[event.allTouches anyObject] view].bounds inView:[[event.allTouches anyObject] view] permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+    
 }
 
 @end

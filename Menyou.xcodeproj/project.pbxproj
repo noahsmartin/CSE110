@@ -69,6 +69,9 @@
 		4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3010C190C72860053EA95 /* UIViewController+ECSlidingViewController.m */; };
 		4FE30115190C7A5F0053EA95 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */; };
 		4FEAB18C191EB8AE00B9314E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEAB18B191EB8AE00B9314E /* SettingsViewController.m */; };
+		4FECC2F2192FB77F0092B1D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FECC2F1192FB77F0092B1D7 /* QuartzCore.framework */; };
+		4FECC2F8192FB7D40092B1D7 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECC2F5192FB7D40092B1D7 /* WYPopoverController.m */; };
+		4FECC2F9192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */; };
 		4FFDD6281907268B008DEE69 /* MyMenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */; };
 		72CCDCAD19131C9D00A5681D /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAC19131C9D00A5681D /* Categories.m */; };
 		72CCDCB019131CE400A5681D /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dish.m */; };
@@ -202,6 +205,11 @@
 		4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
 		4FEAB18A191EB8AE00B9314E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4FEAB18B191EB8AE00B9314E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		4FECC2F1192FB77F0092B1D7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4FECC2F4192FB7D40092B1D7 /* WYPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPopoverController.h; sourceTree = "<group>"; };
+		4FECC2F5192FB7D40092B1D7 /* WYPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPopoverController.m; sourceTree = "<group>"; };
+		4FECC2F6192FB7D40092B1D7 /* WYStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
 		4FFDD6261907268B008DEE69 /* MyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMenuViewController.h; sourceTree = "<group>"; };
 		4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyMenuViewController.mm; sourceTree = "<group>"; };
 		72CCDCAB19131C9D00A5681D /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
@@ -215,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FECC2F2192FB77F0092B1D7 /* QuartzCore.framework in Frameworks */,
 				4F64B892192582060059E55F /* MobileCoreServices.framework in Frameworks */,
 				4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */,
 				4F5D5F7818FCB0D00042A0BA /* CoreGraphics.framework in Frameworks */,
@@ -294,6 +303,7 @@
 		4F5D5F7418FCB0D00042A0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FECC2F1192FB77F0092B1D7 /* QuartzCore.framework */,
 				4F64B891192582060059E55F /* MobileCoreServices.framework */,
 				4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */,
 				4F5D5F7518FCB0D00042A0BA /* Foundation.framework */,
@@ -307,6 +317,7 @@
 		4F5D5F7B18FCB0D00042A0BA /* QuickMenu */ = {
 			isa = PBXGroup;
 			children = (
+				4FECC2F3192FB7C00092B1D7 /* PopOver */,
 				4F64B88519257E1A0059E55F /* QRCodeEncoderObjectiveCAtGithub */,
 				4FE300FF190C72860053EA95 /* ECSlidingViewController */,
 				4FBF3CD619033BD800A51204 /* Libraries */,
@@ -485,6 +496,17 @@
 			path = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		4FECC2F3192FB7C00092B1D7 /* PopOver */ = {
+			isa = PBXGroup;
+			children = (
+				4FECC2F4192FB7D40092B1D7 /* WYPopoverController.h */,
+				4FECC2F5192FB7D40092B1D7 /* WYPopoverController.m */,
+				4FECC2F6192FB7D40092B1D7 /* WYStoryboardPopoverSegue.h */,
+				4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */,
+			);
+			name = PopOver;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -612,6 +634,7 @@
 				4FE30112190C72860053EA95 /* UIViewController+ECSlidingViewController.m in Sources */,
 				72CCDCB019131CE400A5681D /* Dish.m in Sources */,
 				4F5D5F8F18FCB0D00042A0BA /* ViewController.m in Sources */,
+				4FECC2F9192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m in Sources */,
 				4F8AEAA619283A4800479B23 /* AddRatingViewController.m in Sources */,
 				4F64B88F19257E1A0059E55F /* QR_Encode.cpp in Sources */,
 				4FE3010F190C72860053EA95 /* ECSlidingInteractiveTransition.m in Sources */,
@@ -622,6 +645,7 @@
 				4FBF3D0719033BF100A51204 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
 				4FE30115190C7A5F0053EA95 /* LeftTableViewController.m in Sources */,
 				4F5D5F8618FCB0D00042A0BA /* AppDelegate.m in Sources */,
+				4FECC2F8192FB7D40092B1D7 /* WYPopoverController.m in Sources */,
 				4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */,
 				4F5D5F8218FCB0D00042A0BA /* main.m in Sources */,
 				39F090351921C4390023B2B7 /* HomeTableViewDataSource.m in Sources */,
