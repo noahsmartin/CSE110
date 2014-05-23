@@ -44,6 +44,6 @@
 // Returns true if you are logged in, false otherwise
 -(BOOL)loggedIn;
 
--(void)addReview:(int)rating forRestaurant:(NSString*)restaurant item:(NSString*)item withBlock:(void(^)(BOOL success))block;
+-(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 
 @end

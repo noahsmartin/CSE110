@@ -61,7 +61,7 @@
 }
 
 - (IBAction)save:(id)sender {
-    [[MenyouApi getInstance] addReview:self.myRating forRestaurant:self.restaurant item:[NSString stringWithFormat:@"%d", self.dish.identifier] withBlock:^(BOOL success) {
+    [[MenyouApi getInstance] addReview:self.myRating item:[NSString stringWithFormat:@"%d", self.dish.identifier] withImage:self.imageView.image withBlock:^(BOOL success) {
         [self.activityIndicator stopAnimating];
         if(success)
         {
@@ -172,6 +172,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageView.image = nil;
     [self.imageView setHidden:YES];
     self.rating.rating = self.dish.rating;
     self.rating.numberReviews = self.dish.numRatings;
