@@ -11,8 +11,8 @@
 #import "MenyouApi.h"
 #import <AVFoundation/AVFoundation.h>
 
-
-@interface AddRatingViewController () <AVCaptureFileOutputRecordingDelegate>
+static void * CapturingStillImageContext = &CapturingStillImageContext;
+@interface AddRatingViewController()
 @property (weak, nonatomic) IBOutlet StarView *rating;
 @property (weak, nonatomic) IBOutlet UILabel *description;
 @property int myRating;
@@ -215,10 +215,39 @@
     });
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if(context == CapturingStillImageContext)
+    {
+		BOOL isCapturingStillImage = [change[NSKeyValueChangeNewKey] boolValue];
+        if(isCapturingStillImage)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[[self videoLayer] layer] setOpacity:0.0];
+                [UIView animateWithDuration:.25 animations:^{
+                    [[[self videoLayer] layer] setOpacity:1.0];
+                }];
+            });
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     dispatch_async(self.sessionQueue, ^{
+        [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
 		[[self session] startRunning];
+    });
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    dispatch_async(self.sessionQueue, ^{
+        [[self session] stopRunning];
+        [self removeObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" context:CapturingStillImageContext];
     });
 }
 
