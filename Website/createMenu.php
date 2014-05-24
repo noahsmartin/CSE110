@@ -84,27 +84,30 @@
                         $stmt = $db->prepare($query); 
                         $result = $stmt->execute($query_params);
                         $row = $stmt->fetch();
+
                         $storedcategories = json_decode($row['categories'], TRUE);
                         print_r($storedcategories);
                         foreach($categories as $category)
                         {
-                            // This loops over the input data categoreis, all fo these should be dropped from the table
+                            // This loops over the input data categories, all of these should be dropped from the table
                             
                             // TODO: drop then add back the updated category
                             // TODO: for each category loop over each dish and do the same for dishes
                             $id = $category['categoyid'];
                             if(in_array($id, $storedcategories))
                             {
-                                echo "found: ", $id;
+                                echo "deleting: ", $id;
                                 // Drop the row in categories that is $id
-                            }
-                            else
-                            {
-                                echo "did not find: ", $id;
+								$query = "DELETE FROM category WHERE categoryid = :id";
+											$query_params = array( 
+										   ':id' => $id
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
                             }
                         }
-                        // Replace this new array of categories with the categores in teh menu table
-                        // Edit the row in menu table with my restuarnt to contain my categories
+                        // Replace this new array of categories with the categories in the menu table
+                        // Edit the row in menu table with my restaurant to contain my categories
                     }
                     
                     
