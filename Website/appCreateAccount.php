@@ -112,27 +112,56 @@
           die();
         } 
          
-        $query = " 
-            INSERT INTO users ( 
-                email,
-                passhash, 
-                session 
-            ) VALUES ( 
-                :email, 
-                :passhash, 
-                :session 
-            ) 
-        "; 
+         if(isset($_GET['business']))
+         {
+            $query = " 
+                INSERT INTO users ( 
+                    email,
+                    passhash,
+                    session,
+                    business
+                ) VALUES ( 
+                    :email, 
+                    :passhash, 
+                    :session,
+                    :business
+                ) 
+            "; 
+         }
+         else {
+            $query = " 
+                INSERT INTO users ( 
+                    email,
+                    passhash, 
+                    session 
+                ) VALUES ( 
+                    :email, 
+                    :passhash, 
+                    :session 
+                ) 
+            "; 
+        }
          
     $bytes = openssl_random_pseudo_bytes(12, $cstrong);
     $hex   = bin2hex($bytes);
          
         // Here we prepare our tokens for insertion into the SQL query.
-        $query_params = array( 
+        if(isset($_GET['business']))
+        {
+                    $query_params = array( 
             ':email' => $_GET['email'], 
             ':passhash' => $_GET['passhash'], 
-            ':session' => $hex 
+            ':session' => $hex,
+            ':business' => $_GET['business']
         ); 
+        }
+        else {
+            $query_params = array( 
+                ':email' => $_GET['email'], 
+                ':passhash' => $_GET['passhash'], 
+                ':session' => $hex 
+            );
+        }
          
         try 
         { 
@@ -148,8 +177,11 @@
         } 
          
             $_SESSION['user'] = $row;
-
-            $outputGood = array('Status' => "Success", 'SessionID' => $hex);
+            
+            if(isset($_GET['business']))
+                $outputGood = array('Status' => "Success", 'SessionID' => $hex, 'Business' => $_GET['business'], 'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Gluten-Free' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
+            else
+                $outputGood = array('Status' => "Success", 'SessionID' => $hex,  'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Gluten-Free' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
 
             echo json_encode($outputGood);
             die();

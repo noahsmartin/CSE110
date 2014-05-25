@@ -61,7 +61,15 @@
         $query = " 
             SELECT 
                 email,
-                passhash
+                passhash,
+                business,
+                kosher,
+                vegetarian,
+                vegan,
+                peanutallergy,
+                glutenfree,
+                dairyfree,
+                lowfat
             FROM users 
             WHERE 
                 email = :email 
@@ -100,7 +108,10 @@
             if($_GET['passhash'] === $row['passhash']) 
             { 
                 // If they do, then we flip this to true 
-                $login_ok = true; 
+                $login_ok = true;
+                $business = "";
+                if($row['business'])
+                    $business = $row['business'];
             }
             else {
           $loginBad = array('Status' => "Failure", 'Message' => "Wrong password");
@@ -132,7 +143,7 @@
         { 
             // Execute the query 
             $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
+            $result = $stmt->execute($query_params);
         } 
         catch(PDOException $ex) 
         { 
@@ -142,7 +153,7 @@
         }
  
 
-          $loginGood = array('Status' => "Success", 'Message' => "User is now logged in", 'SessionID' => $hex);
+          $loginGood = array('Status' => "Success", 'Message' => "User is now logged in", 'SessionID' => $hex, 'Business' => $business, 'Kosher' => $row[kosher], 'Vegetarian' => $row[vegetarian], 'Vegan' => $row[vegan], 'Peanut-Allergy' => $row[peanutallergy], 'Gluten-Free' => $row[glutenfree], 'Dairy-Free' => $row[dairyfree], 'Low-Fat' => $row[lowfat]);
 
           echo json_encode($loginGood);
           die();
