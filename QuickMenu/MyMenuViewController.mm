@@ -139,7 +139,7 @@
         NSMutableArray* dishes = [NSMutableArray array];
         for(Dish* d in [self.restaurant.menu selectedItems])
         {
-            [dishes addObject:[NSNumber numberWithInt:d.identifier]];
+            [dishes addObject:d.identifier];
         }
         NSDictionary* dict = @{@"name": self.restaurant.title, @"dishes": dishes};
         NSData* d = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];

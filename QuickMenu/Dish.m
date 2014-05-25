@@ -29,7 +29,7 @@
             self.numRatings = 0;
         }
         self.myRating = -1;
-        self.identifier = 0;
+        self.identifier = [data objectForKey:@"dishid"];
     }
     return self;
 }

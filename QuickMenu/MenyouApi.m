@@ -7,6 +7,7 @@
 //
 
 #import "MenyouApi.h"
+#import "AFNetworking.h"
 #include <CommonCrypto/CommonDigest.h>
 
 @interface MenyouApi()
@@ -173,18 +174,24 @@ BOOL DEBUG_API = NO;
     return NO;
 }
 
--(void)addReview:(int)rating forRestaurant:(NSString *)restaurant item:(NSString *)item withBlock:(void (^)(BOOL))block
+-(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 {
-    // Just a fake api call to get a little delay
-    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php", baseUrl];
-    NSURL *URL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
-    [request setHTTPMethod:@"GET"];
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://menyouapp.com"]];
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    NSDictionary *parameters = @{@"email": self.username, @"session" : self.session, @"rating":[NSString stringWithFormat:@"%d",rating], @"item":item};
+    AFHTTPRequestOperation *op = [manager POST:@"addRating.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:imageData name:@"file" fileName:@"dishid~username.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", operation.responseString);
+        if([[responseObject objectForKey:@"Status"] isEqualToString:@"Failure"])
+            block(NO);
+        else
             block(YES);
-        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", operation.responseString);
+        block(NO);
     }];
+    [op start];
 }
 
 -(NSString*) sha256:(NSString *)string{

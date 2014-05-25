@@ -61,7 +61,7 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
 }
 
 - (IBAction)save:(id)sender {
-    [[MenyouApi getInstance] addReview:self.myRating item:[NSString stringWithFormat:@"%d", self.dish.identifier] withImage:self.imageView.image withBlock:^(BOOL success) {
+    [[MenyouApi getInstance] addReview:self.myRating item:self.dish.identifier withImage:self.imageView.image withBlock:^(BOOL success) {
         [self.activityIndicator stopAnimating];
         if(success)
         {

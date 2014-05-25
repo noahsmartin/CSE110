@@ -16,7 +16,7 @@
 @property NSString* price;
 @property NSString* itemDescription;
 @property double rating;
-@property int identifier;
+@property NSString* identifier;
 @property double myRating;
 @property double numRatings;
 
