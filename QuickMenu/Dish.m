@@ -7,6 +7,7 @@
 //
 
 #import "Dish.h"
+#import "MenyouApi.h"
 
 @implementation Dish
 
@@ -28,10 +29,15 @@
             self.rating = -1;
             self.numRatings = 0;
         }
-        self.myRating = -1;
         self.identifier = [data objectForKey:@"dishid"];
+        [self reloadReviews];
     }
     return self;
+}
+
+-(void)reloadReviews
+{
+    self.myRating = [[MenyouApi getInstance] getReviewFor:self.identifier];
 }
 
 -(double)wilsonScore

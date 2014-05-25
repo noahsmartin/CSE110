@@ -121,6 +121,14 @@
     return [self.categories description];
 }
 
+-(void)reloadReviews
+{
+    for(Categories* c in self.categories)
+    {
+        [c reloadReviews];
+    }
+}
+
 -(void)pickRandomItems
 {
     for (Categories* cat in self.categories) {

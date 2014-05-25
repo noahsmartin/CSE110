@@ -14,7 +14,6 @@
 @interface DishViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet StarView *starView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *yourReview;
 @property (weak, nonatomic) IBOutlet StarView *yourReviewStars;
 @property (weak, nonatomic) IBOutlet UIButton *leaveReviewButton;
@@ -32,14 +31,19 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.title = self.dish.title;
     self.titleView.text = self.title;
-    self.starView.rating = self.dish.rating;
-    self.starView.numberReviews = self.dish.numRatings;
-    self.scrollView.contentSize = CGSizeMake(272, 550);
+    [self updateUI];
     self.descriptionView.text = self.dish.itemDescription;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self updateUI];
+}
+
+-(void)updateUI
+{
+    self.starView.rating = self.dish.rating;
+    self.starView.numberReviews = self.dish.numRatings;
     if (self.dish.myRating >= 0) {
         [self.leaveReviewButton setHidden:YES];
         [self.yourReview setHidden:NO];
@@ -69,6 +73,8 @@
 
 -(void)presentAddRating
 {
+    if(self.dish.myRating >= 0)
+        return;
     UINavigationController* vc = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"addRatingViewController"];
     ((AddRatingViewController*) (vc.topViewController)).title = self.dish.title;
     ((AddRatingViewController*) (vc.topViewController)).dish = self.dish;

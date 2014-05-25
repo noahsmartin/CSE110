@@ -24,4 +24,6 @@
 
 -(double)wilsonScore;
 
+-(void)reloadReviews;
+
 @end

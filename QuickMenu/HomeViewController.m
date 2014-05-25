@@ -20,7 +20,7 @@
 
 #import "OAuthConsumer.h"
 
-@interface HomeViewController()
+@interface HomeViewController() <MenyouApiDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property double longtidude;
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -87,6 +87,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    [MenyouApi getInstance].delegate = self;
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
@@ -236,6 +237,14 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     }
 
     [self updateYelp];
+}
+
+-(void)loginStatusChagned
+{
+    for(Restaurant* r in self.data)
+    {
+        [r reloadReviews];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -51,6 +51,11 @@
       return nil;
 }
 
+-(void)reloadReviews
+{
+    [self.menu reloadReviews];
+}
+
 -(NSString*)description
 {
     return self.identifier;

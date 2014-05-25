@@ -22,4 +22,6 @@
 
 -(NSArray*)topItems;
 
+-(void)reloadReviews;
+
 @end

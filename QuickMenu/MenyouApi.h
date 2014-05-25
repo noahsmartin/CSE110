@@ -15,11 +15,20 @@
 #import <Foundation/Foundation.h>
 #import "Menu.h"
 
+@protocol MenyouApiDelegate
+
+@required
+-(void)loginStatusChagned;
+
+@end
+
 @interface MenyouApi : NSObject
 
 @property (readonly) NSString* username;
 
 @property (readonly) NSString* business;
+
+@property (weak) id<MenyouApiDelegate> delegate;
 
 // This is a singleton class
 // Populates defaults in restaruants until requestInfo called
@@ -42,6 +51,8 @@
 
 // Returns true if you are logged in, false otherwise
 -(BOOL)loggedIn;
+
+-(int)getReviewFor:(NSString*)dishid;
 
 -(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 

@@ -12,6 +12,7 @@
 
 @interface MenyouApi()
 @property NSString* session;
+@property NSDictionary* reviews;
 
 @end
 
@@ -38,6 +39,22 @@ BOOL DEBUG_API = NO;
         self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
         _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
+        if([self loggedIn])
+        {
+            // Query for the ratings
+            NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@", baseUrl, self.username, self.session];
+            NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+            [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if(!error)
+                {
+                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                    if([[dict objectForKey:@"Status"] isEqualToString:@"Success"])
+                        self.reviews = [dict objectForKey:@"Reviews"];
+                    else
+                        [self logout];
+                }
+            }] resume];
+        }
     }
     return self;
 }
@@ -118,22 +135,34 @@ BOOL DEBUG_API = NO;
     [self processAccountRequest:request username:username block:block];
 }
 
+-(int)getReviewFor:(NSString *)dishid
+{
+    if([self.reviews objectForKey:dishid])
+    {
+        return [[self.reviews objectForKey:dishid] intValue];
+    }
+    return -1;
+}
+
 -(void)processAccountRequest:(NSURLRequest*)request username:(NSString*)username block:(void (^)(BOOL))block
 {
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if(data)
         {
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            NSLog(@"%@", json);
+            if(DEBUG_API)
+                NSLog(@"%@", json);
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
+                self.reviews = [json objectForKey:@"Reviews"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                [self.delegate loginStatusChagned];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(YES);
                 });
@@ -161,10 +190,12 @@ BOOL DEBUG_API = NO;
     _username = nil;
     self.session = nil;
     _business = nil;
+    self.reviews = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"business"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.delegate loginStatusChagned];
 }
 
 -(BOOL)loggedIn
@@ -176,7 +207,7 @@ BOOL DEBUG_API = NO;
 
 -(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 {
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://menyouapp.com"]];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseUrl];
     NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
     NSDictionary *parameters = @{@"email": self.username, @"session" : self.session, @"rating":[NSString stringWithFormat:@"%d",rating], @"item":item};
     AFHTTPRequestOperation *op = [manager POST:@"addRating.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

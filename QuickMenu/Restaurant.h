@@ -24,4 +24,6 @@
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
+-(void)reloadReviews;
+
 @end

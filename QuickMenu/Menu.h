@@ -27,4 +27,6 @@
 
 -(id)itemForTopPosition:(long)position;
 
+-(void)reloadReviews;
+
 @end

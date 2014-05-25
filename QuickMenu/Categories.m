@@ -27,6 +27,14 @@
     return self;
 }
 
+-(void)reloadReviews
+{
+    for(Dish* d in self.dishes)
+    {
+        [d reloadReviews];
+    }
+}
+
 -(NSArray*)topItems
 {
     return [self.dishes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
