@@ -12,7 +12,7 @@
 
 @interface MenyouApi()
 @property NSString* session;
-@property NSDictionary* reviews;
+@property (nonatomic) NSMutableDictionary* reviews;
 
 @end
 
@@ -32,6 +32,14 @@ BOOL DEBUG_API = NO;
     return instance;
 }
 
+-(NSMutableDictionary*)reviews {
+    if(!_reviews)
+    {
+        return _reviews = [[NSMutableDictionary alloc] init];
+    }
+    return _reviews;
+}
+
 -(instancetype)init
 {
     if(self = [super init])
@@ -42,14 +50,17 @@ BOOL DEBUG_API = NO;
         if([self loggedIn])
         {
             // Query for the ratings
-            NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@", baseUrl, self.username, self.session];
+            NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@&timestamp=%f", baseUrl, self.username, self.session, [[NSDate date] timeIntervalSince1970]];
             NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
             [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if(!error)
                 {
                     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
                     if([[dict objectForKey:@"Status"] isEqualToString:@"Success"])
-                        self.reviews = [dict objectForKey:@"Reviews"];
+                    {
+                        if([[dict objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
+                            self.reviews = [[dict objectForKey:@"Reviews"] mutableCopy];
+                    }
                     else
                         [self logout];
                 }
@@ -207,19 +218,23 @@ BOOL DEBUG_API = NO;
 
 -(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 {
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseUrl];
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
+    NSData *imageData = nil;
+    if(image)
+        imageData = UIImageJPEGRepresentation(image, 0.5);
     NSDictionary *parameters = @{@"email": self.username, @"session" : self.session, @"rating":[NSString stringWithFormat:@"%d",rating], @"item":item};
     AFHTTPRequestOperation *op = [manager POST:@"addRating.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imageData name:@"file" fileName:@"dishid~username.jpg" mimeType:@"image/jpeg"];
+        if(image)
+            [formData appendPartWithFileData:imageData name:@"file" fileName:@"dishid~username.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", operation.responseString);
         if([[responseObject objectForKey:@"Status"] isEqualToString:@"Failure"])
             block(NO);
         else
+        {
+            [self.reviews setObject:[NSNumber numberWithInt:rating] forKey:item];
             block(YES);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", operation.responseString);
         block(NO);
     }];
     [op start];
