@@ -19,8 +19,7 @@
 
 @property (readonly) NSString* username;
 
-// This is an array of restaurants
-@property (readonly) NSArray* restarants;
+@property (readonly) NSString* business;
 
 // This is a singleton class
 // Populates defaults in restaruants until requestInfo called

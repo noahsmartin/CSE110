@@ -35,7 +35,8 @@ BOOL DEBUG_API = NO;
     if(self = [super init])
     {
         self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
-        _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"attributes"];
+        _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+        _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
     }
     return self;
 }
@@ -122,12 +123,15 @@ BOOL DEBUG_API = NO;
         if(data)
         {
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            NSLog(@"%@", json);
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
+                _business = [json objectForKey:@"Business"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
-                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"attributes"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(YES);
@@ -155,8 +159,10 @@ BOOL DEBUG_API = NO;
 {
     _username = nil;
     self.session = nil;
+    _business = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"attributes"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"business"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
