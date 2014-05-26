@@ -35,6 +35,13 @@
     return self;
 }
 
+-(void)addUserRating:(int)userRating
+{
+    self.myRating = userRating;
+    self.rating = (self.myRating + self.rating*self.numRatings)/(++self.numRatings);
+    
+}
+
 -(void)reloadReviews
 {
     self.myRating = [[MenyouApi getInstance] getReviewFor:self.identifier];

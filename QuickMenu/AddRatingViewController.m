@@ -65,7 +65,7 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
         [self.activityIndicator stopAnimating];
         if(success)
         {
-            self.dish.myRating = self.myRating;
+            [self.dish addUserRating:self.myRating];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else

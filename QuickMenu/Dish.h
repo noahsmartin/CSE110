@@ -24,6 +24,8 @@
 
 -(double)wilsonScore;
 
+-(void)addUserRating:(int)userRating;
+
 -(void)reloadReviews;
 
 @end
