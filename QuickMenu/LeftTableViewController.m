@@ -11,6 +11,7 @@
 #import "ECSlidingSegue.h"
 #import "MenyouApi.h"
 #import "SettingsViewController.h"
+#import "ScannerViewController.h"
 
 @interface LeftTableViewController()
 @property UIViewController* homeViewController;
@@ -27,7 +28,11 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    // if logged in as bussiness owner, return 3
+    // else return 2
+    // not sure how to check if business owner
+    
+    return 3;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,7 +41,10 @@
     if(indexPath.row == 0){
         simpleTableIdentifier = @"DrawerCell";
     }
-    else simpleTableIdentifier = @"SettingsCell";
+    else if(indexPath.row == 1) {
+        simpleTableIdentifier = @"SettingsCell";
+    }
+    else simpleTableIdentifier = @"ScanCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
@@ -54,11 +62,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == 0){
+    if(indexPath.row == 0){ // home button selected
         self.slidingViewController.topViewController = self.homeViewController;
         [self.slidingViewController resetTopViewAnimated:YES];
     }
-    else{
+    else if(indexPath.row == 1){ // settings button selected
         if([[MenyouApi getInstance] loggedIn])
         {
             UINavigationController* settingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
@@ -73,6 +81,19 @@
                 [self.slidingViewController resetTopViewAnimated:YES];
             }];
         }
+    }
+    else{  // scan button selected
+        
+        UINavigationController* scannerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScannerViewController"];
+        ((ScannerViewController*) scannerViewController.topViewController).homeViewController = self.homeViewController;
+        self.slidingViewController.topViewController = scannerViewController;
+        [self.slidingViewController resetTopViewAnimated:YES];
+         /*
+        [self presentViewController:[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"] animated:YES completion:^{
+            // Return to the home MVC
+            [self.slidingViewController resetTopViewAnimated:YES];
+        }];
+            */
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

@@ -82,6 +82,8 @@
 		4FECC2F8192FB7D40092B1D7 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECC2F5192FB7D40092B1D7 /* WYPopoverController.m */; };
 		4FECC2F9192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */; };
 		4FFDD6281907268B008DEE69 /* MyMenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */; };
+		7296A73C1932CCF900599C89 /* qricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7296A73B1932CCF900599C89 /* qricon.png */; };
+		7296A73F1932D2FE00599C89 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7296A73E1932D2FE00599C89 /* ScannerViewController.m */; };
 		72CCDCAD19131C9D00A5681D /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAC19131C9D00A5681D /* Categories.m */; };
 		72CCDCB019131CE400A5681D /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dish.m */; };
 /* End PBXBuildFile section */
@@ -240,6 +242,9 @@
 		4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
 		4FFDD6261907268B008DEE69 /* MyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMenuViewController.h; sourceTree = "<group>"; };
 		4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyMenuViewController.mm; sourceTree = "<group>"; };
+		7296A73B1932CCF900599C89 /* qricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qricon.png; sourceTree = "<group>"; };
+		7296A73D1932D2FE00599C89 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		7296A73E1932D2FE00599C89 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		72CCDCAB19131C9D00A5681D /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		72CCDCAC19131C9D00A5681D /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
 		72CCDCAE19131CE400A5681D /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
@@ -353,6 +358,8 @@
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
 				4F26DFB51901BDD0002C4FEC /* ApiData */,
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				7296A73D1932D2FE00599C89 /* ScannerViewController.h */,
+				7296A73E1932D2FE00599C89 /* ScannerViewController.m */,
 				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
 				4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */,
 				4F8AEAA419283A4800479B23 /* AddRatingViewController.h */,
@@ -375,6 +382,7 @@
 				4F23B5F71919A39E006C0B58 /* DishTableViewCell.h */,
 				4F23B5F81919A39E006C0B58 /* DishTableViewCell.m */,
 				4F5D5F9018FCB0D00042A0BA /* Images.xcassets */,
+				7296A73B1932CCF900599C89 /* qricon.png */,
 				4F5D5F7C18FCB0D00042A0BA /* Supporting Files */,
 				4FFDD6261907268B008DEE69 /* MyMenuViewController.h */,
 				4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */,
@@ -640,6 +648,7 @@
 			files = (
 				4F5D5F8C18FCB0D00042A0BA /* Main_iPad.storyboard in Resources */,
 				4F5D5F9118FCB0D00042A0BA /* Images.xcassets in Resources */,
+				7296A73C1932CCF900599C89 /* qricon.png in Resources */,
 				4F5D5F8918FCB0D00042A0BA /* Main_iPhone.storyboard in Resources */,
 				4F5D5F8018FCB0D00042A0BA /* InfoPlist.strings in Resources */,
 			);
@@ -676,6 +685,7 @@
 				4FC4E82B193263F1008609A6 /* AFURLSessionManager.m in Sources */,
 				4FBF3D0A19033BF100A51204 /* OAProblem.m in Sources */,
 				4FBF3D0819033BF100A51204 /* OAMutableURLRequest.m in Sources */,
+				7296A73F1932D2FE00599C89 /* ScannerViewController.m in Sources */,
 				4FBF3D0C19033BF100A51204 /* OAServiceTicket.m in Sources */,
 				4FBF3D0B19033BF100A51204 /* OARequestParameter.m in Sources */,
 				4FBF3D0519033BF100A51204 /* OAConsumer.m in Sources */,
