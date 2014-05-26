@@ -235,6 +235,12 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
     }
 }
 
+-(void)viewDidLayoutSubviews
+{
+    // Keep the video preview the right size
+    CGRect rect = CGRectMake(0, 450, 320, 215);
+    [[self.videoLayer layer] setFrame:rect];}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     dispatch_async(self.sessionQueue, ^{
