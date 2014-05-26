@@ -134,13 +134,19 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGestureCustom;
     self.slidingViewController.customAnchoredGestures = @[self.dynamicTransitionPanGesture];
-    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];}
+    [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    //code to remove highlight when going back
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
 -(void)refreshView:(UIRefreshControl*)refresh
 {
     if([CLLocationManager locationServicesEnabled] && !self.isUpdating)
