@@ -168,7 +168,7 @@ BOOL DEBUG_API = NO;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
-                self.reviews = [json objectForKey:@"Reviews"];
+                self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
