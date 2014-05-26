@@ -16,12 +16,26 @@
 
 @interface MyMenuViewController()
 @property UIImage* img;
+@property NSString* message;
 @end
 
 @implementation MyMenuViewController
 
 -(void)viewDidLoad
 {
+    self.message = [NSString stringWithFormat:@"Hey! I'm enjoying an awesome meal at %@! :D \n\n I had", self.restaurant.title];
+    
+    NSString* temp = @" ";
+    for(int i = 0; i < 3; i++)
+    {
+        Dish* d = [self.restaurant.menu selectedItems][i];
+        temp = [temp stringByAppendingString:d.title];
+        temp = [temp stringByAppendingString:@", "];
+    }
+    
+    self.message = [self.message stringByAppendingString:temp];
+    self.message = [self.message stringByAppendingString:@"and much more. You should check this place out!"];
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
@@ -29,7 +43,7 @@
 {
     if(self.img)
     {
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.restaurant.title, self.img] applicationActivities:nil];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.message, self.img] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];
     }
 }
@@ -54,7 +68,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 0){
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.restaurant.title] applicationActivities:nil];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.message] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];    }
     else {
         if(![self startCameraControllerFromViewController:self usingDelegate:self])
