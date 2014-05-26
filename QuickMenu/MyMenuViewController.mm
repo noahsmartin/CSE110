@@ -16,26 +16,12 @@
 
 @interface MyMenuViewController()
 @property UIImage* img;
-@property NSString* message;
 @end
 
 @implementation MyMenuViewController
 
 -(void)viewDidLoad
 {
-    self.message = [NSString stringWithFormat:@"Hey! I'm enjoying an awesome meal at %@! :D \n\n I had", self.restaurant.title];
-    
-    NSString* temp = @" ";
-    for(int i = 0; i < 3; i++)
-    {
-        Dish* d = [self.restaurant.menu selectedItems][i];
-        temp = [temp stringByAppendingString:d.title];
-        temp = [temp stringByAppendingString:@", "];
-    }
-    
-    self.message = [self.message stringByAppendingString:temp];
-    self.message = [self.message stringByAppendingString:@"and much more. You should check this place out!"];
-    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
@@ -43,7 +29,8 @@
 {
     if(self.img)
     {
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.message, self.img] applicationActivities:nil];
+        NSString* message = self.genMessage;
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[message, self.img] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];
     }
 }
@@ -68,7 +55,8 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 0){
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.message] applicationActivities:nil];
+        NSString* message = self.genMessage;
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[message] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];    }
     else {
         if(![self startCameraControllerFromViewController:self usingDelegate:self])
@@ -175,5 +163,43 @@
     return NO;
 }
 
+-(NSString*)genMessage
+{
+    NSString* message = [NSString stringWithFormat:@"I'm enjoying an awesome meal at %@! :D \n\n I had ", self.restaurant.title];
+    
+    if(3 <= self.restaurant.menu.numberSelected)
+    {
+        NSString* temp = @"";
+        
+        for(int i = 0; i < 3; i++)
+        {
+            Dish* d = [self.restaurant.menu selectedItems][i];
+            temp = [temp stringByAppendingString:d.title];
+            temp = [temp stringByAppendingString:@", "];
+        }
+        
+        message = [message stringByAppendingString:temp];
+        message = [message stringByAppendingString:@"and much more. You should check this place out!"];
+    }
+    else if( 2 == self.restaurant.menu.numberSelected)
+    {
+        Dish* d = [self.restaurant.menu selectedItems][0];
+        message = [message stringByAppendingString:d.title];
+        
+        message = [message stringByAppendingString:@" and "];
+        
+        d = [self.restaurant.menu selectedItems][1];
+        message = [message stringByAppendingString:d.title];
 
+        message = [message stringByAppendingString:@". You should check this place out!"];
+    }
+    else
+    {
+        Dish* d = [self.restaurant.menu selectedItems][0];
+        message = [message stringByAppendingString:d.title];
+        message = [message stringByAppendingString:@". You should check this place out!"];
+    }
+    
+    return message;
+}
 @end
