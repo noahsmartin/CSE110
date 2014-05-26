@@ -36,6 +36,7 @@
 @property MEDynamicTransition* dynamicTransition;
 @property BOOL loadingYelp;
 @property UIActivityIndicatorView *activityIndicator;
+@property BOOL isUpdating;
 @end
 
 NSString* consumer_key = @"iIixPO3MfoeJp2NOyTlpVw";
@@ -87,6 +88,8 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(becameActive) name:UIApplicationWillEnterForegroundNotification object:nil];
     [MenyouApi getInstance].delegate = self;
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -98,6 +101,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [self.table setDataSource:self.tableController];
     [self.table setDelegate:self.tableController];
     
+    self.isUpdating = YES;
     [self.locationManager startUpdatingLocation];
     
     self.dynamicTransition = [[MEDynamicTransition alloc] init];
@@ -110,6 +114,15 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     self.activityIndicator.center = self.view.center;
     [self.view addSubview:self.activityIndicator];
     [self.activityIndicator startAnimating];
+}
+
+-(void)becameActive
+{
+    if(!self.isUpdating)
+    {
+        self.isUpdating = YES;
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -130,8 +143,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)refreshView:(UIRefreshControl*)refresh
 {
-    if([CLLocationManager locationServicesEnabled])
+    if([CLLocationManager locationServicesEnabled] && !self.isUpdating)
     {
+        self.isUpdating = YES;
         [self.locationManager startUpdatingLocation];
     }
     else
@@ -214,6 +228,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
+    self.isUpdating = NO;
     self.tableController.error = NO_LOCATION;
     [self.table reloadData];
 	[self.refreshControl endRefreshing];
@@ -228,15 +243,15 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    self.isUpdating = NO;
     [self.locationManager stopUpdatingLocation];
     CLLocation *currentLocation = newLocation;
-    
-    if (currentLocation != nil) {
+
+    if (currentLocation != nil && ([self.refreshControl isRefreshing] || (oldLocation == nil || [newLocation distanceFromLocation:oldLocation] >= 100))) {
         self.longtidude = currentLocation.coordinate.longitude;
         self.latitude = currentLocation.coordinate.latitude;
+        [self updateYelp];
     }
-
-    [self updateYelp];
 }
 
 -(void)loginStatusChagned

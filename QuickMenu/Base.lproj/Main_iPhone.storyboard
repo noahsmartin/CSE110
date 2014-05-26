@@ -1034,7 +1034,7 @@
                                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qricon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vNz-Xt-DNw">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qricon" translatesAutoresizingMaskIntoConstraints="NO" id="vNz-Xt-DNw">
                                                     <rect key="frame" x="6" y="6" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1458,7 +1458,7 @@
         <image name="checkUnselected" width="40" height="40"/>
         <image name="checkunselectedLarge" width="60" height="60"/>
         <image name="facebook-login-button" width="300" height="65"/>
-        <image name="qricon.png" width="553" height="553"/>
+        <image name="qricon" width="32" height="32"/>
         <image name="shutterButton" width="60" height="60"/>
         <image name="starEmptyLarge" width="35" height="35"/>
     </resources>
