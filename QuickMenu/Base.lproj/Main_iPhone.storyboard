@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -894,7 +894,7 @@
             </objects>
             <point key="canvasLocation" x="-670" y="-3"/>
         </scene>
-        <!--Scanner View Controller-->
+        <!--Scanner View Controller - Scanner-->
         <scene sceneID="6JB-tl-oMH">
             <objects>
                 <viewController id="vQn-oU-vGm" customClass="ScannerViewController" sceneMemberID="viewController">
@@ -931,7 +931,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1i3-kI-5uX"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Scanner" id="1i3-kI-5uX">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerMenu" id="buU-fm-ziO">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="5KF-tn-eh5" kind="unwind" unwindAction="unwindToMenuViewController:" id="u6k-Hb-8RA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bbitemStart" destination="smJ-lJ-R3I" id="Vfs-9S-392"/>
                         <outlet property="lblStatus" destination="uMj-Ke-Bb2" id="Er1-Rk-ZP5"/>
@@ -939,6 +948,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLq-Pj-umP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5KF-tn-eh5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-369" y="1689"/>
         </scene>
@@ -1427,6 +1437,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AJZ-UY-HAT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.27161268249999998" blue="0.1412807938" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
