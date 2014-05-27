@@ -253,6 +253,25 @@ BOOL DEBUG_API = NO;
     [op start];
 }
 
+-(void)setPref:(NSString *)pref withValue:(int)value withBlock:(void (^)(BOOL))block
+{
+    NSString* urlString = [NSString stringWithFormat:@"%@/setPref.php?username=%@&sessionid=%@&pref=%@&value=%d&timestamp=%f", baseUrl, self.username, self.session, pref, value, [[NSDate date] timeIntervalSince1970]];
+    NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(!error)
+        {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            if([[dict objectForKey:@"Status"] isEqualToString:@"Success"])
+            {
+                block(YES);
+            }
+            else
+                block(NO);
+        }
+        block(NO);
+    }] resume];
+}
+
 -(NSString*) sha256:(NSString *)string{
     const char *s=[string cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *keyData=[NSData dataWithBytes:s length:strlen(s)];
