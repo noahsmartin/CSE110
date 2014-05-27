@@ -80,6 +80,7 @@
             UIImageView* imageView = [[UIImageView alloc] init];
             [self.mediaManager installOnView:imageView];
             [imageView setFrame:CGRectMake(5+(count-1)*60-i*60, 5, 50, 50)];
+            [imageView setTag:i];
             [queue addOperationWithBlock:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSString* urlString = [NSString stringWithFormat:@"http://menyouapp.com/getImageThumb.php?id=%@&count=%d", self.dish.identifier, i];
@@ -93,7 +94,10 @@
 
 -(NSURL*)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager URLForView:(UIView *)view
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://menyouapp.com/getFullImage.php?id=test-09"]];
+    CGRect rect = view.frame;
+    int x = rect.origin.x;
+    x -= 5;
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://menyouapp.com/getFullImage.php?id=%@&position=%ld", self.dish.identifier, (long)[view tag]]];
 }
 
 -(UIImage*)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager defaultImageForView:(UIView *)view
