@@ -22,6 +22,7 @@
 @property BOOL sentLogin;
 @property (weak, nonatomic) IBOutlet UIButton *selectedButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
 @end
 
@@ -41,10 +42,24 @@
     self.scrollView.layer.shadowColor = [[UIColor grayColor] CGColor];
     self.scrollView.layer.shadowOffset = CGSizeMake(0, 2);
     self.scrollView.layer.shadowRadius = 4;
+    self.loadingLabel.text = @"Loading Images...";
+    self.loadingLabel.hidden = NO;
     [[MenyouApi getInstance] imageCountForDish:self.dish.identifier withBlock:^(int count) {
         self.scrollView.contentSize = CGSizeMake(count*60, 60);
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         [queue setMaxConcurrentOperationCount:1];
+        if(count > 0)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.loadingLabel.hidden = YES;
+            });
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.loadingLabel.text = @"No Images Found";
+            });
+        }
         for(int i = 0; i < count; i++)
         {
             UIImageView* imageView = [[UIImageView alloc] init];
