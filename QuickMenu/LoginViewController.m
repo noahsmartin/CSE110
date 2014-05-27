@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *createAccountPasswordText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmText;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
-@property (nonatomic) int wrongPasswordCount;
+@property int wrongPasswordCount;
 
 @end
 
