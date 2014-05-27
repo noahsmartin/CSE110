@@ -44,10 +44,19 @@
     self.scrollView.layer.shadowRadius = 4;
     self.loadingLabel.text = @"Loading Images...";
     self.loadingLabel.hidden = NO;
+}
+
+-(void)loadImages
+{
     [[MenyouApi getInstance] imageCountForDish:self.dish.identifier withBlock:^(int count) {
         self.scrollView.contentSize = CGSizeMake(count*60, 60);
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         [queue setMaxConcurrentOperationCount:1];
+        for (UIView* v in [self.scrollView subviews]) {
+            if(v != self.loadingLabel)
+                [v removeFromSuperview];
+        }
+
         if(count > 0)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -60,10 +69,10 @@
                 self.loadingLabel.text = @"No Images Found";
             });
         }
-        for(int i = 0; i < count; i++)
+        for(int i = count-1; i >= 0; i--)
         {
             UIImageView* imageView = [[UIImageView alloc] init];
-            [imageView setFrame:CGRectMake(5+i*60, 5, 50, 50)];
+            [imageView setFrame:CGRectMake(5+(count-1)*60-i*60, 5, 50, 50)];
             [queue addOperationWithBlock:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSString* urlString = [NSString stringWithFormat:@"http://menyouapp.com/getImageThumb.php?id=%@&count=%d", self.dish.identifier, i];
@@ -107,6 +116,9 @@
         {
             [self presentAddRating];
         }
+    }
+    else {
+        [self loadImages];
     }
     self.sentLogin = NO;
 }
