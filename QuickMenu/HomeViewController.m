@@ -290,6 +290,12 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
         [controllers addObject:top];
         for(Categories* cat in r.menu.categories)
         {
+            /*CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
+                                                  @"CategoryViewController"];
+            [controller setTitle:@"theburgers"];
+            [controllers addObject:controller];
+            [newController setViewControllers:controllers];*/
+
         	CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
                                                   @"CategoryViewController"];
          	controller.title = cat.title;
@@ -297,10 +303,13 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
             controller.restaurant = r.identifier;
          	[controllers addObject:controller];
         }
-        [newController setViewControllers:controllers];
+       
         
-        //[controllers addObject:controller];
-        //[cat.title setTitle:"thenoodles"];
+       /* CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
+                                              @"CategoryViewController"];
+        [controller setTitle:@"theburgers"];
+        [controllers addObject:controller];*/
+         [newController setViewControllers:controllers];
     }
 }
 

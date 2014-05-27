@@ -101,19 +101,19 @@
     
    else if(([title rangeOfString:@"noodles" options:NSCaseInsensitiveSearch].location != NSNotFound || [title rangeOfString:@"pasta" options:NSCaseInsensitiveSearch].location != NSNotFound))
     {
-        if( [title isCompareTo= @"antipasta"]  )
+        if( [title isEqualToString: @"antipasta"]  )
         {
             [UIImage imageNamed:@"defaultCategory"];
             [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
         }
-        title = [NSMutableString stringWithString:@"noodles"];
+
         img = [UIImage imageNamed:@"noodles"];
         
         NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    if([title rangeOfString:@"pizza" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"pizza" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"pizza"];
         //big
@@ -121,7 +121,7 @@
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    if([title rangeOfString:@"salad" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"salad" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"salad"];
         //
@@ -129,7 +129,7 @@
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    if([title rangeOfString:@"sandwiches" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"sandwiches" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"sandwiches"];
         //HUGE
@@ -166,7 +166,7 @@
     
     else{
         
-    [UIImage imageNamed:@"defaultCategory"];
+     img = [UIImage imageNamed:@"defaultCategory"];
     [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
 }
