@@ -141,10 +141,9 @@
         NSMutableArray* dishes = [NSMutableArray array];
         for(Dish* d in [self.restaurant.menu selectedItems])
         {
-            [dishes addObject:d.identifier];
+            [dishes addObject:d.title];
         }
-        NSDictionary* dict = @{@"name": self.restaurant.title, @"dishes": dishes};
-        NSData* d = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+        NSData* d = [NSJSONSerialization dataWithJSONObject:dishes options:kNilOptions error:nil];
         
         NSString* toEncode = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
         
