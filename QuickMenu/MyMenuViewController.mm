@@ -167,36 +167,31 @@
 {
     NSString* message = [NSString stringWithFormat:@"I'm enjoying an awesome meal at %@! :D \n\n I had ", self.restaurant.title];
     
-    if(3 <= self.restaurant.menu.numberSelected)
+    NSString* temp = @"";
+    Dish* d;
+    for(int i = 0; i < 3 && i < self.restaurant.menu.numberSelected; i++)
     {
-        NSString* temp = @"";
+        d = [self.restaurant.menu selectedItems][i];
+        temp = [temp stringByAppendingString:d.title];
         
-        for(int i = 0; i < 3; i++)
+        if(3 <= self.restaurant.menu.numberSelected)
         {
-            Dish* d = [self.restaurant.menu selectedItems][i];
-            temp = [temp stringByAppendingString:d.title];
             temp = [temp stringByAppendingString:@", "];
         }
-        
-        message = [message stringByAppendingString:temp];
-        message = [message stringByAppendingString:@"and much more. You should check this place out!"];
+        else if(2 == self.restaurant.menu.numberSelected && i == 0)
+        {
+            temp = [temp stringByAppendingString:@" and "];
+        }
     }
-    else if( 2 == self.restaurant.menu.numberSelected)
+    
+    message = [message stringByAppendingString:temp];
+    
+    if(3 <= self.restaurant.menu.numberSelected)
     {
-        Dish* d = [self.restaurant.menu selectedItems][0];
-        message = [message stringByAppendingString:d.title];
-        
-        message = [message stringByAppendingString:@" and "];
-        
-        d = [self.restaurant.menu selectedItems][1];
-        message = [message stringByAppendingString:d.title];
-
-        message = [message stringByAppendingString:@". You should check this place out!"];
+        message = [message stringByAppendingString:@"and much more. You should check this place out!"];
     }
     else
     {
-        Dish* d = [self.restaurant.menu selectedItems][0];
-        message = [message stringByAppendingString:d.title];
         message = [message stringByAppendingString:@". You should check this place out!"];
     }
     
