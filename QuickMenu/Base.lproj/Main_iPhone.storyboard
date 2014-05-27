@@ -489,6 +489,10 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-d5-d6I">
+                                <rect key="frame" x="0.0" y="241" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -497,6 +501,7 @@
                     <connections>
                         <outlet property="descriptionView" destination="ObW-ap-9BW" id="KQ9-2F-z7w"/>
                         <outlet property="leaveReviewButton" destination="dqk-zJ-p22" id="eIZ-mQ-8mt"/>
+                        <outlet property="scrollView" destination="IXz-d5-d6I" id="1ZR-8N-R0z"/>
                         <outlet property="selectedButton" destination="JqV-Wg-0qf" id="lf8-7R-beb"/>
                         <outlet property="starView" destination="VID-aS-tZN" id="43d-bk-AWl"/>
                         <outlet property="titleView" destination="0hk-0e-kK2" id="wjY-1Z-Ax2"/>

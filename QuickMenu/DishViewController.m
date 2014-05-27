@@ -10,6 +10,7 @@
 #import "StarView.h"
 #import "MenyouApi.h"
 #import "AddRatingViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DishViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionView;
 @property BOOL sentLogin;
 @property (weak, nonatomic) IBOutlet UIButton *selectedButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -33,6 +35,29 @@
     self.titleView.text = self.title;
     [self updateUI];
     self.descriptionView.text = self.dish.itemDescription;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.scrollView.layer.borderWidth = 0.5;
+    self.scrollView.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.scrollView.layer.shadowOffset = CGSizeMake(0, 2);
+    self.scrollView.layer.shadowRadius = 4;
+    [[MenyouApi getInstance] imageCountForDish:self.dish.identifier withBlock:^(int count) {
+        self.scrollView.contentSize = CGSizeMake(count*60, 60);
+        NSOperationQueue* queue = [[NSOperationQueue alloc] init];
+        [queue setMaxConcurrentOperationCount:1];
+        for(int i = 0; i < count; i++)
+        {
+            UIImageView* imageView = [[UIImageView alloc] init];
+            [imageView setFrame:CGRectMake(5+i*60, 5, 50, 50)];
+            [queue addOperationWithBlock:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSString* urlString = [NSString stringWithFormat:@"http://menyouapp.com/getImageThumb.php?id=%@&count=%d", self.dish.identifier, i];
+                    [imageView setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"RoudIcon"]];
+                });
+            }];
+            [self.scrollView addSubview:imageView];
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
