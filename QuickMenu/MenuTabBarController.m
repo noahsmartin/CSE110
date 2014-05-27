@@ -64,6 +64,7 @@
     [self.popover setPopoverContentSize:CGSizeMake(150, 240)];    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"My Order" style:UIBarButtonItemStylePlain target:self action:@selector(myorderpressed:)];
     [button setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:14] } forState:UIControlStateNormal];
     UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithTitle:@"..." style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
+    [button2 setImage:[UIImage imageNamed:@"filter1"]];
     [button2 setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica Bold" size:14] } forState:UIControlStateNormal];
     [[self navigationItem] setRightBarButtonItems:[NSArray arrayWithObjects:button, button2, nil]];
 }
@@ -77,7 +78,6 @@
 -(void)showpopover:(UIBarButtonItem*)sender event:(UIEvent*)event;
 {
     [self.popover presentPopoverFromRect:[[event.allTouches anyObject] view].bounds inView:[[event.allTouches anyObject] view] permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
-    
 }
 
 @end
