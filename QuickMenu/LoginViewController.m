@@ -26,7 +26,7 @@
 {
     [super viewDidLoad];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 350, 320, 0.5)];
+    UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 299, 320, 0.5)];
     [lineView setBackgroundColor:[UIColor grayColor]];
     [[self view] addSubview:lineView];
 }
