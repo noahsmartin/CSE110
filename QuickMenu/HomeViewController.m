@@ -298,6 +298,9 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
          	[controllers addObject:controller];
         }
         [newController setViewControllers:controllers];
+        
+        //[controllers addObject:controller];
+        //[cat.title setTitle:"thenoodles"];
     }
 }
 
