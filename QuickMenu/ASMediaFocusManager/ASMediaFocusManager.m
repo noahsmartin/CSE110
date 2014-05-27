@@ -9,6 +9,7 @@
 #import "ASMediaFocusManager.h"
 #import "ASMediaFocusController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+AFNetworking.h"
 
 static CGFloat const kAnimateElasticSizeRatio = 0.03;
 static CGFloat const kAnimateElasticDurationRatio = 0.6;
@@ -90,7 +91,7 @@ static CGFloat const kAnimationDuration = 0.5;
     if(self)
     {
         self.animationDuration = kAnimationDuration;
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.95];
         self.elasticAnimation = YES;
         self.zoomEnabled = YES;
         self.isZooming = NO;
@@ -141,21 +142,20 @@ static CGFloat const kAnimationDuration = 0.5;
 - (ASMediaFocusController *)focusViewControllerForView:(UIView *)mediaView
 {
     ASMediaFocusController *viewController;
-    UIImage *image;
-    UIImageView *imageView;
     
-    imageView = [self.delegate mediaFocusManager:self imageViewForView:mediaView];
-    image = imageView.image;
-    if((imageView == nil) || (image == nil))
-        return nil;
+    NSURL* url = [self.delegate mediaFocusManager:self URLForView:mediaView];
+    UIImage* defaultImage = [self.delegate mediaFocusManager:self defaultImageForView:mediaView];
+
 
     viewController = [[ASMediaFocusController alloc] initWithNibName:nil bundle:nil];
     [self installDefocusActionOnFocusViewController:viewController];
     viewController.titleLabel.text = [self.delegate mediaFocusManager:self titleForView:mediaView];
-    viewController.mainImageView.image = image;
-    viewController.mainImageView.contentMode = imageView.contentMode;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [viewController.mainImageView setImageWithURL:url placeholderImage:defaultImage];
+        viewController.mainImageView.contentMode = UIViewContentModeScaleToFill;
+    });
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSURL *url;
         NSData *data;
         NSError *error = nil;
@@ -176,7 +176,11 @@ static CGFloat const kAnimationDuration = 0.5;
                 viewController.mainImageView.image = image;
             });
         }
-    });
+        UIImage *image = [self.delegate mediaFocusManager:self mediaURLForView:mediaView];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            viewController.mainImageView.image = image;
+        });
+    });*/
 
     return viewController;
 }
@@ -274,7 +278,7 @@ static CGFloat const kAnimationDuration = 0.5;
     [parentViewController.view addSubview:focusViewController.view];
     // The focus view is generally
     focusViewController.view.frame = parentViewController.view.bounds;
-    mediaView.hidden = YES;
+    //mediaView.hidden = YES;
 
     imageView = focusViewController.mainImageView;
     center = [imageView.superview convertPoint:mediaView.center fromView:mediaView.superview];

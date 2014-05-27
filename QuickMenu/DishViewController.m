@@ -11,8 +11,9 @@
 #import "MenyouApi.h"
 #import "AddRatingViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "ASMediaFocusManager.h"
 
-@interface DishViewController ()
+@interface DishViewController () <ASMediasFocusDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet StarView *starView;
 @property (weak, nonatomic) IBOutlet UILabel *yourReview;
@@ -23,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectedButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
-
+@property ASMediaFocusManager* mediaManager;
 @end
 
 @implementation DishViewController
@@ -44,6 +45,8 @@
     self.scrollView.layer.shadowRadius = 4;
     self.loadingLabel.text = @"Loading Images...";
     self.loadingLabel.hidden = NO;
+    self.mediaManager = [[ASMediaFocusManager alloc] init];
+    self.mediaManager.delegate = self;
 }
 
 -(void)loadImages
@@ -54,7 +57,10 @@
         [queue setMaxConcurrentOperationCount:1];
         for (UIView* v in [self.scrollView subviews]) {
             if(v != self.loadingLabel)
+            {
+                [v removeGestureRecognizer:[v gestureRecognizers][0]];
                 [v removeFromSuperview];
+            }
         }
 
         if(count > 0)
@@ -72,16 +78,59 @@
         for(int i = count-1; i >= 0; i--)
         {
             UIImageView* imageView = [[UIImageView alloc] init];
+            [self.mediaManager installOnView:imageView];
             [imageView setFrame:CGRectMake(5+(count-1)*60-i*60, 5, 50, 50)];
             [queue addOperationWithBlock:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSString* urlString = [NSString stringWithFormat:@"http://menyouapp.com/getImageThumb.php?id=%@&count=%d", self.dish.identifier, i];
-                    [imageView setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"RoudIcon"]];
+                    [imageView setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"loading"]];
                 });
             }];
             [self.scrollView addSubview:imageView];
         }
     }];
+}
+
+-(NSURL*)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager URLForView:(UIView *)view
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://menyouapp.com/getFullImage.php?id=test-09"]];
+}
+
+-(UIImage*)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager defaultImageForView:(UIView *)view
+{
+    return [UIImage imageNamed:@"loadingLarge"];
+}
+
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view
+{
+    return CGRectMake(0, 136.5, 320, 295);
+}
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return self;
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view;
+{
+    return self.dish.title;
+}
+
+- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+        [UIApplication sharedApplication].statusBarHidden = YES;
+    }];
+}
+
+- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    {
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

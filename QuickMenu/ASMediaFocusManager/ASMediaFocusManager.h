@@ -12,15 +12,15 @@
 
 @protocol ASMediasFocusDelegate <NSObject>
 
-// Returns an image view that represents the media view. This image from this view is used in the focusing animation view. It is usually a small image.
-- (UIImageView *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageViewForView:(UIView *)view;
 // Returns the final focused frame for this media view. This frame is usually a full screen frame.
 - (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view;
 // Returns the view controller in which the focus controller is going to be added. This can be any view controller, full screen or not.
 - (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager;
-// Returns an URL where the image is stored. This URL is used to create an image at full screen. The URL may be local (file://) or distant (http://).
-- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view;
-// Returns the title for this media view. Return nil if you don't want any title to appear.
+
+-(NSURL*)mediaFocusManager:(ASMediaFocusManager*)mediaFocusManager URLForView:(UIView*)view;
+
+-(UIImage*)mediaFocusManager:(ASMediaFocusManager*)mediaFocusManager defaultImageForView:(UIView*)view;
+
 - (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view;
 
 @optional

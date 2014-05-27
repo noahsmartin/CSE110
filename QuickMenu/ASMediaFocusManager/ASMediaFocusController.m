@@ -29,6 +29,18 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
     return self;
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if(object == self.mainImageView)
+    {
+        [self.scrollView displayImage:self.mainImageView.image];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,12 +61,14 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChangeNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [self.mainImageView addObserver:self forKeyPath:@"image" options:0 context:NULL];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.mainImageView removeObserver:self forKeyPath:@"image"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }

@@ -140,7 +140,9 @@
     _imageSize = imageSize;
     self.contentSize = imageSize;
     [self setMaxMinZoomScalesForCurrentBounds];
-    self.zoomScale = self.minimumZoomScale;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.zoomScale = self.minimumZoomScale;
+    });
 }
 
 - (void)setMaxMinZoomScalesForCurrentBounds
