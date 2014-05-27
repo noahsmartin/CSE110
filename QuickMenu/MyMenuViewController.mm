@@ -29,7 +29,8 @@
 {
     if(self.img)
     {
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.restaurant.title, self.img] applicationActivities:nil];
+        NSString* message = self.genMessage;
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[message, self.img] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];
     }
 }
@@ -54,7 +55,8 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 0){
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self.restaurant.title] applicationActivities:nil];
+        NSString* message = self.genMessage;
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[message] applicationActivities:nil];
         [self presentViewController:activityController animated:YES completion:nil];    }
     else {
         if(![self startCameraControllerFromViewController:self usingDelegate:self])
@@ -161,5 +163,38 @@
     return NO;
 }
 
-
+-(NSString*)genMessage
+{
+    NSString* message = [NSString stringWithFormat:@"I'm enjoying an awesome meal at %@! :D \n\n I had ", self.restaurant.title];
+    
+    NSString* temp = @"";
+    Dish* d;
+    for(int i = 0; i < 3 && i < self.restaurant.menu.numberSelected; i++)
+    {
+        d = [self.restaurant.menu selectedItems][i];
+        temp = [temp stringByAppendingString:d.title];
+        
+        if(3 <= self.restaurant.menu.numberSelected)
+        {
+            temp = [temp stringByAppendingString:@", "];
+        }
+        else if(2 == self.restaurant.menu.numberSelected && i == 0)
+        {
+            temp = [temp stringByAppendingString:@" and "];
+        }
+    }
+    
+    message = [message stringByAppendingString:temp];
+    
+    if(3 <= self.restaurant.menu.numberSelected)
+    {
+        message = [message stringByAppendingString:@"and much more. You should check this place out!"];
+    }
+    else
+    {
+        message = [message stringByAppendingString:@". You should check this place out!"];
+    }
+    
+    return message;
+}
 @end

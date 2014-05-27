@@ -77,6 +77,7 @@
                     {
                         $data = json_decode($_GET['data'], TRUE);
                         $categories = $data['categories'];
+
                         $query = "SELECT categories FROM menu WHERE menuid = :menuid";
                                     $query_params = array( 
                                    ':menuid' => $_GET['name'] 
@@ -84,19 +85,28 @@
                         $stmt = $db->prepare($query); 
                         $result = $stmt->execute($query_params);
                         $row = $stmt->fetch();
-
                         $storedcategories = json_decode($row['categories'], TRUE);
-                        print_r($storedcategories);
+                        $dishcount = 0;
+$newcategories = array();
                         foreach($categories as $category)
                         {
+
+                         $disharray = array();
+                         $dishes = $category['dishes'];
+                          foreach($dishes as $dish) {
+                           $disharray[] = $dish['dishid'];
+                           ++$dishcount;
+                          }
+
                             // This loops over the input data categories, all of these should be dropped from the table
                             
-                            // TODO: drop then add back the updated category
                             // TODO: for each category loop over each dish and do the same for dishes
                             $id = $category['categoyid'];
+                            $title = $category['title'];
+                            $newcategories[] = $id;
+
                             if(in_array($id, $storedcategories))
                             {
-                                echo "deleting: ", $id;
                                 // Drop the row in categories that is $id
 								$query = "DELETE FROM category WHERE categoryid = :id";
 											$query_params = array( 
@@ -105,7 +115,29 @@
 								$stmt = $db->prepare($query); 
 								$result = $stmt->execute($query_params);
                             }
+
+                          $disharray2 = json_encode($disharray);
+ 
+                                //Insert all the new categories
+								$query = "INSERT INTO category (categoryid, title, dishes)
+                                          VALUES (:id, '$title', '$disharray2')";
+											$query_params = array( 
+										   ':id' => $id
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
                         }
+
+                                $insertcats = json_encode($newcategories);
+								$query = "UPDATE menu
+                                          SET categories = '$insertcats', numberdishes = '$dishcount'
+                                          WHERE menuid = :id";
+											$query_params = array( 
+										   ':id' => $_GET['name']
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
+
                         // Replace this new array of categories with the categories in the menu table
                         // Edit the row in menu table with my restaurant to contain my categories
                     }
