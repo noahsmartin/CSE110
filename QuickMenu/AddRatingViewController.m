@@ -147,7 +147,13 @@ static void * CapturingStillImageContext = &CapturingStillImageContext;
 				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *image = [[UIImage alloc] initWithData:imageData];
                 [self.imageView setHidden:NO];
-                self.imageView.image = [self cropImage:image];
+                UIImage* original = [self cropImage:image];
+                CGSize newSize = CGSizeMake(640, 590);
+                UIGraphicsBeginImageContext(newSize);
+                [original drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+                UIImage* small = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                self.imageView.image = small;
 			}
 		}];
 	});

@@ -108,6 +108,18 @@ BOOL DEBUG_API = NO;
     return result;
 }
 
+-(void)imageCountForDish:(NSString *)dishid withBlock:(void (^)(int count))block
+{
+    NSString* urlString = [NSString stringWithFormat:@"%@/getImageCount.php?id=%@&timestamp=%f", baseUrl, dishid, [[NSDate date] timeIntervalSince1970]];
+    NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block([[dict objectForKey:@"count"] intValue]);
+        });
+    }] resume];
+}
+
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
     NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=";
@@ -168,7 +180,8 @@ BOOL DEBUG_API = NO;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
-                self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
+                if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
+                    self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
@@ -225,7 +238,7 @@ BOOL DEBUG_API = NO;
     NSDictionary *parameters = @{@"email": self.username, @"session" : self.session, @"rating":[NSString stringWithFormat:@"%d",rating], @"item":item};
     AFHTTPRequestOperation *op = [manager POST:@"addRating.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         if(image)
-            [formData appendPartWithFileData:imageData name:@"file" fileName:@"dishid~username.jpg" mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:imageData name:@"file" fileName:[NSString stringWithFormat:@"%@.jpg", self.username] mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if([[responseObject objectForKey:@"Status"] isEqualToString:@"Failure"])
             block(NO);

@@ -54,6 +54,8 @@
 
 -(int)getReviewFor:(NSString*)dishid;
 
+-(void)imageCountForDish:(NSString*)dishid withBlock:(void(^)(int count))block;
+
 -(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 
 @end
