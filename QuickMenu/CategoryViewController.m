@@ -129,7 +129,7 @@
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    else if([title rangeOfString:@"sandwiches" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"sandwich" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"sandwiches"];
         //HUGE
