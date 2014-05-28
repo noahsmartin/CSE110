@@ -304,11 +304,6 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
          	[controllers addObject:controller];*/
         }
        
-        
-       /* CategoryViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:
-                                              @"CategoryViewController"];
-        [controller setTitle:@"theburgers"];
-        [controllers addObject:controller];*/
          [newController setViewControllers:controllers];
     }
 }

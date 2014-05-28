@@ -86,16 +86,12 @@
     if([title rangeOfString:@"burger" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"burger"];
-        //
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"desserts" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"desserts"];
-        ////
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
@@ -108,66 +104,48 @@
         }
 
         img = [UIImage imageNamed:@"noodles"];
-        
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"pizza" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"pizza"];
-        //big
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"salad" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"salad"];
-        //
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"sandwich" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"sandwiches"];
-        //HUGE
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"seafood" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"seafood"];
-        //
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"soup" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"soup"];
-        //
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
     else if([title rangeOfString:@"wine" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"wine"];
-        ///
-        NSLog(@"%f", img.size.width);
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
-
-    
-    
-    
     else{
         
-     img = [UIImage imageNamed:@"defaultCategory"];
-    [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
+        img = [UIImage imageNamed:@"defaultCategory"];
+        [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
 }
 

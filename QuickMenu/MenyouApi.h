@@ -58,4 +58,6 @@
 
 -(void)addReview:(int)rating item:(NSString*)item withImage:(UIImage*)image withBlock:(void(^)(BOOL success))block;
 
+-(void)setPref:(NSString*)pref withValue:(int)value withBlock:(void(^)(BOOL success))block;
+
 @end
