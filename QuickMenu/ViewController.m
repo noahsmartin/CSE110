@@ -121,7 +121,7 @@
     _creatAccountButton.hidden = TRUE;
     _passwordConfirmText.hidden = TRUE;
     
-    [sender setEnabled:NO];
+    //[sender setEnabled:NO];
     
 }
 
@@ -151,7 +151,7 @@
     //hiding stuff
     _logginButton.hidden = TRUE;
     
-    [sender setEnabled:NO];
+    //[sender setEnabled:NO];
 }
 
 

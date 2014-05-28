@@ -104,7 +104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sg7-Aj-qYN">
-                                <rect key="frame" x="119" y="228" width="83" height="30"/>
+                                <rect key="frame" x="119" y="234" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Login">
@@ -121,7 +121,6 @@
                         <outlet property="backgroundImage" destination="DJ6-Kq-9FV" id="wWT-jt-Mv2"/>
                         <outlet property="continueButton" destination="32g-LX-Jiz" id="WkX-3W-lYn"/>
                         <outlet property="creatAccountButton" destination="Bsx-Fx-AHZ" id="33J-rU-C75"/>
-                        <outlet property="createAccountButton" destination="Kle-25-SkX" id="l8f-6Q-xmP"/>
                         <outlet property="logginButton" destination="Sg7-Aj-qYN" id="gaU-fj-ixo"/>
                         <outlet property="loginButton" destination="Kle-25-SkX" id="0k9-xh-rvP"/>
                         <outlet property="logoView" destination="BiS-IS-o5Q" id="73a-Ew-4hh"/>
