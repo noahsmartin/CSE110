@@ -48,15 +48,16 @@ BOOL DEBUG_API = NO;
         self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
         _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
-        _preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"Key"]];
-
-        if([_preferences count] == 0)
-        {
-            _preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
-        }
+        self.preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"preferences"]];
         
         if([self loggedIn])
         {
+            // This probably isn't necessary but good to have just in case so at least the app does not crash
+            // Only needs to be done if logged in, if not the array will be made when the user logs in
+            if([self.preferences count] != 6)
+            {
+                self.preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+            }
             // Query for the ratings
             NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@&timestamp=%f", baseUrl, self.username, self.session, [[NSDate date] timeIntervalSince1970]];
             NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
@@ -186,17 +187,25 @@ BOOL DEBUG_API = NO;
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
                 // As soon as you are logged in successfully, clear the wrong password count
+                NSLog(@"%@", json);
                 self.wrongPasswordCount = 0;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
-                //**NEED TO ADD BACKEND for settings _preferences = [json objectForKe:@"Preferences"];
+                if(!self.preferences)
+                    self.preferences = [NSMutableArray array];
+                [self.preferences addObject:[json objectForKey:@"Vegetarian"]];
+                [self.preferences addObject:[json objectForKey:@"Vegan"]];
+                [self.preferences addObject:[json objectForKey:@"Dairy-Free"]];
+                [self.preferences addObject:[json objectForKey:@"Peanut-Allergy"]];
+                [self.preferences addObject:[json objectForKey:@"Kosher"]];
+                [self.preferences addObject:[json objectForKey:@"Low-Fat"]];
                 if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
                     self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
-                [self saveArray];
+                [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"preferences"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self.delegate loginStatusChagned];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -265,7 +274,7 @@ BOOL DEBUG_API = NO;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"business"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Key"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"preferences"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.delegate loginStatusChagned];
 }
@@ -320,9 +329,9 @@ BOOL DEBUG_API = NO;
     }] resume];
 }
 
--(void)saveArray
+-(void)savePrefs
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"Key"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"preferences"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

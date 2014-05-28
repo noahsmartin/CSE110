@@ -62,5 +62,6 @@
 
 -(void)setPref:(NSString*)pref withValue:(int)value withBlock:(void(^)(BOOL success))block;
 
--(void)saveArray;
+-(void)savePrefs;
+
 @end

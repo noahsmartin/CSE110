@@ -51,17 +51,17 @@
         if([state isEqualToString:@"1"])
         {
             if(i == 0)
-                [_vegetarian setOn:YES animated:YES];
+                [_vegetarian setOn:YES animated:NO];
             else if(i == 1)
-                [_vegan setOn:YES animated:YES];
+                [_vegan setOn:YES animated:NO];
             else if(i == 2)
-                [_dairy setOn:YES animated:YES];
+                [_dairy setOn:YES animated:NO];
             else if(i == 3)
-                [_peanuts setOn:YES animated:YES];
+                [_peanuts setOn:YES animated:NO];
             else if(i == 4)
-                [_kosher setOn:YES animated:YES];
+                [_kosher setOn:YES animated:NO];
             else if(i == 5)
-                [_lowfat setOn:YES animated:YES];
+                [_lowfat setOn:YES animated:NO];
         }
     }
 }
@@ -73,32 +73,32 @@
 
 - (IBAction)vegetarian:(id)sender
 {
-    [self togglePref:@"vegetarian" Value:0];
+    [self togglePref:@"vegetarian" Index:0 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)vegan:(id)sender
 {
-    [self togglePref:@"vegan" Value:1];
+    [self togglePref:@"vegan" Index:1 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)diary:(id)sender
 {
-    [self togglePref:@"dairyfree" Value:2];
+    [self togglePref:@"dairyfree" Index:2 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)peanuts:(id)sender
 {
-    [self togglePref:@"peanutallergy" Value:3];
+    [self togglePref:@"peanutallergy" Index:3 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)kosher:(id)sender
 {
-    [self togglePref:@"kosher" Value:4];
+    [self togglePref:@"kosher" Index:4 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)lowfat:(id)sender
 {
-    [self togglePref:@"lowfat" Value:5];
+    [self togglePref:@"lowfat" Index:5 State:[sender isOn] ? 1 : 0];
 }
 
 - (IBAction)logout:(id)sender
@@ -117,33 +117,15 @@
     [self.navigationController.view removeGestureRecognizer:self.dynamicTransitionPanGesture];
 }
 
--(void)togglePref:(NSString*)field Value:(int)value
+-(void)togglePref:(NSString*)field Index:(int)index State:(int)state
 {
     //Value indicates which setting it is...vegetarian = 0, vegan = 1, dairy = 2, peanuts = 3, kosher = 4, lowfat = 5
-    if([[[MenyouApi getInstance].preferences objectAtIndex:value] isEqualToString:@"0"]/*array[0] == 0*/)
-    {
-        //if its off
-        [[MenyouApi getInstance] setPref:field withValue:1 withBlock:^(BOOL success) {
-            if(success)
-            {
-                [[MenyouApi getInstance].preferences replaceObjectAtIndex:value withObject:@"1"];
-                [[MenyouApi getInstance] saveArray];
-                //set the array of pref, on
-            }
-        }];
-    }
-    else
-    {
-        //if its on
-        [[MenyouApi getInstance] setPref:field withValue:0 withBlock:^(BOOL success) {
-            if(success)
-            {
-                [[MenyouApi getInstance].preferences replaceObjectAtIndex:value withObject:@"0"];
-                [[MenyouApi getInstance] saveArray];
-                //set the array of pref, off
-            }
-        }];
-    }
+    [[MenyouApi getInstance] setPref:field withValue:state withBlock:^(BOOL success) {
+        // We do this even if the api call was not successful because if it was not we still wan't the user to see
+        // the dishes updated
+        [[MenyouApi getInstance].preferences replaceObjectAtIndex:index withObject:[NSString stringWithFormat:@"%d", state]];
+        [[MenyouApi getInstance] savePrefs];
+    }];
 }
 
 @end
