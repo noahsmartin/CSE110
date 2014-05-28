@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmText;
-@property (weak, nonatomic) IBOutlet UIAlertView *loginPopup;
+@property (weak, nonatomic) IBOutlet UIButton *logginButton;
+@property (nonatomic) BOOL buttonClicked;
 
 @end
 
@@ -46,6 +47,8 @@
     self.backgroundImage.layer.shadowOpacity = 0.38;
     self.backgroundImage.layer.shadowRadius = 4;
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
+    
+    _buttonClicked = FALSE;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -95,18 +98,45 @@
 
 -(IBAction) login:(id)sender{
     
-
+    if(_buttonClicked == FALSE){
+      [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
+        self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
+        
+       } completion:^(BOOL finished) {
+      }];
+        _buttonClicked = TRUE;
+    }
+    
+    //enabling the three textfields for user input
+    _usernameText.enabled = YES;
+    _passwordText.enabled = YES;
+    
+    //enabling the create button associated with the textfields
+    _logginButton.enabled = YES;
+    _logginButton.hidden = FALSE;
+    
+    //hiding create stuff
+    _createAccountButton.hidden = TRUE;
+    _creatAccountButton.hidden = TRUE;
+    _passwordConfirmText.hidden = TRUE;
+    
+    [sender setEnabled:NO];
     
 }
 
 
 - (IBAction)createAccount:(id)sender {
-    [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    
+    if(_buttonClicked == FALSE){
+       [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
          self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
         
-     } completion:^(BOOL finished) {
-     }];
+       } completion:^(BOOL finished) {
+       }];
+        _buttonClicked = TRUE;
+    }
     
     //enabling the three textfields for user input
     _usernameText.enabled = YES;
@@ -115,6 +145,11 @@
     
     //enabling the create button associated with the textfields
     _createAccountButton.enabled = YES;
+    _creatAccountButton.hidden = FALSE;
+    _passwordConfirmText.hidden = FALSE;
+    
+    //hiding stuff
+    _logginButton.hidden = TRUE;
     
     [sender setEnabled:NO];
 }
