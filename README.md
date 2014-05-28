@@ -8,6 +8,6 @@ The website component is not regularly updated here as we edit it on the server 
 
 ### Use
 The app is designed to be used and tested for the iPhone5/5s running iOS 7.1.1 or later.  The website is compatible
-with Safari vesrion 7.0.4 with javascript enabled and displayed at a window size of 1259 x 897.  The phone must also
-have a network connection and the app must be allowed to access location.  Furthermore, some features required the phone
-to have a camera.
+with Safari vesrion 7.0.4 with javascript enabled and is best displayed at a window size of 1259 x 897.
+The phone must also have a network connection and the app must be allowed to access location.  Furthermore, some
+features required the phone to have a camera.
