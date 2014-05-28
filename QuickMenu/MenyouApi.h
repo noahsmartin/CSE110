@@ -28,6 +28,8 @@
 
 @property (readonly) NSString* business;
 
+@property NSMutableArray* preferences;
+
 @property (weak) id<MenyouApiDelegate> delegate;
 
 // This is a singleton class
@@ -60,4 +62,5 @@
 
 -(void)setPref:(NSString*)pref withValue:(int)value withBlock:(void(^)(BOOL success))block;
 
+-(void)saveArray;
 @end

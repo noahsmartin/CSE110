@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DUe-a7-EY8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1160,11 +1160,17 @@
                                         <rect key="frame" x="251" y="136" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="vegetarian:" destination="9F9-Iq-eto" eventType="valueChanged" id="Hbs-Kj-K57"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g2D-4H-Nzo">
                                         <rect key="frame" x="251" y="184" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="vegan:" destination="9F9-Iq-eto" eventType="valueChanged" id="r3D-aM-Dl1"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rqD-OA-1AP">
                                         <rect key="frame" x="20" y="175" width="300" height="1"/>
@@ -1180,6 +1186,9 @@
                                         <rect key="frame" x="251" y="232" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="diary:" destination="9F9-Iq-eto" eventType="valueChanged" id="uCh-uY-OpS"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hide Dairy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whb-Ik-1l2">
                                         <rect key="frame" x="20" y="237" width="80" height="21"/>
@@ -1202,16 +1211,25 @@
                                         <rect key="frame" x="251" y="375" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="lowfat:" destination="9F9-Iq-eto" eventType="valueChanged" id="SfL-IY-3y1"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="E7P-vS-14h">
                                         <rect key="frame" x="251" y="280" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="peanuts:" destination="9F9-Iq-eto" eventType="valueChanged" id="uDA-3j-HRq"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ysx-nS-5J9">
                                         <rect key="frame" x="251" y="328" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="onTintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="kosher:" destination="9F9-Iq-eto" eventType="valueChanged" id="VpG-M6-Bqy"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-uR-UAe">
                                         <rect key="frame" x="20" y="271" width="300" height="1"/>
@@ -1261,7 +1279,13 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dairy" destination="4VZ-eX-wbh" id="gBq-03-Lgl"/>
+                        <outlet property="kosher" destination="ysx-nS-5J9" id="EME-I4-STC"/>
+                        <outlet property="lowfat" destination="aef-Su-WJ4" id="CKu-vf-B4Y"/>
+                        <outlet property="peanuts" destination="E7P-vS-14h" id="lzZ-hr-xbr"/>
                         <outlet property="usernameView" destination="0hd-rV-uNb" id="NZP-Kg-l3H"/>
+                        <outlet property="vegan" destination="g2D-4H-Nzo" id="uSH-J2-g21"/>
+                        <outlet property="vegetarian" destination="rXf-39-APw" id="mqF-8f-bLB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdR-MB-qa7" userLabel="First Responder" sceneMemberID="firstResponder"/>

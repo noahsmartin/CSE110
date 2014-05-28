@@ -47,6 +47,13 @@ BOOL DEBUG_API = NO;
         self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
         _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
+        _preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"Key"]];
+
+        if([_preferences count] == 0)
+        {
+            _preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+        }
+        
         if([self loggedIn])
         {
             // Query for the ratings
@@ -180,11 +187,13 @@ BOOL DEBUG_API = NO;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
+                //**NEED TO ADD BACKEND for settings _preferences = [json objectForKe:@"Preferences"];
                 if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
                     self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+                [self saveArray];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self.delegate loginStatusChagned];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,9 +224,11 @@ BOOL DEBUG_API = NO;
     self.session = nil;
     _business = nil;
     self.reviews = nil;
+    _preferences = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"business"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Key"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.delegate loginStatusChagned];
 }
@@ -270,6 +281,12 @@ BOOL DEBUG_API = NO;
         }
         block(NO);
     }] resume];
+}
+
+-(void)saveArray
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"Key"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSString*) sha256:(NSString *)string{
