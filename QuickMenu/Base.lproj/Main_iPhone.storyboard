@@ -85,13 +85,6 @@
                                             <action selector="createAccountButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bRC-2G-6X2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-8J-oHd">
-                                        <rect key="frame" x="68" y="352" width="183" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button" image="facebook-login-button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.3529411764705882" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -103,6 +96,18 @@
                                 <rect key="frame" x="31" y="272" width="258" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sg7-Aj-qYN">
+                                <rect key="frame" x="119" y="234" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmLogin:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ONa-aJ-7tF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -111,9 +116,10 @@
                         <outlet property="background" destination="06a-1e-g8u" id="EGB-Eb-tw4"/>
                         <outlet property="backgroundImage" destination="DJ6-Kq-9FV" id="wWT-jt-Mv2"/>
                         <outlet property="continueButton" destination="32g-LX-Jiz" id="WkX-3W-lYn"/>
-                        <outlet property="creatAccountButton" destination="Bsx-Fx-AHZ" id="33J-rU-C75"/>
-                        <outlet property="createAccountButton" destination="Kle-25-SkX" id="HJ5-q8-On2"/>
-                        <outlet property="loginButton" destination="Kle-25-SkX" id="0k9-xh-rvP"/>
+                        <outlet property="creatAccountButton" destination="Bsx-Fx-AHZ" id="1TZ-di-uOZ"/>
+                        <outlet property="createAccountButton" destination="bB7-aP-IIt" id="hOd-RF-XZC"/>
+                        <outlet property="logginButton" destination="Sg7-Aj-qYN" id="gaU-fj-ixo"/>
+                        <outlet property="loginButton" destination="Kle-25-SkX" id="WdA-Ji-PdE"/>
                         <outlet property="logoView" destination="BiS-IS-o5Q" id="73a-Ew-4hh"/>
                         <outlet property="passwordConfirmText" destination="cMm-ax-Hbe" id="KDU-Bf-VAn"/>
                         <outlet property="passwordText" destination="FyI-yg-hps" id="u7B-7P-Itt"/>
@@ -1498,7 +1504,6 @@
         <image name="Icon" width="44" height="44"/>
         <image name="checkUnselected" width="40" height="40"/>
         <image name="checkunselectedLarge" width="60" height="60"/>
-        <image name="facebook-login-button" width="300" height="65"/>
         <image name="qricon" width="32" height="32"/>
         <image name="shutterButton" width="60" height="60"/>
         <image name="starEmptyLarge" width="35" height="35"/>

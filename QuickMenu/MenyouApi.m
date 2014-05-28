@@ -10,9 +10,10 @@
 #import "AFNetworking.h"
 #include <CommonCrypto/CommonDigest.h>
 
-@interface MenyouApi()
+@interface MenyouApi() <UIAlertViewDelegate>
 @property NSString* session;
 @property (nonatomic) NSMutableDictionary* reviews;
+@property int wrongPasswordCount;
 
 @end
 
@@ -184,6 +185,8 @@ BOOL DEBUG_API = NO;
                 NSLog(@"%@", json);
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
+                // As soon as you are logged in successfully, clear the wrong password count
+                self.wrongPasswordCount = 0;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
@@ -202,10 +205,23 @@ BOOL DEBUG_API = NO;
             }
             else
             {
+                // Only increment the wrong password count for login
+                if([[request.URL absoluteString] rangeOfString:@"appLogin"].location != NSNotFound)
+                {
+                    self.wrongPasswordCount++;
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *errorAlert = [[UIAlertView alloc]
-                                               initWithTitle:@"Error" message:[json objectForKey:@"Message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    [errorAlert show];
+                    if(self.wrongPasswordCount < 3)
+                    {
+                        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                                   initWithTitle:@"Error" message:[json objectForKey:@"Message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        [errorAlert show];
+                    }
+                    else
+                    {
+                        [self sendForgottenPassword:username];
+                        self.wrongPasswordCount = 0;
+                    }
                     block(NO);
                 });
             }
@@ -216,6 +232,27 @@ BOOL DEBUG_API = NO;
             });
         }
     }];
+}
+
+-(void)sendForgottenPassword:(NSString*)username{
+    UIAlertView *sendPassAlert = [[UIAlertView alloc]
+                                  initWithTitle:@"Forgot your password?" message:@"Enter your e-mail address and a link will be sent to you to reset your password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [sendPassAlert addButtonWithTitle:@"Cancel"];
+    sendPassAlert.tag = 100;
+    sendPassAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [sendPassAlert textFieldAtIndex:0].text = username;
+    [sendPassAlert textFieldAtIndex:0].keyboardType = UIKeyboardTypeEmailAddress;
+    [sendPassAlert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0 && alertView.tag == 100){
+        // resets password?
+        UIAlertView *sentAlert = [[UIAlertView alloc] init];
+        [sentAlert setDelegate:self];
+        [sentAlert setMessage:@"Your password reset request has been sent to your e-mail"];
+        [sentAlert addButtonWithTitle:@"Ok"];
+    }
 }
 
 -(void)logout

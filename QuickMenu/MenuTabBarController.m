@@ -63,9 +63,7 @@
     self.popover = [[WYPopoverController alloc] initWithContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"popover"]];
     [self.popover setPopoverContentSize:CGSizeMake(150, 240)];    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"My Order" style:UIBarButtonItemStylePlain target:self action:@selector(myorderpressed:)];
     [button setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:14] } forState:UIControlStateNormal];
-    UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithTitle:@"..." style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
-    [button2 setImage:[UIImage imageNamed:@"filter1"]];
-    [button2 setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica Bold" size:14] } forState:UIControlStateNormal];
+    UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter1"] style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
     [[self navigationItem] setRightBarButtonItems:[NSArray arrayWithObjects:button, button2, nil]];
 }
 
