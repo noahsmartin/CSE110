@@ -3,7 +3,7 @@ CSE110
 
 ### About
 Restaurant application created by team MSG for CSE110 UCSD Spring Quarter 2104.  The app contains two components,
-the iOS app which has the source including here, and the website which can be found at http://menyouapp.com
+the iOS app which has the source included here, and the website which can be found at http://menyouapp.com
 The website component is not regularly updated here as we edit it on the server instead of uploading here.
 
 ### Use
