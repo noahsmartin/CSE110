@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *createAccountPasswordText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmText;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
-@property int wrongPasswordCount;
 
 @end
 
@@ -30,7 +29,6 @@
     UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 299, 320, 0.5)];
     [lineView setBackgroundColor:[UIColor grayColor]];
     [[self view] addSubview:lineView];
-    _wrongPasswordCount = 0;
 }
 
 - (IBAction)cancel:(id)sender {
@@ -49,33 +47,7 @@
         [[MenyouApi getInstance] logInWithUsername:self.emailText.text Password:self.passwordText.text block:^(BOOL success) {
             if(success)
                 [self dismissViewControllerAnimated:YES completion:^{}];
-            else _wrongPasswordCount++;
-            if (_wrongPasswordCount >= 3) [self sendForgottenPassword:self];
         }];
-    }
-}
-
-
--(void)sendForgottenPassword:(id)sender{
-    if(_wrongPasswordCount >= 3){
-        UIAlertView *sendPassAlert = [[UIAlertView alloc]
-                initWithTitle:@"Forgot your password?" message:@"Enter your e-mail address and a link will be sent to you to reset your password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [sendPassAlert addButtonWithTitle:@"Cancel"];
-        sendPassAlert.tag = 100;
-        sendPassAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [sendPassAlert textFieldAtIndex:0].text = self.emailText.text;
-        [sendPassAlert textFieldAtIndex:0].keyboardType = UIKeyboardTypeEmailAddress;
-        [sendPassAlert show];
-        }
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 0 && alertView.tag == 100){
-        // resets password?
-        UIAlertView *sentAlert = [[UIAlertView alloc] init];
-        [sentAlert setDelegate:self];
-        [sentAlert setMessage:@"Your password reset request has been sent to your e-mail"];
-        [sentAlert addButtonWithTitle:@"Ok"];
     }
 }
 
