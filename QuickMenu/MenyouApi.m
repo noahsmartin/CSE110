@@ -187,7 +187,6 @@ BOOL DEBUG_API = NO;
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
                 // As soon as you are logged in successfully, clear the wrong password count
-                NSLog(@"%@", json);
                 self.wrongPasswordCount = 0;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
