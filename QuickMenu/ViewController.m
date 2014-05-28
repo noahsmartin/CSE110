@@ -35,12 +35,13 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //disabling the three textfields so keyboard doesn't show up when not supposed to
-    _usernameText.enabled = NO;
-    _passwordText.enabled = NO;
-    _passwordConfirmText.enabled = NO;
+    self.usernameText.hidden = YES;
+    self.passwordText.hidden = YES;
+    self.passwordConfirmText.hidden = YES;
     
     //disabling the create button associated with the textfields
-    _createAccountButton.enabled = NO;
+    self.creatAccountButton.hidden = YES;
+    self.logginButton.hidden = YES;
     
     self.usernameText.placeholder = @"Email";
     self.backgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -48,7 +49,7 @@
     self.backgroundImage.layer.shadowRadius = 4;
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     
-    _buttonClicked = FALSE;
+    self.buttonClicked = NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -109,20 +110,17 @@
     }
     
     //enabling the three textfields for user input
-    _usernameText.enabled = YES;
-    _passwordText.enabled = YES;
+    self.usernameText.hidden = NO;
+    self.passwordText.hidden = NO;
+    self.usernameText.text = @"";
+    self.passwordText.text = @"";
     
     //enabling the create button associated with the textfields
-    _logginButton.enabled = YES;
-    _logginButton.hidden = FALSE;
+    self.logginButton.hidden = NO;
     
     //hiding create stuff
-    _createAccountButton.hidden = TRUE;
-    _creatAccountButton.hidden = TRUE;
-    _passwordConfirmText.hidden = TRUE;
-    
-    //[sender setEnabled:NO];
-    
+    self.creatAccountButton.hidden = YES;
+    self.passwordConfirmText.hidden = YES;
 }
 
 -(IBAction)confirmLogin:(id)sender{
@@ -144,30 +142,27 @@
 
 - (IBAction)createAccount:(id)sender {
     
-    if(_buttonClicked == FALSE){
+    if(!self.buttonClicked){
        [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.backgroundImage.frame  = CGRectMake(0, -240, self.backgroundImage.frame.size.width,self.backgroundImage.frame.size.height);
          self.logoView.frame = CGRectMake(self.logoView.frame.origin.x, self.logoView.frame.origin.y - 240, self.logoView.frame.size.width, self.logoView.frame.size.height);
         
        } completion:^(BOOL finished) {
        }];
-        _buttonClicked = TRUE;
+        self.buttonClicked = YES;
     }
     
-    //enabling the three textfields for user input
-    _usernameText.enabled = YES;
-    _passwordText.enabled = YES;
-    _passwordConfirmText.enabled = YES;
-    
     //enabling the create button associated with the textfields
-    _createAccountButton.enabled = YES;
-    _creatAccountButton.hidden = FALSE;
-    _passwordConfirmText.hidden = FALSE;
+    self.creatAccountButton.hidden = NO;
+    self.usernameText.hidden = NO;
+    self.passwordText.hidden = NO;
+    self.passwordConfirmText.hidden = NO;
+    self.usernameText.text = @"";
+    self.passwordText.text = @"";
+    self.passwordConfirmText.text = @"";
     
     //hiding stuff
-    _logginButton.hidden = TRUE;
-    
-    //[sender setEnabled:NO];
+    self.logginButton.hidden = YES;
 }
 
 
@@ -179,7 +174,7 @@
     [[NSUserDefaults standardUserDefaults] setValue:@"1" forKey:@"firstOpening"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.logoView]];
+    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.logoView, self.backgroundImage]];
     gravityBehavior.magnitude = 8;
     UIGravityBehavior *gravity2 = [[UIGravityBehavior alloc] initWithItems:@[self.loginButton, self.continueButton, self.createAccountButton]];
     [self.animator addBehavior:gravity2];
