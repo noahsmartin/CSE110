@@ -125,6 +125,22 @@
     
 }
 
+-(IBAction)confirmLogin:(id)sender{
+    if([self.passwordText.text isEqualToString:@""] || [self.usernameText.text isEqualToString:@""])
+    {
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"All fields must be filled out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+    }
+    else if([self validateEmail:self.usernameText.text])
+    {
+        [[MenyouApi getInstance] logInWithUsername:self.usernameText.text Password:self.passwordText.text block:^(BOOL success) {
+            if(success)
+                [self dismissViewControllerAnimated:YES completion:^{}];
+        }];
+    }
+}
+
 
 - (IBAction)createAccount:(id)sender {
     
