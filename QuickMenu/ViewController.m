@@ -97,6 +97,30 @@
     return b;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    if(textField == self.usernameText)
+    {
+        [self.passwordText becomeFirstResponder];
+    }
+    else if(textField == self.passwordText)
+    {
+        if(self.passwordConfirmText.hidden)
+        {
+            [self confirmLogin:self];
+        }
+        else {
+            [self.passwordConfirmText becomeFirstResponder];
+        }
+    }
+    else if(textField == self.passwordConfirmText)
+    {
+        [self createAccountButton:self];
+    }
+    return YES;
+}
+
 -(IBAction) login:(id)sender{
     
     if(_buttonClicked == FALSE){
@@ -114,6 +138,7 @@
     self.passwordText.hidden = NO;
     self.usernameText.text = @"";
     self.passwordText.text = @"";
+    self.passwordText.returnKeyType = UIReturnKeySend;
     
     //enabling the create button associated with the textfields
     self.logginButton.hidden = NO;
@@ -156,6 +181,7 @@
     self.creatAccountButton.hidden = NO;
     self.usernameText.hidden = NO;
     self.passwordText.hidden = NO;
+    self.passwordText.returnKeyType = UIReturnKeyNext;
     self.passwordConfirmText.hidden = NO;
     self.usernameText.text = @"";
     self.passwordText.text = @"";
