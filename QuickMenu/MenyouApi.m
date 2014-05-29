@@ -106,7 +106,7 @@ BOOL DEBUG_API = NO;
     for(NSDictionary* d in json)
     {
         // if menu is not found, add a nil object
-        if([[d objectForKey:@"found"] isEqual:[NSNumber numberWithBool:false]]){
+        if([[d objectForKey:@"Found"] isEqual:[NSNumber numberWithBool:false]]){
             [result addObject:[NSNull null]];
         }
         else{ // else create menu oject and add to result
@@ -131,13 +131,16 @@ BOOL DEBUG_API = NO;
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
-    NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=";
+    NSString *urlString = @"http://menyouapp.com/getMenu.php?ids=";
+    NSString *idstring = @"";
     for (int i = 0; i < ids.count; i++) {
         if(ids[i] != nil)
-            urlString = [urlString stringByAppendingString:ids[i]];
+            idstring = [idstring stringByAppendingString:ids[i]];
         if(i != ids.count-1)
-            urlString = [urlString stringByAppendingString:@","];
+            idstring = [idstring stringByAppendingString:@","];
     }
+    idstring = [self percentEncoding:idstring];
+    urlString = [urlString stringByAppendingString:idstring];
     NSURL* URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -151,7 +154,8 @@ BOOL DEBUG_API = NO;
 
 -(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block
 {
-    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
+    NSString* passHash = [self percentEncoding:[self sha256:password]];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, [self percentEncoding:username], passHash];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -160,7 +164,8 @@ BOOL DEBUG_API = NO;
 
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
 {
-    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
+    NSString* passHash = [self percentEncoding:[self sha256:password]];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, [self percentEncoding:username], passHash];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -193,12 +198,12 @@ BOOL DEBUG_API = NO;
                 _business = [json objectForKey:@"Business"];
                 if(!self.preferences)
                     self.preferences = [NSMutableArray array];
-                [self.preferences addObject:[json objectForKey:@"Vegetarian"]];
-                [self.preferences addObject:[json objectForKey:@"Vegan"]];
-                [self.preferences addObject:[json objectForKey:@"Dairy-Free"]];
-                [self.preferences addObject:[json objectForKey:@"Peanut-Allergy"]];
-                [self.preferences addObject:[json objectForKey:@"Kosher"]];
-                [self.preferences addObject:[json objectForKey:@"Low-Fat"]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegetarian"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegan"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Dairy-Free"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Peanut-Allergy"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Kosher"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Low-Fat"]]];
                 if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
                     self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
@@ -326,6 +331,25 @@ BOOL DEBUG_API = NO;
         }
         block(NO);
     }] resume];
+}
+
+-(NSString*)percentEncoding:(NSString*)input
+{
+    NSMutableString *newString = [NSMutableString string];
+    const unsigned char *source = (const unsigned char *)[input UTF8String];
+    unsigned long sourceLen = strlen((const char *)source);
+    for (int i = 0; i < sourceLen; ++i) {
+        const unsigned char thisChar = source[i];
+        if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+            (thisChar >= 'a' && thisChar <= 'z') ||
+            (thisChar >= 'A' && thisChar <= 'Z') ||
+            (thisChar >= '0' && thisChar <= '9')) {
+            [newString appendFormat:@"%c", thisChar];
+        } else {
+            [newString appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    return newString;
 }
 
 -(void)savePrefs

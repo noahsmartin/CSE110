@@ -16,7 +16,7 @@
     if(self = [super init])
     {
         self.title = [data objectForKey:@"title"];
-        self.price = [[data objectForKey:@"price"] stringValue];
+        self.price = [NSString stringWithFormat:@"%@", [data objectForKey:@"price"]];
         self.itemDescription = [data objectForKey:@"description"];
         if([data objectForKey:@"rating"])
         {
