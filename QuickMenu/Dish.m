@@ -23,6 +23,8 @@
             self.rating = [[data objectForKey:@"rating"] doubleValue];
             // This assumes if ratings are found review_count is set also
             self.numRatings = [[data objectForKey:@"review_count"] intValue];
+            if(self.numRatings == 0)
+                self.rating = -1;
         }
         else
         {
