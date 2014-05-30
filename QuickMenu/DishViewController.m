@@ -94,9 +94,6 @@
 
 -(NSURL*)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager URLForView:(UIView *)view
 {
-    CGRect rect = view.frame;
-    int x = rect.origin.x;
-    x -= 5;
     return [NSURL URLWithString:[NSString stringWithFormat:@"http://menyouapp.com/getFullImage.php?id=%@&position=%ld", self.dish.identifier, (long)[view tag]]];
 }
 
