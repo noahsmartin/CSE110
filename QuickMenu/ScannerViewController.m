@@ -10,13 +10,15 @@
 #import "MEDynamicTransition.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "MenyouApi.h"
+#import "OrderViewController.h"
 
 @interface ScannerViewController ()
 @property (nonatomic, strong) UIPanGestureRecognizer *dynamicTransitionPanGesture;
 @property MEDynamicTransition* dynamicTransition;
 @property (weak, nonatomic) IBOutlet UILabel *usernameView;
 
-
+@property int orderCount;
+@property (nonatomic) NSMutableArray* orders;
 @property (nonatomic) BOOL isReading;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
@@ -46,6 +48,8 @@
     
     _isReading = NO;
     _captureSession = nil;
+    _orderCount = 0;
+    _orders = [[NSMutableArray alloc]init];
     
     self.dynamicTransition = [[MEDynamicTransition alloc] init];
     self.dynamicTransition.slidingViewController = self.slidingViewController;
@@ -58,7 +62,11 @@
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    
+    if ([self startReading]) {
+        NSString *s = @"Number of orders: ";
+        NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
+        [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
+    }
 
     // Do any additional setup after loading the view.
 }
@@ -71,16 +79,12 @@
 
 - (IBAction)startStopReading:(id)sender
 {
-    if(!_isReading){
         if ([self startReading]) {
-            [_lblStatus setText:@"Scanning for QR Code..."];
+            NSString *s = @"Number of orders: ";
+            NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
+            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
         }
-    }
-    else{
-        [self stopReading];
-    }
-    
-    _isReading = !_isReading;
+
 }
 
 - (BOOL)startReading {
@@ -123,18 +127,28 @@
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
             
-            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
-            
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"SCAN" waitUntilDone:NO];
-            _isReading = NO;
+            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Scan for Orders" waitUntilDone:NO];
             
-        }
+            // create JSON array from result of QR scan, add it to array of orders
+            NSData *data = [[metadataObj stringValue] dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            [_orders addObject:json];
+            _orderCount++;
+            
+            // update the number of orders displayed on the screen
+            NSString *s = @"Number of orders: ";
+            NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
+            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
+            
+            
+    }
         
         
     }
     
 }
+
 
 -(void)stopReading{
     [_captureSession stopRunning];
@@ -143,7 +157,7 @@
     [_videoPreviewLayer removeFromSuperlayer];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -151,7 +165,13 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showScanOrder"]) {
+        OrderViewController *destViewController = segue.destinationViewController;
+        destViewController.ordersArray = self.orders;
+    }
+    
+    
 }
-*/
+
 
 @end

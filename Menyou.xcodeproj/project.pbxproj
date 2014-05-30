@@ -96,6 +96,7 @@
 		4FECC2F9192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECC2F7192FB7D40092B1D7 /* WYStoryboardPopoverSegue.m */; };
 		4FFDD6281907268B008DEE69 /* MyMenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */; };
 		7296A73F1932D2FE00599C89 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7296A73E1932D2FE00599C89 /* ScannerViewController.m */; };
+		7296A74219383ABD00599C89 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7296A74119383ABD00599C89 /* OrderViewController.m */; };
 		72CCDCAD19131C9D00A5681D /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAC19131C9D00A5681D /* Categories.m */; };
 		72CCDCB019131CE400A5681D /* Dish.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CCDCAF19131CE400A5681D /* Dish.m */; };
 /* End PBXBuildFile section */
@@ -282,6 +283,8 @@
 		4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyMenuViewController.mm; sourceTree = "<group>"; };
 		7296A73D1932D2FE00599C89 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		7296A73E1932D2FE00599C89 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		7296A74019383ABD00599C89 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		7296A74119383ABD00599C89 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		72CCDCAB19131C9D00A5681D /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		72CCDCAC19131C9D00A5681D /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
 		72CCDCAE19131CE400A5681D /* Dish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dish.h; sourceTree = "<group>"; };
@@ -432,6 +435,8 @@
 				4FA80C0D192C686D00737687 /* TopDishesViewController.h */,
 				4FA80C0E192C686D00737687 /* TopDishesViewController.m */,
 				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
+				7296A74019383ABD00599C89 /* OrderViewController.h */,
+				7296A74119383ABD00599C89 /* OrderViewController.m */,
 			);
 			path = QuickMenu;
 			sourceTree = "<group>";
@@ -762,6 +767,7 @@
 				4FC4E828193263F1008609A6 /* AFURLConnectionOperation.m in Sources */,
 				4FC4E82B193263F1008609A6 /* AFURLSessionManager.m in Sources */,
 				4FBF3D0A19033BF100A51204 /* OAProblem.m in Sources */,
+				7296A74219383ABD00599C89 /* OrderViewController.m in Sources */,
 				4F7F5CE61933C3BB006FEFF2 /* UIButton+AFNetworking.m in Sources */,
 				4FBF3D0819033BF100A51204 /* OAMutableURLRequest.m in Sources */,
 				4F7F5CF919343815006FEFF2 /* ASTransparentView.m in Sources */,

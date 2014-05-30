@@ -23,16 +23,20 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.homeViewController = self.slidingViewController.topViewController;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // if logged in as bussiness owner, return 3
-    // else return 2
-    // not sure how to check if business owner
+    MenyouApi* m = [MenyouApi getInstance];
     
+    if([m.business length] == 0){  // if not signed in with business account
+        return 2;
+    }
+
     return 3;
+        
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,12 +92,7 @@
         ((ScannerViewController*) scannerViewController.topViewController).homeViewController = self.homeViewController;
         self.slidingViewController.topViewController = scannerViewController;
         [self.slidingViewController resetTopViewAnimated:YES];
-         /*
-        [self presentViewController:[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"] animated:YES completion:^{
-            // Return to the home MVC
-            [self.slidingViewController resetTopViewAnimated:YES];
-        }];
-            */
+
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
