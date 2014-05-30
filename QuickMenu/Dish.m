@@ -16,13 +16,15 @@
     if(self = [super init])
     {
         self.title = [data objectForKey:@"title"];
-        self.price = [[data objectForKey:@"price"] stringValue];
+        self.price = [NSString stringWithFormat:@"%@", [data objectForKey:@"price"]];
         self.itemDescription = [data objectForKey:@"description"];
         if([data objectForKey:@"rating"])
         {
             self.rating = [[data objectForKey:@"rating"] doubleValue];
             // This assumes if ratings are found review_count is set also
             self.numRatings = [[data objectForKey:@"review_count"] intValue];
+            if(self.numRatings == 0)
+                self.rating = -1;
         }
         else
         {

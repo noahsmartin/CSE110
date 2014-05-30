@@ -57,6 +57,7 @@
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
+		4FB3AE641937F4D400D90AF5 /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */; };
 		4FBF3CFE19033BF100A51204 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3CFF19033BF100A51204 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDC19033BF100A51204 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4FBF3D0019033BF100A51204 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBF3CDE19033BF100A51204 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -202,6 +203,8 @@
 		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
 		4FA80C0D192C686D00737687 /* TopDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishesViewController.h; sourceTree = "<group>"; };
 		4FA80C0E192C686D00737687 /* TopDishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDishesViewController.m; sourceTree = "<group>"; };
+		4FB3AE621937F4D400D90AF5 /* FilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTableViewController.h; sourceTree = "<group>"; };
+		4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTableViewController.m; sourceTree = "<group>"; };
 		4FBF3CD919033BF100A51204 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		4FBF3CDA19033BF100A51204 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		4FBF3CDB19033BF100A51204 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
 				4F26DFB51901BDD0002C4FEC /* ApiData */,
 				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
+				4FB3AE621937F4D400D90AF5 /* FilterTableViewController.h */,
+				4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */,
 				7296A73D1932D2FE00599C89 /* ScannerViewController.h */,
 				7296A73E1932D2FE00599C89 /* ScannerViewController.m */,
 				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
@@ -772,6 +777,7 @@
 				4FBF3D0819033BF100A51204 /* OAMutableURLRequest.m in Sources */,
 				4F7F5CF919343815006FEFF2 /* ASTransparentView.m in Sources */,
 				7296A73F1932D2FE00599C89 /* ScannerViewController.m in Sources */,
+				4FB3AE641937F4D400D90AF5 /* FilterTableViewController.m in Sources */,
 				4FBF3D0C19033BF100A51204 /* OAServiceTicket.m in Sources */,
 				4FBF3D0B19033BF100A51204 /* OARequestParameter.m in Sources */,
 				4FBF3D0519033BF100A51204 /* OAConsumer.m in Sources */,

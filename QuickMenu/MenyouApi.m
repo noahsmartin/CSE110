@@ -10,9 +10,10 @@
 #import "AFNetworking.h"
 #include <CommonCrypto/CommonDigest.h>
 
-@interface MenyouApi()
+@interface MenyouApi() <UIAlertViewDelegate>
 @property NSString* session;
 @property (nonatomic) NSMutableDictionary* reviews;
+@property int wrongPasswordCount;
 
 @end
 
@@ -47,8 +48,16 @@ BOOL DEBUG_API = NO;
         self.session = [[NSUserDefaults standardUserDefaults] objectForKey:@"session"];
         _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
+        self.preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"preferences"]];
+        
         if([self loggedIn])
         {
+            // This probably isn't necessary but good to have just in case so at least the app does not crash
+            // Only needs to be done if logged in, if not the array will be made when the user logs in
+            if([self.preferences count] != 6)
+            {
+                self.preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+            }
             // Query for the ratings
             NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@&timestamp=%f", baseUrl, self.username, self.session, [[NSDate date] timeIntervalSince1970]];
             NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
@@ -97,7 +106,7 @@ BOOL DEBUG_API = NO;
     for(NSDictionary* d in json)
     {
         // if menu is not found, add a nil object
-        if([[d objectForKey:@"found"] isEqual:[NSNumber numberWithBool:false]]){
+        if([[d objectForKey:@"Found"] isEqual:[NSNumber numberWithBool:false]]){
             [result addObject:[NSNull null]];
         }
         else{ // else create menu oject and add to result
@@ -122,13 +131,16 @@ BOOL DEBUG_API = NO;
 
 -(void)getMenusForIds:(NSArray*)ids withBlock:(void (^)(NSArray*))block
 {
-    NSString *urlString = @"http://www.quickresapp.com/menyouApi.php?ids=";
+    NSString *urlString = @"http://menyouapp.com/getMenu.php?ids=";
+    NSString *idstring = @"";
     for (int i = 0; i < ids.count; i++) {
         if(ids[i] != nil)
-            urlString = [urlString stringByAppendingString:ids[i]];
+            idstring = [idstring stringByAppendingString:ids[i]];
         if(i != ids.count-1)
-            urlString = [urlString stringByAppendingString:@","];
+            idstring = [idstring stringByAppendingString:@","];
     }
+    idstring = [self percentEncoding:idstring];
+    urlString = [urlString stringByAppendingString:idstring];
     NSURL* URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -142,7 +154,8 @@ BOOL DEBUG_API = NO;
 
 -(void)createAccountWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block
 {
-    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
+    NSString* passHash = [self percentEncoding:[self sha256:password]];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appCreateAccount.php?email=%@&passhash=%@", baseUrl, [self percentEncoding:username], passHash];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -151,7 +164,8 @@ BOOL DEBUG_API = NO;
 
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
 {
-    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, username, [self sha256:password]];
+    NSString* passHash = [self percentEncoding:[self sha256:password]];
+    NSString* urlString = [NSString stringWithFormat:@"%@/appLogin.php?email=%@&passhash=%@", baseUrl, [self percentEncoding:username], passHash];
     NSURL *URL = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
     [request setHTTPMethod:@"GET"];
@@ -177,14 +191,25 @@ BOOL DEBUG_API = NO;
                 NSLog(@"%@", json);
             if([[json objectForKey:@"Status"] isEqualToString:@"Success"])
             {
+                // As soon as you are logged in successfully, clear the wrong password count
+                self.wrongPasswordCount = 0;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
+                if(!self.preferences)
+                    self.preferences = [NSMutableArray array];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegetarian"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegan"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Dairy-Free"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Peanut-Allergy"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Kosher"]]];
+                [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Low-Fat"]]];
                 if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
                     self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
                 [[NSUserDefaults standardUserDefaults] setObject:self.business forKey:@"business"];
                 [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"preferences"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self.delegate loginStatusChagned];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -193,10 +218,23 @@ BOOL DEBUG_API = NO;
             }
             else
             {
+                // Only increment the wrong password count for login
+                if([[request.URL absoluteString] rangeOfString:@"appLogin"].location != NSNotFound)
+                {
+                    self.wrongPasswordCount++;
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *errorAlert = [[UIAlertView alloc]
-                                               initWithTitle:@"Error" message:[json objectForKey:@"Message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    [errorAlert show];
+                    if(self.wrongPasswordCount < 3)
+                    {
+                        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                                   initWithTitle:@"Error" message:[json objectForKey:@"Message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        [errorAlert show];
+                    }
+                    else
+                    {
+                        [self sendForgottenPassword:username];
+                        self.wrongPasswordCount = 0;
+                    }
                     block(NO);
                 });
             }
@@ -209,15 +247,38 @@ BOOL DEBUG_API = NO;
     }];
 }
 
+-(void)sendForgottenPassword:(NSString*)username{
+    UIAlertView *sendPassAlert = [[UIAlertView alloc]
+                                  initWithTitle:@"Forgot your password?" message:@"Enter your e-mail address and a link will be sent to you to reset your password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [sendPassAlert addButtonWithTitle:@"Cancel"];
+    sendPassAlert.tag = 100;
+    sendPassAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [sendPassAlert textFieldAtIndex:0].text = username;
+    [sendPassAlert textFieldAtIndex:0].keyboardType = UIKeyboardTypeEmailAddress;
+    [sendPassAlert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0 && alertView.tag == 100){
+        // resets password?
+        UIAlertView *sentAlert = [[UIAlertView alloc] init];
+        [sentAlert setDelegate:self];
+        [sentAlert setMessage:@"Your password reset request has been sent to your e-mail"];
+        [sentAlert addButtonWithTitle:@"Ok"];
+    }
+}
+
 -(void)logout
 {
     _username = nil;
     self.session = nil;
     _business = nil;
     self.reviews = nil;
+    _preferences = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"business"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"preferences"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.delegate loginStatusChagned];
 }
@@ -270,6 +331,31 @@ BOOL DEBUG_API = NO;
         }
         block(NO);
     }] resume];
+}
+
+-(NSString*)percentEncoding:(NSString*)input
+{
+    NSMutableString *newString = [NSMutableString string];
+    const unsigned char *source = (const unsigned char *)[input UTF8String];
+    unsigned long sourceLen = strlen((const char *)source);
+    for (int i = 0; i < sourceLen; ++i) {
+        const unsigned char thisChar = source[i];
+        if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+            (thisChar >= 'a' && thisChar <= 'z') ||
+            (thisChar >= 'A' && thisChar <= 'Z') ||
+            (thisChar >= '0' && thisChar <= '9')) {
+            [newString appendFormat:@"%c", thisChar];
+        } else {
+            [newString appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    return newString;
+}
+
+-(void)savePrefs
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.preferences forKey:@"preferences"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(NSString*) sha256:(NSString *)string{

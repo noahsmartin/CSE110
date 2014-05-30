@@ -89,7 +89,7 @@
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    else if([title rangeOfString:@"desserts" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"dessert" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"desserts"];
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
@@ -119,7 +119,7 @@
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];
     }
     
-    else if([title rangeOfString:@"sandwiches" options:NSCaseInsensitiveSearch].location != NSNotFound)
+    else if([title rangeOfString:@"sandwich" options:NSCaseInsensitiveSearch].location != NSNotFound)
     {
         img = [UIImage imageNamed:@"sandwiches"];
         [self setTabBarItem:[[UITabBarItem alloc] initWithTitle:self.title image:img tag:0]];

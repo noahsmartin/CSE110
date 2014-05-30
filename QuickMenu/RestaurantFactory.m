@@ -124,8 +124,8 @@
         {
             Menu* m = arr[i];
             if([m isEqual:[NSNull null]]){
+                [list removeObjectAtIndex:i-offset];
                 offset++;
-                [list removeObjectAtIndex:i];
             }
             else{
                 ((Restaurant*) list[i-offset]).menu = m;

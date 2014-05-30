@@ -77,8 +77,9 @@
                     {
                         $data = json_decode($_GET['data'], TRUE);
                         $categories = $data['categories'];
+                        $currency = $data['currency'];
 
-                        $query = "SELECT categories FROM menu WHERE menuid = :menuid";
+                        $query = "SELECT categories, numberdishes FROM menu WHERE menuid = :menuid";
                                     $query_params = array( 
                                    ':menuid' => $_GET['name'] 
                                  );
@@ -86,8 +87,15 @@
                         $result = $stmt->execute($query_params);
                         $row = $stmt->fetch();
                         $storedcategories = json_decode($row['categories'], TRUE);
-                        $dishcount = 0;
-$newcategories = array();
+                       if($row){
+                        $dishcount = $row['numberdishes'];
+                       }
+                       else {
+                       $dishcount = 0;
+                       }
+
+                        $newcategories = array();
+
                         foreach($categories as $category)
                         {
 
@@ -96,6 +104,37 @@ $newcategories = array();
                           foreach($dishes as $dish) {
                            $disharray[] = $dish['dishid'];
                            ++$dishcount;
+
+                           $did = $dish['dishid'];
+                           $title = $dish['title'];
+                           $price = $dish['price'];
+                           $desc = $dish['description'];
+                           $opt = $dish['options'];
+                           $veget = $dish['vegetarian'];
+                           $vega = $dish['vegan'];
+                           $kosh = $dish['kosher'];
+                           $low = $dish['lowfat'];
+                           $dairy = $dish['dairyfree'];
+                           $gluten = $dish['glutenfree'];
+                           $spice = $dish['spicemeter'];
+                           $rec = $dish['chefrecommended'];
+                           $avg = $dish['rating'];
+                           $num = $dish['review_count'];
+
+								$query = "DELETE FROM dish WHERE dishid = :did";
+											$query_params = array( 
+										   ':did' => $did
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
+
+								$query = "INSERT INTO dish (dishid, name, price, description, options, vegetarian, vegan, kosher, lowfat, dairyfree, glutenfree, spicemeter, chefrecommended, averagerating, numberratings)
+                                          VALUES (:did, '$title', '$price', '$desc', '$opt', '$veget', '$vega', '$kosh', '$low', '$dairy', '$gluten', '$spice', '$rec', '$avg', '$num')";
+											$query_params = array( 
+										   ':did' => $did
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
                           }
 
                             // This loops over the input data categories, all of these should be dropped from the table
@@ -105,8 +144,8 @@ $newcategories = array();
                             $title = $category['title'];
                             $newcategories[] = $id;
 
-                            if(in_array($id, $storedcategories))
-                            {
+                            //if(in_array($id, $storedcategories))
+                            //{
                                 // Drop the row in categories that is $id
 								$query = "DELETE FROM category WHERE categoryid = :id";
 											$query_params = array( 
@@ -114,7 +153,7 @@ $newcategories = array();
 										 );
 								$stmt = $db->prepare($query); 
 								$result = $stmt->execute($query_params);
-                            }
+                            //}
 
                           $disharray2 = json_encode($disharray);
  
@@ -129,14 +168,34 @@ $newcategories = array();
                         }
 
                                 $insertcats = json_encode($newcategories);
+
+								$query = "SELECT menuid FROM menu WHERE menuid = :id";
+											$query_params = array( 
+										   ':id' => $_GET['name']
+										 );
+								$stmt = $db->prepare($query); 
+								$result = $stmt->execute($query_params);
+                                $menuexist = $stmt->fetch();
+
+                               if($menuexist) {
 								$query = "UPDATE menu
-                                          SET categories = '$insertcats', numberdishes = '$dishcount'
+                                          SET currency = '$currency', categories = '$insertcats', numberdishes = '$dishcount'
                                           WHERE menuid = :id";
 											$query_params = array( 
 										   ':id' => $_GET['name']
 										 );
 								$stmt = $db->prepare($query); 
 								$result = $stmt->execute($query_params);
+                              }
+                              else {
+                               $query = "INSERT INTO menu (menuid, currency, categories, numberdishes)
+                                         VALUES (:id, '$currency', '$insertcats', '$dishcount')";
+                                          $query_params = array(
+                                          ':id' => $_GET['name']
+                                         );
+                               $stmt = $db->prepare($query);
+                               $result = $stmt->execute($query_params);
+                             }
 
                         // Replace this new array of categories with the categories in the menu table
                         // Edit the row in menu table with my restaurant to contain my categories
