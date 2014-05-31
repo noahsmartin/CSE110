@@ -7,6 +7,7 @@
 //
 
 #import "FilterTableViewController.h"
+#import "MenyouApi.h"
 
 @interface FilterTableViewController ()
 
@@ -32,6 +33,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    for(int row = 0; row < [[MenyouApi getInstance].preferences count] && row < [self.tableView numberOfRowsInSection:0]; row++)
+    {
+        NSString* state = [[MenyouApi getInstance].preferences objectAtIndex:row];
+        if([state isEqualToString:@"1"])
+        {
+            NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
+            UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:cellPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -48,7 +60,5 @@
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
 }
-
-
 
 @end
