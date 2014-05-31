@@ -705,6 +705,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Noah Martin";
 				TargetAttributes = {
+					4F5D5F7118FCB0D00042A0BA = {
+						DevelopmentTeam = 28B76375E5;
+					};
 					4F5D5F9518FCB0D00042A0BA = {
 						TestTargetID = 4F5D5F7118FCB0D00042A0BA;
 					};
@@ -968,10 +971,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickMenu/Menyou-Prefix.pch";
 				INFOPLIST_FILE = "QuickMenu/Menyou-Info.plist";
 				PRODUCT_NAME = Menyou;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -982,10 +988,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickMenu/Menyou-Prefix.pch";
 				INFOPLIST_FILE = "QuickMenu/Menyou-Info.plist";
 				PRODUCT_NAME = Menyou;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

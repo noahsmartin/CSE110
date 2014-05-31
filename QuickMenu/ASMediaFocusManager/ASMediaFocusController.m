@@ -236,6 +236,11 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
     return (self.accessoryView.alpha == 1);
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self.manager performSelectorOnMainThread:@selector(controllerDisappear) withObject:nil waitUntilDone:YES];
+}
+
 #pragma mark - Actions
 - (void)handleDoubleTap:(UITapGestureRecognizer*)gesture
 {
