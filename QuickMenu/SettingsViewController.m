@@ -105,11 +105,11 @@
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Logged out" message:@"Logged out successfully" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-    [[MenyouApi getInstance] logout];
     ECSlidingViewController *slidingController = self.slidingViewController;
     
     [slidingController anchorTopViewToRightAnimated:YES];
     slidingController.topViewController = self.homeViewController;
+    [[MenyouApi getInstance] logout];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
