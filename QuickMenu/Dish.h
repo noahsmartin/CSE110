@@ -19,6 +19,7 @@
 @property NSString* identifier;
 @property double myRating;
 @property int numRatings;
+@property NSMutableArray* properties;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
