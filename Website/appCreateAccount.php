@@ -1,4 +1,6 @@
 <?php 
+
+/* Original tutorial source: http://forums.devshed.com/php-faqs-stickies-167/program-basic-secure-login-system-using-php-mysql-891201.html */
     // These variables define the connection information
     $username = "stepshep"; 
     $password = "menyoucs110"; 
@@ -179,9 +181,9 @@
             $_SESSION['user'] = $row;
             
             if(isset($_GET['business']))
-                $outputGood = array('Status' => "Success", 'SessionID' => $hex, 'Business' => $_GET['business'], 'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Gluten-Free' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
+                $outputGood = array('Status' => "Success", 'SessionID' => $hex, 'Business' => $_GET['business'], 'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
             else
-                $outputGood = array('Status' => "Success", 'SessionID' => $hex,  'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Gluten-Free' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
+                $outputGood = array('Status' => "Success", 'SessionID' => $hex,  'Kosher' => 0, 'Vegetarian' => 0, 'Vegan' => 0, 'Peanut-Allergy' => 0, 'Dairy-Free' => 0, 'Low-Fat' => 0);
 
             echo json_encode($outputGood);
             die();

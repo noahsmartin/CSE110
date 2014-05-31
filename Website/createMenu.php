@@ -63,7 +63,7 @@
         ); 
         
         
-            try 
+        try 
         { 
             // Execute the query 
             $stmt = $db->prepare($query); 
@@ -103,7 +103,7 @@
                          $dishes = $category['dishes'];
                           foreach($dishes as $dish) {
                            $disharray[] = $dish['dishid'];
-                           ++$dishcount;
+                           ++$dishcount;  // TODO: this should only increment when a new dish is added, but might be ok to leave for now
 
                            $did = $dish['dishid'];
                            $title = $dish['title'];
@@ -115,7 +115,7 @@
                            $kosh = $dish['kosher'];
                            $low = $dish['lowfat'];
                            $dairy = $dish['dairyfree'];
-                           $gluten = $dish['glutenfree'];
+                           $peanuts = $dish['peanutallergy'];
                            $spice = $dish['spicemeter'];
                            $rec = $dish['chefrecommended'];
                            $avg = $dish['rating'];
@@ -128,8 +128,8 @@
 								$stmt = $db->prepare($query); 
 								$result = $stmt->execute($query_params);
 
-								$query = "INSERT INTO dish (dishid, name, price, description, options, vegetarian, vegan, kosher, lowfat, dairyfree, glutenfree, spicemeter, chefrecommended, averagerating, numberratings)
-                                          VALUES (:did, '$title', '$price', '$desc', '$opt', '$veget', '$vega', '$kosh', '$low', '$dairy', '$gluten', '$spice', '$rec', '$avg', '$num')";
+								$query = "INSERT INTO dish (dishid, name, price, description, options, vegetarian, vegan, kosher, lowfat, dairyfree, peanutallergy, spicemeter, chefrecommended, averagerating, numberratings)
+                                          VALUES (:did, '$title', '$price', '$desc', '$opt', '$veget', '$vega', '$kosh', '$low', '$dairy', '$peanuts', '$spice', '$rec', '$avg', '$num')";
 											$query_params = array( 
 										   ':did' => $did
 										 );
@@ -200,12 +200,13 @@
                         // Replace this new array of categories with the categories in the menu table
                         // Edit the row in menu table with my restaurant to contain my categories
                     }
-                    
-                    
-                    
-                    
-                    
                 }
+                else {
+                    echo "Incorrect session";
+                }
+            }
+            else {
+                echo "did not find user";
             }
         } 
         catch(PDOException $ex) 

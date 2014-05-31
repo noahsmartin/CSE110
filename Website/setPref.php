@@ -1,9 +1,9 @@
-<?php 
-    // These variables define the connection information
+<?php
+// These variables define the connection information
     $username = "stepshep"; 
     $password = "menyoucs110"; 
     $host = "users.csss5n4ctp7b.us-east-1.rds.amazonaws.com"; 
-    $dbname = "innodb"; 
+    $dbname = "innodb";
 
     // By passing the following $options array to the database connection code we 
     // are telling the MySQL server that we want to communicate with it using UTF-8 
@@ -48,27 +48,13 @@
         undo_magic_quotes_gpc($_GET); 
         undo_magic_quotes_gpc($_COOKIE); 
     } 
-     
-    // This tells the web browser that your content is encoded using UTF-8 
-    // and that it should submit content back to you using UTF-8 
-    header('Content-Type: text/html; charset=utf-8'); 
-     
-    // This initializes a session.
-    session_start(); 
-     
+          
         // This query retrieves the user's information from the database using 
         // their email. 
         $query = " 
             SELECT 
                 email,
-                passhash,
-                business,
-                kosher,
-                vegetarian,
-                vegan,
-                peanutallergy,
-                dairyfree,
-                lowfat
+                session
             FROM users 
             WHERE 
                 email = :email 
@@ -76,10 +62,10 @@
          
         // The parameter values 
         $query_params = array( 
-            ':email' => $_GET['email'] 
+            ':email' => $_GET['username'] 
         ); 
 
-       $email = $_GET['email'];
+       $email = $_GET['usernmae'];
          
         try 
         { 
@@ -93,7 +79,7 @@
             // It may provide an attacker with helpful information about your code.  
             die("Failed to run query: " . $ex->getMessage()); 
         } 
-         
+                 
         // This variable tells us whether the user has successfully logged in or not. 
         // We initialize it to false, assuming they have not. 
         // If we determine that they have entered the right details, then we switch it to true. 
@@ -103,46 +89,57 @@
         // they entered is not registered. 
         $row = $stmt->fetch(); 
         if($row) 
-        { 
-            if($_GET['passhash'] === $row['passhash']) 
+        {
+            if($_GET['sessionid'] == $row['session'])
             { 
                 // If they do, then we flip this to true 
                 $login_ok = true;
-                $business = "";
-                if($row['business'])
-                    $business = $row['business'];
             }
             else {
           $loginBad = array('Status' => "Failure", 'Message' => "Wrong password");
 
           echo json_encode($loginBad);
           die();
-         }
-        } 
-         
-        if($login_ok) 
-        { 
-    $bytes = openssl_random_pseudo_bytes(12, $cstrong);
-    $hex   = bin2hex($bytes);
+           }
+        }
+        else {
+          $loginBad = array('Status' => "Failure", 'Message' => "Unknown username");
 
-       // Initial query parameter values 
+          echo json_encode($loginBad);
+          die();     
+        }
+        
+        $pref = $_GET["pref"];
+        if(!isset($_GET["pref"]) || ($pref != "kosher" && $pref != "vegetarian" && $pref != "vegan" && $pref != "peanutallergy" && $pref != "glutenfree" && $pref != "dairyfree" && $pref != "lowfat"))
+        {
+          $loginBad = array('Status' => "Failure", 'Message' => "Invalid preference");
+
+          echo json_encode($loginBad);
+          die();
+        }
+                
+        $newValue = $_GET["value"];
+        if(!isset($_GET["value"]) || ($newValue != 0 && $newValue != 1))
+        {
+          $loginBad = array('Status' => "Failure", 'Message' => "Invalid new value");
+
+          echo json_encode($loginBad);
+          die();
+        }
+        
+        // At this point we know the user is allowed to change this collumn
+        
+        $query = "UPDATE users SET ".$pref." = :value WHERE email = :email";
         $query_params = array( 
-            ':email' => $_GET['email'] 
-        ); 
-
-        $query = " 
-            UPDATE users 
-            SET 
-                session = '$hex'
-            WHERE 
-                email = '$email'  
-        "; 
-
-        try 
+            ':value' => $_GET['value'],
+            ':email' => $_GET['username'] 
+        );
+        
+                try 
         { 
-            // Execute the query 
+            // Execute the query against the database 
             $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params);
+            $result = $stmt->execute($query_params); 
         } 
         catch(PDOException $ex) 
         { 
@@ -150,36 +147,8 @@
             // It may provide an attacker with helpful information about your code.  
             die("Failed to run query: " . $ex->getMessage()); 
         }
-
-    $loginGood = array('Status' => "Success", 'Message' => "User is now logged in", 'SessionID' => $hex, 'Business' => $business, 'Kosher' => $row[kosher], 'Vegetarian' => $row[vegetarian], 'Vegan' => $row[vegan], 'Peanut-Allergy' => $row[peanutallergy], 'Dairy-Free' => $row[dairyfree], 'Low-Fat' => $row[lowfat]);
         
-        $query = "SELECT * FROM reviews WHERE userid = '$email'";
-        try {
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute($query_params);
-        }
-        catch(PDOException $ex)
-        {
-            // Note: On a production website, you should not output $ex->getMessage(). 
-            // It may provide an attacker with helpful information about your code.  
-            die("Failed to run query: " . $ex->getMessage()); 
-        }
-        $reviews = array();
-        while($row = $stmt->fetch())
-        {
-            $reviews[$row['dishid']] = $row['rating'];
-        } 
-        
-        $loginGood['Reviews'] = $reviews;
+        $result = array('Status' => "Success");
 
-
-          echo json_encode($loginGood);
-          die();
-        } 
-        else 
-        { 
-          $loginBad = array('Status' => "Failure", 'Message' => "Email is not registered");
-
-          echo json_encode($loginBad);
-          die();
-        }
+          echo json_encode($result);
+          die();   
