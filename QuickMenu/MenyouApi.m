@@ -264,11 +264,19 @@ BOOL DEBUG_API = NO;
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0 && alertView.tag == 100){
-        // resets password?
-        UIAlertView *sentAlert = [[UIAlertView alloc] init];
-        [sentAlert setDelegate:self];
-        [sentAlert setMessage:@"Your password reset request has been sent to your e-mail"];
-        [sentAlert addButtonWithTitle:@"Ok"];
+        NSString* email = [self percentEncoding:[alertView textFieldAtIndex:0].text];
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://menyouapp.com/recoverPassword.php?email=%@", email]];
+        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if(!connectionError)
+            {
+                /*UIAlertView *sentAlert = [[UIAlertView alloc] init];
+                [sentAlert setDelegate:self];
+                [sentAlert setMessage:@"Your password reset request has been sent to your e-mail"];
+                [sentAlert addButtonWithTitle:@"Ok"];
+                [sentAlert show];*/
+            }
+        }];
     }
 }
 
