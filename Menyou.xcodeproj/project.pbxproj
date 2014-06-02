@@ -324,11 +324,11 @@
 		4F240B351905F04300A405E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F240B361905F05F00A405E2 /* Menu.h */,
 				72CCDCAB19131C9D00A5681D /* Categories.h */,
 				72CCDCAC19131C9D00A5681D /* Categories.m */,
 				72CCDCAE19131CE400A5681D /* Dish.h */,
 				72CCDCAF19131CE400A5681D /* Dish.m */,
+				4F240B361905F05F00A405E2 /* Menu.h */,
 				4F240B371905F05F00A405E2 /* Menu.m */,
 			);
 			name = Model;
@@ -437,9 +437,9 @@
 				4F240B321905F01400A405E2 /* MenuTabBarController.h */,
 				4F240B331905F01400A405E2 /* MenuTabBarController.m */,
 				4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */,
+				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
 				4FA80C0D192C686D00737687 /* TopDishesViewController.h */,
 				4FA80C0E192C686D00737687 /* TopDishesViewController.m */,
-				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
 				7296A74019383ABD00599C89 /* OrderViewController.h */,
 				7296A74119383ABD00599C89 /* OrderViewController.m */,
 			);

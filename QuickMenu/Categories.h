@@ -13,8 +13,10 @@
 
 @property NSArray* dishes;
 @property (nonatomic) NSInteger count;
+@property (nonatomic) NSInteger filterCount;
 @property NSString* title;
 @property NSString* about;
+@property NSMutableArray* filteredDishes;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 

@@ -8,6 +8,7 @@
 
 #import "Categories.h"
 #import "Dish.h"
+#import "MenyouApi.h"
 
 @implementation Categories
 
@@ -23,6 +24,7 @@
             [arr addObject:[[Dish alloc] initWithData:d]];
         }
         self.dishes = arr;
+        self.filteredDishes = [self filterOutDishes:[MenyouApi getInstance].dynamicPref];
     }
     return self;
 }
@@ -54,6 +56,11 @@
     return self.dishes.count;
 }
 
+-(NSInteger)filterCount
+{
+    return [self.filteredDishes count];
+}
+
 -(NSString*)description
 {
     return self.title;
@@ -66,4 +73,25 @@
     self.dishes = arr;
 }
 
+-(NSMutableArray*) filterOutDishes:(NSMutableArray*)filters
+{
+    NSMutableArray* tempresult = [[NSMutableArray alloc] init];
+    for(Dish* d in self.dishes)
+    {
+        [tempresult addObject:d];
+        for(int i = 0; i < [filters count]; i++)
+        {
+            if([[filters objectAtIndex:i] isEqualToString:@"1"])
+            {
+                if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:YES]])
+                {
+                    [tempresult removeObject:d];
+                    break;
+                }
+            }
+        }
+    }
+    
+    return tempresult;
+}
 @end

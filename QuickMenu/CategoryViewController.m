@@ -9,6 +9,7 @@
 #import "CategoryViewController.h"
 #import "DishTableViewCell.h"
 #import "DishViewController.h"
+#import "MenyouApi.h"
 
 @interface CategoryViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
@@ -37,7 +38,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.category.count;
+    return self.category.filterCount;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,15 +66,16 @@
         cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
     [cell setColor:[self colorForIndex:indexPath.row]];
-    cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
-    cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
+    cell.titleLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).title;
+    cell.descriptionLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).itemDescription;
     // Intentionally not explicitly adding a $, this should be a property of the dish the restaurant owner enters, also
     // by adding a $ we would clearly not be supporting other currencies, this way we still are.
-    cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
-    cell.data = self.category.dishes[indexPath.row];
+    cell.priceLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).price;
+    cell.data = self.category.filteredDishes[indexPath.row];
     cell.delegate = self;
-    [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];
-    cell.starView.rating = ((Dish*) self.category.dishes[indexPath.row]).rating;
+    [cell setDishSelected:((Dish*) self.category.filteredDishes[indexPath.row]).isSelected];
+    cell.starView.rating = ((Dish*) self.category.filteredDishes[indexPath.row]).rating;
+    
     return cell;
 }
 
@@ -178,5 +180,42 @@
         ((DishViewController*) segue.destinationViewController).restaurant = self.restaurant;
     }
 }
+
+/*
+-(void)filterDishes:(NSMutableArray*)filters
+{
+    NSLog(@"HELLO");
+    NSMutableArray* deleteList = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i < [self.category.dishes count]; i++)
+    {
+        Dish* d = [self.category.dishes objectAtIndex:i];
+        for(int j = 0; j < [filters count]; j++)
+        {
+            if([[filters objectAtIndex:i] isEqualToString:@"1"])
+            {
+                if([d.properties objectAtIndex:i])
+                {
+                    [deleteList addObject:[NSNumber numberWithInt:i]];
+                    continue;
+                }
+            }
+        }
+    }
+    
+    for(NSNumber* i in deleteList)
+    {
+        NSInteger index = [i integerValue];
+        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:index inSection:0];
+        UITableViewCell* cell = [self.categoryTableView cellForRowAtIndexPath:cellPath];
+        
+        [self.category removeDish:((DishTableViewCell*) cell).data];
+        [self.categoryTableView beginUpdates];
+        [self.categoryTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
+                                      withRowAnimation:UITableViewRowAnimationFade];
+        [self.categoryTableView endUpdates];
+    }
+}
+*/
 
 @end

@@ -30,6 +30,8 @@
 
 @property NSMutableArray* preferences;
 
+@property NSMutableArray* dynamicPref;
+
 @property (weak) id<MenyouApiDelegate> delegate;
 
 // This is a singleton class
