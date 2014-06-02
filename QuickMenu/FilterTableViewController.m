@@ -57,12 +57,14 @@
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
     [[MenyouApi getInstance].dynamicPref replaceObjectAtIndex:indexPath.row withObject: @"0"];
+    [[MenyouApi getInstance] filterUpdated];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     [[MenyouApi getInstance].dynamicPref replaceObjectAtIndex:indexPath.row withObject: @"1"];
+    [[MenyouApi getInstance] filterUpdated];
 }
 
 @end

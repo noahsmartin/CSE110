@@ -11,7 +11,8 @@
 #import "DishViewController.h"
 #import "MenyouApi.h"
 
-@interface CategoryViewController ()
+@interface CategoryViewController () <MenyouApiFilterDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 
 @end
@@ -34,6 +35,7 @@
     view.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.4];
     [self.view addSubview:view];
     self.titleLabel.text = self.title;
+    [MenyouApi getInstance].filterDelegate = self;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -181,41 +183,9 @@
     }
 }
 
-/*
--(void)filterDishes:(NSMutableArray*)filters
+-(void)dynamicFilterChanged
 {
-    NSLog(@"HELLO");
-    NSMutableArray* deleteList = [[NSMutableArray alloc] init];
-    
-    for(int i = 0; i < [self.category.dishes count]; i++)
-    {
-        Dish* d = [self.category.dishes objectAtIndex:i];
-        for(int j = 0; j < [filters count]; j++)
-        {
-            if([[filters objectAtIndex:i] isEqualToString:@"1"])
-            {
-                if([d.properties objectAtIndex:i])
-                {
-                    [deleteList addObject:[NSNumber numberWithInt:i]];
-                    continue;
-                }
-            }
-        }
-    }
-    
-    for(NSNumber* i in deleteList)
-    {
-        NSInteger index = [i integerValue];
-        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:index inSection:0];
-        UITableViewCell* cell = [self.categoryTableView cellForRowAtIndexPath:cellPath];
-        
-        [self.category removeDish:((DishTableViewCell*) cell).data];
-        [self.categoryTableView beginUpdates];
-        [self.categoryTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
-                                      withRowAnimation:UITableViewRowAnimationFade];
-        [self.categoryTableView endUpdates];
-    }
+    [self.categoryTableView reloadData];
 }
-*/
 
 @end

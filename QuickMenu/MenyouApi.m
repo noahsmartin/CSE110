@@ -384,4 +384,11 @@ BOOL DEBUG_API = NO;
     return hash;
 }
 
+-(void)filterUpdated
+{
+    NSLog(@"hi");
+    NSLog(@"%@", self.filterDelegate);
+    [self.filterDelegate dynamicFilterChanged];
+}
+
 @end

@@ -83,7 +83,7 @@
         {
             if([[filters objectAtIndex:i] isEqualToString:@"1"])
             {
-                if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:YES]])
+                if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:NO]])
                 {
                     [tempresult removeObject:d];
                     break;
