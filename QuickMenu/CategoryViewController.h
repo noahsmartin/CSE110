@@ -16,5 +16,6 @@
 @property (weak, nonatomic) Categories* category;
 @property NSString* restaurant;
 
+-(void)updateTableView;
 
 @end
