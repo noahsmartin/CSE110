@@ -34,7 +34,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [MenyouApi getInstance].dynamicPref = [NSMutableArray arrayWithArray:[MenyouApi getInstance].preferences];
+    [[MenyouApi getInstance] updatedynamicPref];
     
     for(int row = 0; row < [[MenyouApi getInstance].preferences count] && row < [self.tableView numberOfRowsInSection:0]; row++)
     {

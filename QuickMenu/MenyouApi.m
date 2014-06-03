@@ -396,6 +396,11 @@ BOOL DEBUG_API = NO;
     return hash;
 }
 
+-(void)updatedynamicPref
+{
+    self.dynamicPref = [NSMutableArray arrayWithArray:self.preferences];
+}
+
 -(void)filterUpdated
 {
     [self.filterDelegate dynamicFilterChanged];

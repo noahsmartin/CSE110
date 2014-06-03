@@ -67,6 +67,7 @@
     UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter1"] style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
     [[self navigationItem] setRightBarButtonItems:[NSArray arrayWithObjects:button, button2, nil]];
     [MenyouApi getInstance].filterDelegate = self;
+    [[MenyouApi getInstance] updatedynamicPref];
 }
 
 -(void)myorderpressed:(id)sender

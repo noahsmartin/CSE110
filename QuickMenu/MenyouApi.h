@@ -77,6 +77,8 @@
 
 -(void)savePrefs;
 
+-(void)updatedynamicPref;
+
 -(void)filterUpdated;
 
 @end
