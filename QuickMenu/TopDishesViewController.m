@@ -39,6 +39,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.menu refilterAll];
     [self.table reloadData];
 }
 
@@ -117,6 +118,11 @@
         ((DishViewController*) segue.destinationViewController).dish = ((DishTableViewCell*) sender).data;
         ((DishViewController*) segue.destinationViewController).restaurant = self.restaurant;
     }
+}
+
+-(void)updateTableView
+{
+    [self.table reloadData];
 }
 
 @end

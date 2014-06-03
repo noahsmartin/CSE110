@@ -15,4 +15,6 @@
 @property Menu* menu;
 @property NSString* restaurant;
 
+-(void)updateTableView;
+
 @end

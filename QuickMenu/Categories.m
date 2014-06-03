@@ -40,7 +40,7 @@
 
 -(NSArray*)topItems
 {
-    return [self.dishes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    return [self.filteredDishes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Dish* d1 = obj1;
         Dish* d2 = obj2;
         if([d1 wilsonScore] > [d2 wilsonScore])
