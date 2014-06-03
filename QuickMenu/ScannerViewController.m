@@ -22,9 +22,11 @@
 @property (nonatomic) BOOL isReading;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+@property AVCaptureDevice *captureDevice;
+@property  AVCaptureDeviceInput *input;
+@property AVCaptureMetadataOutput *captureMetadataOutput;
 
-
--(BOOL)startReading;
+-(void)startReading;
 -(void)stopReading;
 
 
@@ -46,10 +48,22 @@
 {
     [super viewDidLoad];
     
+    NSError *error;
+    
     _isReading = NO;
-    _captureSession = nil;
+    _captureSession = [[AVCaptureSession alloc] init];
     _orderCount = 0;
     _orders = [[NSMutableArray alloc]init];
+    _captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    _input = [AVCaptureDeviceInput deviceInputWithDevice:_captureDevice error:&error];
+    _captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
+    
+    if (!_input) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    [_captureSession addInput:_input];
+
     
     self.dynamicTransition = [[MEDynamicTransition alloc] init];
     self.dynamicTransition.slidingViewController = self.slidingViewController;
@@ -62,11 +76,14 @@
     [self.navigationController.view addGestureRecognizer:self.dynamicTransitionPanGesture];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    if ([self startReading]) {
-        NSString *s = @"Number of orders: ";
-        NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
-        [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
-    }
+    _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
+    [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [_videoPreviewLayer setFrame:_viewPreview.layer.bounds];
+    [_viewPreview.layer addSublayer:_videoPreviewLayer];
+    
+    [_lblStatus setText:@"Number of Orders: 0"];
+    
+    [self startReading];
 
     // Do any additional setup after loading the view.
 }
@@ -77,48 +94,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startStopReading:(id)sender
+- (IBAction)startStopReading:(id)sender  // scan button
 {
-        if ([self startReading]) {
-            NSString *s = @"Number of orders: ";
-            NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
-            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
-        }
+    [self startReading];
 
 }
 
-- (BOOL)startReading {
-    NSError *error;
-    
-    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    
-    if (!input) {
-        NSLog(@"%@", [error localizedDescription]);
-        return NO;
-    }
-    
-    _captureSession = [[AVCaptureSession alloc] init];
-    [_captureSession addInput:input];
-    
-    
-    AVCaptureMetadataOutput *captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
-    [_captureSession addOutput:captureMetadataOutput];
+- (void)startReading {
+
+    [_captureSession addOutput:_captureMetadataOutput];
+    _bbitemStart.enabled = NO;
+    [_bbitemStart setTitle:@"Scanning..." forState:UIControlStateNormal];
     
     dispatch_queue_t dispatchQueue;
     dispatchQueue = dispatch_queue_create("myQueue", NULL);
-    [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
-    [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
-    
-    _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
-    [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [_videoPreviewLayer setFrame:_viewPreview.layer.bounds];
-    [_viewPreview.layer addSublayer:_videoPreviewLayer];
+    [_captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
+    [_captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
     
     [_captureSession startRunning];
-    
-    return YES;
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
@@ -141,20 +134,17 @@
             NSString *number = [s stringByAppendingString:[NSString stringWithFormat:@"%d",_orderCount]] ;
             [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:number waitUntilDone:NO];
             
-            
-    }
-        
-        
+        }
     }
     
 }
 
 
 -(void)stopReading{
-    [_captureSession stopRunning];
-    _captureSession = nil;
-    
-    [_videoPreviewLayer removeFromSuperlayer];
+
+    _bbitemStart.enabled = YES;
+    [_bbitemStart setTitle:@"Scan Orders" forState:UIControlStateNormal];
+    [_captureSession removeOutput:_captureMetadataOutput];
 }
 
 
