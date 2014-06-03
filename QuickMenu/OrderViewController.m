@@ -35,7 +35,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString* s = [NSString stringWithFormat:@"Order %i", section+1];
+    NSString* s = [NSString stringWithFormat:@"Order %li", section+1];
     return s;
 }
 

@@ -47,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"view loaded");
     NSError *error;
     
     _isReading = NO;
@@ -88,10 +88,16 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+-(void)viewDidDisappear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if([_captureSession isRunning])
+        [_captureSession stopRunning];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if(![_captureSession isRunning])
+        [_captureSession startRunning];
 }
 
 - (IBAction)startStopReading:(id)sender  // scan button
