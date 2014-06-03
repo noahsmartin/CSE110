@@ -41,7 +41,7 @@
 
 @property (weak) id<MenyouApiDelegate> delegate;
 
-@property (strong) id<MenyouApiFilterDelegate> filterDelegate;
+@property (weak) id<MenyouApiFilterDelegate> filterDelegate;
 
 // This is a singleton class
 // Populates defaults in restaruants until requestInfo called

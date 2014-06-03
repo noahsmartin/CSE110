@@ -386,8 +386,6 @@ BOOL DEBUG_API = NO;
 
 -(void)filterUpdated
 {
-    NSLog(@"hi");
-    NSLog(@"%@", self.filterDelegate);
     [self.filterDelegate dynamicFilterChanged];
 }
 

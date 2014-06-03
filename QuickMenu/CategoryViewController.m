@@ -185,6 +185,8 @@
 
 -(void)dynamicFilterChanged
 {
+    self.category.filteredDishes = [self.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
+    NSLog(@"%@", self.titleLabel);
     [self.categoryTableView reloadData];
 }
 

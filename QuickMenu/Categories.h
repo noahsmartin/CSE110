@@ -26,4 +26,5 @@
 
 -(void)reloadReviews;
 
+-(NSMutableArray*) filterOutDishes:(NSMutableArray*)filters;
 @end

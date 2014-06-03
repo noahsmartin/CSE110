@@ -23,6 +23,7 @@
         {
             [arr addObject:[[Dish alloc] initWithData:d]];
         }
+
         self.dishes = arr;
         self.filteredDishes = [self filterOutDishes:[MenyouApi getInstance].dynamicPref];
     }
@@ -91,7 +92,8 @@
             }
         }
     }
-    
+
     return tempresult;
 }
+
 @end
