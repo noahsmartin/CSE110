@@ -43,7 +43,12 @@
     NSString* temp = @"Logged in as: ";
     NSString* username = [MenyouApi getInstance].username;
     if(username)
+    {
+        if ([username containsString:@"@menyoutouch.com"]) {
+            username = @"TouchID user";
+        }
         self.usernameView.text = [temp stringByAppendingString:username];
+    }
     
     for(int i = 0; i < [[MenyouApi getInstance].preferences count]; i++)
     {
