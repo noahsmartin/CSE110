@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property ASMediaFocusManager* mediaManager;
+@property (weak, nonatomic) IBOutlet UIView *dishAttributes;
 @property int imageCount;
 @property CGFloat contentOffset;
 @end
