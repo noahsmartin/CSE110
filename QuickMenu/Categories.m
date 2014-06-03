@@ -72,6 +72,12 @@
     NSMutableArray* arr = [self.dishes mutableCopy];
     [arr removeObject:dish];
     self.dishes = arr;
+    arr = [self.filteredDishes mutableCopy];
+    if([arr containsObject:dish])
+    {
+        [arr removeObject:dish];
+        self.filteredDishes = arr;
+    }
 }
 
 -(NSMutableArray*) filterOutDishes:(NSMutableArray*)filters
