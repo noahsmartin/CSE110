@@ -37,50 +37,54 @@
     UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 299, 320, 0.5)];
     [lineView setBackgroundColor:[UIColor grayColor]];
     [[self view] addSubview:lineView];
-    
+}
+
+- (IBAction)touchId:(id)sender {
     // Check for pre ios8
 #if !TARGET_IPHONE_SIMULATOR
     if(NSClassFromString(@"LAContext") != Nil)
     {
-    LAContext *myContext = [[LAContext alloc] init];
-    NSError *authError = nil;
-    NSString *myLocalizedReasonString = @"Reason";
-    
-    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                  localizedReason:myLocalizedReasonString
-                            reply:^(BOOL succes, NSError *error) {
-                                if (succes) {
-                                    CKFetchRecordsOperation* operation = [CKFetchRecordsOperation fetchCurrentUserRecordOperation];
-                                    operation.perRecordProgressBlock = ^(CKRecordID *recordID, double progress)
-                                    {
-                                        
-                                    };
-                                    operation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError* error) {
-                                        if(error)
+        LAContext *myContext = [[LAContext alloc] init];
+        NSError *authError = nil;
+        NSString *myLocalizedReasonString = @"Authenticate with TouchID to log in.";
+        
+        if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+            [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                      localizedReason:myLocalizedReasonString
+                                reply:^(BOOL succes, NSError *error) {
+                                    if (succes) {
+                                        CKFetchRecordsOperation* operation = [CKFetchRecordsOperation fetchCurrentUserRecordOperation];
+                                        operation.perRecordProgressBlock = ^(CKRecordID *recordID, double progress)
                                         {
-                                            [[MenyouApi getInstance] createAccountWithUsername:[recordID.recordName stringByAppendingString:@"@menyoutouch.com"] Password:@"auth" block:^(BOOL success) {
-                                                if(success)
-                                                    [self dismissViewControllerAnimated:YES completion:^{}];                                     }];
-                                        }
-                                        else
-                                        {
-                                            // This is already the valid user because the fingerprint was valid,
-                                            // no need for a password
-                                            [[MenyouApi getInstance] logInWithUsername:[recordID.recordName stringByAppendingString:@"@menyoutouch.com"] Password:@"auth" block:^(BOOL success) {
-                                                [self dismissViewControllerAnimated:YES completion:^{}];
-                                            }];
-                                        }
-                                    };
-                                    [operation start];
-                                } else {
-                                    NSLog(@"fail");
-                                    // User did not authenticate successfully, look at error and take appropriate action
-                                }
-                            }];
-    } else {
-        // Could not evaluate policy; look at authError and present an appropriate message to user
+                                            
+                                        };
+                                        operation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError* error) {
+                                            if(recordID)
+                                            {
+                                                [[MenyouApi getInstance] scannerLogInWithUsername:[recordID.recordName stringByAppendingString:@"@menyoutouch.com"] Password:@"auth" block:^(BOOL success) {
+                                                    [self dismissViewControllerAnimated:YES completion:^{}];
+                                                }];
+                                            }
+                                            else
+                                            {
+                                                UIAlertView *errorAlerr = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not authenticate, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                [errorAlerr show];
+                                            }
+                                        };
+                                        [operation start];
+                                    } else {
+                                        NSLog(@"fail");
+                                        // User did not authenticate successfully, look at error and take appropriate action
+                                    }
+                                }];
+        } else {
+            // Could not evaluate policy; look at authError and present an appropriate message to user
+        }
     }
+    else {
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"TouchID authentication not supported on your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
     }
 #endif
 }

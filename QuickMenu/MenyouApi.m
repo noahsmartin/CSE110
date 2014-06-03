@@ -164,6 +164,16 @@ BOOL DEBUG_API = NO;
     [self processAccountRequest:request username:username block:block];
 }
 
+-(void)scannerLogInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
+{
+    NSString* passHash = [self percentEncoding:[self sha256:password]];
+    NSString* urlString = [NSString stringWithFormat:@"%@/scannerLogin.php?email=%@&passhash=%@", baseUrl, [self percentEncoding:username], passHash];
+    NSURL *URL = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:8.0];
+    [request setHTTPMethod:@"GET"];
+    [self processAccountRequest:request username:username block:block];
+}
+
 -(void)logInWithUsername:(NSString *)username Password:(NSString *)password block:(void (^)(BOOL))block
 {
     NSString* passHash = [self percentEncoding:[self sha256:password]];
@@ -186,6 +196,7 @@ BOOL DEBUG_API = NO;
 -(void)processAccountRequest:(NSURLRequest*)request username:(NSString*)username block:(void (^)(BOOL))block
 {
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         if(data)
         {
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];

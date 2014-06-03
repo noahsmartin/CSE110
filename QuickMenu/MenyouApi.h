@@ -73,6 +73,8 @@
 
 -(void)setPref:(NSString*)pref withValue:(int)value withBlock:(void(^)(BOOL success))block;
 
+-(void)scannerLogInWithUsername:(NSString*)username Password:(NSString*) password block:(void(^)(BOOL success))block;
+
 -(void)savePrefs;
 
 -(void)filterUpdated;
