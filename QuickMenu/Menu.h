@@ -29,4 +29,6 @@
 
 -(void)reloadReviews;
 
+-(void)refilterAll;
+
 @end

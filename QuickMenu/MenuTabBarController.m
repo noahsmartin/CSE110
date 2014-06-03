@@ -11,6 +11,7 @@
 #import "MenyouApi.h"
 #import "Categories.h"
 #import "CategoryViewController.h"
+#import "TopDishesViewController.h"
 #import "WYPopoverController.h"
 
 @interface MenuTabBarController() <WYPopoverControllerDelegate, MenyouApiFilterDelegate>
@@ -81,8 +82,17 @@
 
 -(void)dynamicFilterChanged
 {
-    CategoryViewController* temp = (CategoryViewController*)self.selectedViewController;
-    temp.category.filteredDishes = [temp.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
-    [temp updateTableView];
+    if([self.selectedViewController isKindOfClass:[TopDishesViewController class]])
+    {
+        TopDishesViewController* temp = (TopDishesViewController*)self.selectedViewController;
+        [temp.menu refilterAll];
+        [temp updateTableView];
+    }
+    else
+    {
+        CategoryViewController* temp = (CategoryViewController*)self.selectedViewController;
+        temp.category.filteredDishes = [temp.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
+        [temp updateTableView];
+    }
 }
 @end

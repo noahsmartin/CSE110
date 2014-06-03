@@ -51,14 +51,15 @@ BOOL DEBUG_API = NO;
         self.preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"preferences"]];
         self.dynamicPref = [NSMutableArray arrayWithArray:self.preferences];
         
+        // Create the 2 preferences arrays to handle the filtering.
+        if([self.preferences count] != 6 || [self.dynamicPref count] != 6)
+        {
+            self.preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+            self.dynamicPref = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+        }
+        
         if([self loggedIn])
         {
-            // This probably isn't necessary but good to have just in case so at least the app does not crash
-            // Only needs to be done if logged in, if not the array will be made when the user logs in
-            if([self.preferences count] != 6)
-            {
-                self.preferences = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
-            }
             // Query for the ratings
             NSString* urlString = [NSString stringWithFormat:@"%@/getReviews.php?email=%@&session=%@&timestamp=%f", baseUrl, self.username, self.session, [[NSDate date] timeIntervalSince1970]];
             NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:8.0];
