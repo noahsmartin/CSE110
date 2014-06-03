@@ -19,4 +19,4 @@ The phone must also have a network connection and the app must be allowed to acc
 features require the phone to have a camera.
 
 ### Building
-The app has been updated to support iOS 8 and is still backrwards compatible with iOS 7 but must be compiled with Xcode 6 Beta 1.  If you do not have the latest Xcode, you can still compile the app with Xcode 5 if you comment out two sections that use iOS 8 APIs.
+The app has been updated to support iOS 8 and is still backrwards compatible with iOS 7 but must be compiled with Xcode 6 Beta 1.  If you do not have the latest Xcode, you can still compile the app with Xcode 5 if you comment out two sections that use iOS 8 APIs.  You will also need to remove CloudKit from Linked Framkeworks and Libraries if you are building in Xcode 5.
