@@ -130,7 +130,7 @@
     else if(indexPath.row == self.restaurant.menu.numberSelected)
     {
         cell.textLabel.text = @"Total:";
-        cell.detailTextLabel.text = [self.restaurant.menu.totalCost stringValue];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"$%.2f", [self.restaurant.menu.totalCost doubleValue]];//[self.restaurant.menu.totalCost stringValue];
     }
     else
     {
