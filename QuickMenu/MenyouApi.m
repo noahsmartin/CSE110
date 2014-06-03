@@ -196,7 +196,6 @@ BOOL DEBUG_API = NO;
 -(void)processAccountRequest:(NSURLRequest*)request username:(NSString*)username block:(void (^)(BOOL))block
 {
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         if(data)
         {
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
