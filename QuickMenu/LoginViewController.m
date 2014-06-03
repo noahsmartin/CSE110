@@ -9,6 +9,14 @@
 #import "LoginViewController.h"
 #import "MenyouApi.h"
 
+#if __has_include(<LocalAuthentication/LocalAuthentication.h>)
+#import <LocalAuthentication/LocalAuthentication.h>
+#endif
+
+#if __has_include(<CloudKit/CloudKit.h>)
+#import <CloudKit/CloudKit.h>
+#endif
+
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
@@ -29,6 +37,52 @@
     UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 299, 320, 0.5)];
     [lineView setBackgroundColor:[UIColor grayColor]];
     [[self view] addSubview:lineView];
+    
+    // Check for pre ios8
+#if !TARGET_IPHONE_SIMULATOR
+    if(NSClassFromString(@"LAContext") != Nil)
+    {
+    LAContext *myContext = [[LAContext alloc] init];
+    NSError *authError = nil;
+    NSString *myLocalizedReasonString = @"Reason";
+    
+    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                  localizedReason:myLocalizedReasonString
+                            reply:^(BOOL succes, NSError *error) {
+                                if (succes) {
+                                    CKFetchRecordsOperation* operation = [CKFetchRecordsOperation fetchCurrentUserRecordOperation];
+                                    operation.perRecordProgressBlock = ^(CKRecordID *recordID, double progress)
+                                    {
+                                        
+                                    };
+                                    operation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError* error) {
+                                        if(error)
+                                        {
+                                            [[MenyouApi getInstance] createAccountWithUsername:[recordID.recordName stringByAppendingString:@"@menyoutouch.com"] Password:@"auth" block:^(BOOL success) {
+                                                if(success)
+                                                    [self dismissViewControllerAnimated:YES completion:^{}];                                     }];
+                                        }
+                                        else
+                                        {
+                                            // This is already the valid user because the fingerprint was valid,
+                                            // no need for a password
+                                            [[MenyouApi getInstance] logInWithUsername:[recordID.recordName stringByAppendingString:@"@menyoutouch.com"] Password:@"auth" block:^(BOOL success) {
+                                                [self dismissViewControllerAnimated:YES completion:^{}];
+                                            }];
+                                        }
+                                    };
+                                    [operation start];
+                                } else {
+                                    NSLog(@"fail");
+                                    // User did not authenticate successfully, look at error and take appropriate action
+                                }
+                            }];
+    } else {
+        // Could not evaluate policy; look at authError and present an appropriate message to user
+    }
+    }
+#endif
 }
 
 - (IBAction)cancel:(id)sender {

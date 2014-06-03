@@ -55,6 +55,7 @@
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F94FEB7192D7ADD0091C3BC /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
+		4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA02640193D9079007DEE5C /* CloudKit.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
 		4FB3AE641937F4D400D90AF5 /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */; };
@@ -199,6 +200,8 @@
 		4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4FA0263F193D9055007DEE5C /* Menyou.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Menyou.entitlements; sourceTree = "<group>"; };
+		4FA02640193D9079007DEE5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		4FA2C0AF191DB8C200793042 /* StarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
 		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
 		4FA80C0D192C686D00737687 /* TopDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishesViewController.h; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */,
 				4FECC2F2192FB77F0092B1D7 /* QuartzCore.framework in Frameworks */,
 				4F64B892192582060059E55F /* MobileCoreServices.framework in Frameworks */,
 				4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */,
@@ -360,6 +364,7 @@
 		4F5D5F6918FCB0D00042A0BA = {
 			isa = PBXGroup;
 			children = (
+				4FA0263F193D9055007DEE5C /* Menyou.entitlements */,
 				4F5D5F7B18FCB0D00042A0BA /* QuickMenu */,
 				4F5D5F9D18FCB0D00042A0BA /* QuickMenuTests */,
 				4F5D5F7418FCB0D00042A0BA /* Frameworks */,
@@ -379,6 +384,7 @@
 		4F5D5F7418FCB0D00042A0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FA02640193D9079007DEE5C /* CloudKit.framework */,
 				4FECC2F1192FB77F0092B1D7 /* QuartzCore.framework */,
 				4F64B891192582060059E55F /* MobileCoreServices.framework */,
 				4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */,
@@ -707,6 +713,11 @@
 				TargetAttributes = {
 					4F5D5F7118FCB0D00042A0BA = {
 						DevelopmentTeam = 28B76375E5;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					4F5D5F9518FCB0D00042A0BA = {
 						TestTargetID = 4F5D5F7118FCB0D00042A0BA;
@@ -971,6 +982,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Menyou.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -988,6 +1000,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Menyou.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
