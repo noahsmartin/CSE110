@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UIView *accessoryView;
 @property (strong, nonatomic) UITapGestureRecognizer *doubleTapGesture;
 
+@property (weak, nonatomic) id manager;
+
 - (void)updateOrientationAnimated:(BOOL)animated;
 - (void)installZoomView;
 - (void)uninstallZoomView;

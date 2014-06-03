@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LeftTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 @end

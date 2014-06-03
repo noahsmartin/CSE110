@@ -8,6 +8,7 @@
 
 #import "Categories.h"
 #import "Dish.h"
+#import "MenyouApi.h"
 
 @implementation Categories
 
@@ -22,7 +23,9 @@
         {
             [arr addObject:[[Dish alloc] initWithData:d]];
         }
+
         self.dishes = arr;
+        self.filteredDishes = [self filterOutDishes:[MenyouApi getInstance].dynamicPref];
     }
     return self;
 }
@@ -37,7 +40,7 @@
 
 -(NSArray*)topItems
 {
-    return [self.dishes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    return [self.filteredDishes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Dish* d1 = obj1;
         Dish* d2 = obj2;
         if([d1 wilsonScore] > [d2 wilsonScore])
@@ -54,6 +57,11 @@
     return self.dishes.count;
 }
 
+-(NSInteger)filterCount
+{
+    return [self.filteredDishes count];
+}
+
 -(NSString*)description
 {
     return self.title;
@@ -64,6 +72,34 @@
     NSMutableArray* arr = [self.dishes mutableCopy];
     [arr removeObject:dish];
     self.dishes = arr;
+    arr = [self.filteredDishes mutableCopy];
+    if([arr containsObject:dish])
+    {
+        [arr removeObject:dish];
+        self.filteredDishes = arr;
+    }
+}
+
+-(NSMutableArray*) filterOutDishes:(NSMutableArray*)filters
+{
+    NSMutableArray* tempresult = [[NSMutableArray alloc] init];
+    for(Dish* d in self.dishes)
+    {
+        [tempresult addObject:d];
+        for(int i = 0; i < [filters count]; i++)
+        {
+            if([[filters objectAtIndex:i] isEqualToString:@"1"])
+            {
+                if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:NO]])
+                {
+                    [tempresult removeObject:d];
+                    break;
+                }
+            }
+        }
+    }
+
+    return tempresult;
 }
 
 @end

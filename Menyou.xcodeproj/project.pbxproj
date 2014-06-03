@@ -55,6 +55,7 @@
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F94FEB7192D7ADD0091C3BC /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
+		4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA02640193D9079007DEE5C /* CloudKit.framework */; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
 		4FB3AE641937F4D400D90AF5 /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */; };
@@ -199,6 +200,8 @@
 		4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4FA0263F193D9055007DEE5C /* Menyou.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Menyou.entitlements; sourceTree = "<group>"; };
+		4FA02640193D9079007DEE5C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		4FA2C0AF191DB8C200793042 /* StarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarView.h; sourceTree = "<group>"; };
 		4FA2C0B0191DB8C200793042 /* StarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarView.m; sourceTree = "<group>"; };
 		4FA80C0D192C686D00737687 /* TopDishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDishesViewController.h; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */,
 				4FECC2F2192FB77F0092B1D7 /* QuartzCore.framework in Frameworks */,
 				4F64B892192582060059E55F /* MobileCoreServices.framework in Frameworks */,
 				4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */,
@@ -324,11 +328,11 @@
 		4F240B351905F04300A405E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F240B361905F05F00A405E2 /* Menu.h */,
 				72CCDCAB19131C9D00A5681D /* Categories.h */,
 				72CCDCAC19131C9D00A5681D /* Categories.m */,
 				72CCDCAE19131CE400A5681D /* Dish.h */,
 				72CCDCAF19131CE400A5681D /* Dish.m */,
+				4F240B361905F05F00A405E2 /* Menu.h */,
 				4F240B371905F05F00A405E2 /* Menu.m */,
 			);
 			name = Model;
@@ -360,6 +364,7 @@
 		4F5D5F6918FCB0D00042A0BA = {
 			isa = PBXGroup;
 			children = (
+				4FA0263F193D9055007DEE5C /* Menyou.entitlements */,
 				4F5D5F7B18FCB0D00042A0BA /* QuickMenu */,
 				4F5D5F9D18FCB0D00042A0BA /* QuickMenuTests */,
 				4F5D5F7418FCB0D00042A0BA /* Frameworks */,
@@ -379,6 +384,7 @@
 		4F5D5F7418FCB0D00042A0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FA02640193D9079007DEE5C /* CloudKit.framework */,
 				4FECC2F1192FB77F0092B1D7 /* QuartzCore.framework */,
 				4F64B891192582060059E55F /* MobileCoreServices.framework */,
 				4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */,
@@ -393,55 +399,55 @@
 		4F5D5F7B18FCB0D00042A0BA /* QuickMenu */ = {
 			isa = PBXGroup;
 			children = (
-				4F7F5CEB19343815006FEFF2 /* ASMediaFocusManager */,
-				4F7F5CD11933C3BB006FEFF2 /* UIKit+AFNetworking */,
 				4FC4E80F193263F1008609A6 /* AFNetworking */,
-				4FECC2F3192FB7C00092B1D7 /* PopOver */,
-				4F64B88519257E1A0059E55F /* QRCodeEncoderObjectiveCAtGithub */,
+				4F26DFB51901BDD0002C4FEC /* ApiData */,
+				4F7F5CEB19343815006FEFF2 /* ASMediaFocusManager */,
 				4FE300FF190C72860053EA95 /* ECSlidingViewController */,
 				4FBF3CD619033BD800A51204 /* Libraries */,
 				4F26DFB61901BDE3002C4FEC /* MenyouData */,
-				4F26DFB51901BDD0002C4FEC /* ApiData */,
-				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
-				4FB3AE621937F4D400D90AF5 /* FilterTableViewController.h */,
-				4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */,
-				7296A73D1932D2FE00599C89 /* ScannerViewController.h */,
-				7296A73E1932D2FE00599C89 /* ScannerViewController.m */,
-				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
-				4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */,
+				4FECC2F3192FB7C00092B1D7 /* PopOver */,
+				4F64B88519257E1A0059E55F /* QRCodeEncoderObjectiveCAtGithub */,
+				4F5D5F7C18FCB0D00042A0BA /* Supporting Files */,
+				4F7F5CD11933C3BB006FEFF2 /* UIKit+AFNetworking */,
+				4F5D5F9018FCB0D00042A0BA /* Images.xcassets */,
 				4F8AEAA419283A4800479B23 /* AddRatingViewController.h */,
 				4F8AEAA519283A4800479B23 /* AddRatingViewController.m */,
-				4F4546681921D89600F65094 /* LoginViewController.h */,
-				4F4546691921D89600F65094 /* LoginViewController.m */,
-				4F496F6E191F44B700424343 /* DishViewController.h */,
-				4F496F6F191F44B700424343 /* DishViewController.m */,
-				4FEAB18A191EB8AE00B9314E /* SettingsViewController.h */,
-				4FEAB18B191EB8AE00B9314E /* SettingsViewController.m */,
-				4FE30113190C7A5F0053EA95 /* LeftTableViewController.h */,
-				4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */,
-				4F5A493218FDEE420053D0B8 /* HomeTableViewDataSource.h */,
-				4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */,
-				4F5D5F8A18FCB0D00042A0BA /* Main_iPad.storyboard */,
-				4F5D5F8D18FCB0D00042A0BA /* ViewController.h */,
-				4F5D5F8E18FCB0D00042A0BA /* ViewController.m */,
-				4F3D43E01910665B007EA7A2 /* HomeTableViewCell.h */,
-				4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */,
+				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
+				4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */,
+				4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */,
+				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
 				4F23B5F71919A39E006C0B58 /* DishTableViewCell.h */,
 				4F23B5F81919A39E006C0B58 /* DishTableViewCell.m */,
-				4F5D5F9018FCB0D00042A0BA /* Images.xcassets */,
-				4F5D5F7C18FCB0D00042A0BA /* Supporting Files */,
-				4FFDD6261907268B008DEE69 /* MyMenuViewController.h */,
-				4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */,
+				4F496F6E191F44B700424343 /* DishViewController.h */,
+				4F496F6F191F44B700424343 /* DishViewController.m */,
+				4FB3AE621937F4D400D90AF5 /* FilterTableViewController.h */,
+				4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */,
+				4F3D43E01910665B007EA7A2 /* HomeTableViewCell.h */,
+				4F3D43E11910665B007EA7A2 /* HomeTableViewCell.m */,
+				4F5A493218FDEE420053D0B8 /* HomeTableViewDataSource.h */,
+				4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */,
 				4F0C6DFC18FD023900A0F186 /* HomeViewController.h */,
 				4F0C6DFD18FD023900A0F186 /* HomeViewController.m */,
+				4FE30113190C7A5F0053EA95 /* LeftTableViewController.h */,
+				4FE30114190C7A5F0053EA95 /* LeftTableViewController.m */,
+				4F4546681921D89600F65094 /* LoginViewController.h */,
+				4F4546691921D89600F65094 /* LoginViewController.m */,
+				4F5D5F8A18FCB0D00042A0BA /* Main_iPad.storyboard */,
+				4F5D5F8718FCB0D00042A0BA /* Main_iPhone.storyboard */,
 				4F240B321905F01400A405E2 /* MenuTabBarController.h */,
 				4F240B331905F01400A405E2 /* MenuTabBarController.m */,
-				4F45DD221918A7FC00B0CB7F /* CategoryViewController.h */,
-				4FA80C0D192C686D00737687 /* TopDishesViewController.h */,
-				4FA80C0E192C686D00737687 /* TopDishesViewController.m */,
-				4F45DD231918A7FD00B0CB7F /* CategoryViewController.m */,
+				4FFDD6261907268B008DEE69 /* MyMenuViewController.h */,
+				4FFDD6271907268B008DEE69 /* MyMenuViewController.mm */,
 				7296A74019383ABD00599C89 /* OrderViewController.h */,
 				7296A74119383ABD00599C89 /* OrderViewController.m */,
+				7296A73D1932D2FE00599C89 /* ScannerViewController.h */,
+				7296A73E1932D2FE00599C89 /* ScannerViewController.m */,
+				4FEAB18A191EB8AE00B9314E /* SettingsViewController.h */,
+				4FEAB18B191EB8AE00B9314E /* SettingsViewController.m */,
+				4FA80C0D192C686D00737687 /* TopDishesViewController.h */,
+				4FA80C0E192C686D00737687 /* TopDishesViewController.m */,
+				4F5D5F8D18FCB0D00042A0BA /* ViewController.h */,
+				4F5D5F8E18FCB0D00042A0BA /* ViewController.m */,
 			);
 			path = QuickMenu;
 			sourceTree = "<group>";
@@ -705,6 +711,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Noah Martin";
 				TargetAttributes = {
+					4F5D5F7118FCB0D00042A0BA = {
+						DevelopmentTeam = 28B76375E5;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 					4F5D5F9518FCB0D00042A0BA = {
 						TestTargetID = 4F5D5F7118FCB0D00042A0BA;
 					};
@@ -968,10 +982,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Menyou.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickMenu/Menyou-Prefix.pch";
 				INFOPLIST_FILE = "QuickMenu/Menyou-Info.plist";
 				PRODUCT_NAME = Menyou;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -982,10 +1000,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Menyou.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickMenu/Menyou-Prefix.pch";
 				INFOPLIST_FILE = "QuickMenu/Menyou-Info.plist";
 				PRODUCT_NAME = Menyou;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

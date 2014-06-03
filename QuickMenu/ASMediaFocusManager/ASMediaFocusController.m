@@ -94,6 +94,7 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
         case UIInterfaceOrientationLandscapeRight:
             return [self.parentViewController supportedInterfaceOrientations] & UIInterfaceOrientationMaskLandscapeRight;
     }
+    return NO;
 }
 
 #pragma mark - Public
@@ -234,6 +235,11 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
 - (BOOL)accessoryViewsVisible
 {
     return (self.accessoryView.alpha == 1);
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self.manager performSelectorOnMainThread:@selector(controllerDisappear) withObject:nil waitUntilDone:YES];
 }
 
 #pragma mark - Actions

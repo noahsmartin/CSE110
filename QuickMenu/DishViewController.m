@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property ASMediaFocusManager* mediaManager;
+@property int imageCount;
+@property CGFloat contentOffset;
 @end
 
 @implementation DishViewController
@@ -32,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageCount = 0;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.title = self.dish.title;
     self.titleView.text = self.title;
@@ -53,6 +56,7 @@
 {
     [[MenyouApi getInstance] imageCountForDish:self.dish.identifier withBlock:^(int count) {
         self.scrollView.contentSize = CGSizeMake(count*60, 60);
+        self.imageCount = count;
         NSOperationQueue* queue = [[NSOperationQueue alloc] init];
         [queue setMaxConcurrentOperationCount:1];
         for (UIView* v in [self.scrollView subviews]) {
@@ -119,6 +123,8 @@
 
 - (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager
 {
+    self.contentOffset = self.scrollView.contentOffset.x;
+
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
         [UIApplication sharedApplication].statusBarHidden = YES;
@@ -127,11 +133,19 @@
 
 - (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager
 {
+    // Enlarging the image resets the scroll view, lets put it back where it should be
+    self.scrollView.contentOffset = CGPointMake(self.contentOffset, self.scrollView.contentOffset.y);
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     if([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
     {
         [UIApplication sharedApplication].statusBarHidden = NO;
     }
+}
+
+-(void)mediaFocusManagerDidDisappear:(ASMediaFocusManager *)mediaFocusManager
+{
+    //  This is to make sure the scrollView still scrolls after an image leaves full screen
+    self.scrollView.contentSize = CGSizeMake(self.imageCount*60, 60);
 }
 
 -(void)viewWillAppear:(BOOL)animated

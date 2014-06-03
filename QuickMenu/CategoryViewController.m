@@ -9,8 +9,10 @@
 #import "CategoryViewController.h"
 #import "DishTableViewCell.h"
 #import "DishViewController.h"
+#import "MenyouApi.h"
 
 @interface CategoryViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 
 @end
@@ -37,7 +39,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.category.count;
+    return self.category.filterCount;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,6 +55,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.category.filteredDishes = [self.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
     [self.categoryTableView reloadData];
 }
 
@@ -65,15 +68,16 @@
         cell = [[DishTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
     [cell setColor:[self colorForIndex:indexPath.row]];
-    cell.titleLabel.text = ((Dish*) self.category.dishes[indexPath.row]).title;
-    cell.descriptionLabel.text = ((Dish*) self.category.dishes[indexPath.row]).itemDescription;
+    cell.titleLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).title;
+    cell.descriptionLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).itemDescription;
     // Intentionally not explicitly adding a $, this should be a property of the dish the restaurant owner enters, also
     // by adding a $ we would clearly not be supporting other currencies, this way we still are.
-    cell.priceLabel.text = ((Dish*) self.category.dishes[indexPath.row]).price;
-    cell.data = self.category.dishes[indexPath.row];
+    cell.priceLabel.text = ((Dish*) self.category.filteredDishes[indexPath.row]).price;
+    cell.data = self.category.filteredDishes[indexPath.row];
     cell.delegate = self;
-    [cell setDishSelected:((Dish*) self.category.dishes[indexPath.row]).isSelected];
-    cell.starView.rating = ((Dish*) self.category.dishes[indexPath.row]).rating;
+    [cell setDishSelected:((Dish*) self.category.filteredDishes[indexPath.row]).isSelected];
+    cell.starView.rating = ((Dish*) self.category.filteredDishes[indexPath.row]).rating;
+    
     return cell;
 }
 
@@ -177,6 +181,11 @@
         ((DishViewController*) segue.destinationViewController).dish = ((DishTableViewCell*) sender).data;
         ((DishViewController*) segue.destinationViewController).restaurant = self.restaurant;
     }
+}
+
+-(void)updateTableView
+{
+    [self.categoryTableView reloadData];
 }
 
 @end

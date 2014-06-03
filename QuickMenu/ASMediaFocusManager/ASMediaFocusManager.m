@@ -426,17 +426,22 @@ static CGFloat const kAnimationDuration = 0.5;
                                                                                     }
                                                                                     completion:^(BOOL finished) {
                                                                                         self.mediaView.hidden = NO;
+                                                                                        self.focusViewController.manager = self;
                                                                                         [self.focusViewController.view removeFromSuperview];
                                                                                         [self.focusViewController removeFromParentViewController];
                                                                                         self.focusViewController = nil;
-                                                                                        
-                                                                                        if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerDidDisappear:)])
-                                                                                        {
-                                                                                            [self.delegate mediaFocusManagerDidDisappear:self];
-                                                                                        }
                                                                                     }];
                                                                }];
                                           }];
                      }];
 }
+
+-(void)controllerDisappear
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerDidDisappear:)])
+    {
+        [self.delegate mediaFocusManagerDidDisappear:self];
+    }
+}
+
 @end

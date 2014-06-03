@@ -11,9 +11,10 @@
 #import "MenyouApi.h"
 #import "Categories.h"
 #import "CategoryViewController.h"
+#import "TopDishesViewController.h"
 #import "WYPopoverController.h"
 
-@interface MenuTabBarController() <WYPopoverControllerDelegate>
+@interface MenuTabBarController() <WYPopoverControllerDelegate, MenyouApiFilterDelegate>
 @property WYPopoverController* popover;
 @end
 
@@ -65,6 +66,7 @@
     [button setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:14] } forState:UIControlStateNormal];
     UIBarButtonItem *button2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter1"] style:UIBarButtonItemStylePlain target:self action:@selector(showpopover:event:)];
     [[self navigationItem] setRightBarButtonItems:[NSArray arrayWithObjects:button, button2, nil]];
+    [MenyouApi getInstance].filterDelegate = self;
 }
 
 -(void)myorderpressed:(id)sender
@@ -78,4 +80,19 @@
     [self.popover presentPopoverFromRect:[[event.allTouches anyObject] view].bounds inView:[[event.allTouches anyObject] view] permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
 
+-(void)dynamicFilterChanged
+{
+    if([self.selectedViewController isKindOfClass:[TopDishesViewController class]])
+    {
+        TopDishesViewController* temp = (TopDishesViewController*)self.selectedViewController;
+        [temp.menu refilterAll];
+        [temp updateTableView];
+    }
+    else
+    {
+        CategoryViewController* temp = (CategoryViewController*)self.selectedViewController;
+        temp.category.filteredDishes = [temp.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
+        [temp updateTableView];
+    }
+}
 @end

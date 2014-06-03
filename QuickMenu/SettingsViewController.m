@@ -43,7 +43,12 @@
     NSString* temp = @"Logged in as: ";
     NSString* username = [MenyouApi getInstance].username;
     if(username)
+    {
+        if ([username containsString:@"@menyoutouch.com"]) {
+            username = @"TouchID user";
+        }
         self.usernameView.text = [temp stringByAppendingString:username];
+    }
     
     for(int i = 0; i < [[MenyouApi getInstance].preferences count]; i++)
     {
@@ -105,11 +110,11 @@
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Logged out" message:@"Logged out successfully" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-    [[MenyouApi getInstance] logout];
     ECSlidingViewController *slidingController = self.slidingViewController;
     
     [slidingController anchorTopViewToRightAnimated:YES];
     slidingController.topViewController = self.homeViewController;
+    [[MenyouApi getInstance] logout];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -124,6 +129,7 @@
         // We do this even if the api call was not successful because if it was not we still wan't the user to see
         // the dishes updated
         [[MenyouApi getInstance].preferences replaceObjectAtIndex:index withObject:[NSString stringWithFormat:@"%d", state]];
+        [[MenyouApi getInstance].dynamicPref replaceObjectAtIndex:index withObject:[NSString stringWithFormat:@"%d", state]];
         [[MenyouApi getInstance] savePrefs];
     }];
 }

@@ -742,6 +742,9 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 
 @implementation AFMultipartBodyStream
 
+@synthesize streamStatus = _streamStatus;
+@synthesize streamError = _streamError;
+
 - (id)initWithStringEncoding:(NSStringEncoding)encoding {
     self = [super init];
     if (!self) {
@@ -753,6 +756,26 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     self.numberOfBytesInPacket = NSIntegerMax;
 
     return self;
+}
+
+-(void)setStreamStatus:(NSStreamStatus)streamStatus
+{
+    _streamStatus = streamStatus;
+}
+
+-(NSStreamStatus)streamStatus
+{
+    return _streamStatus;
+}
+
+-(void)setStreamError:(NSError *)streamError
+{
+    _streamError = streamError;
+}
+
+-(NSError*)streamError
+{
+    return _streamError;
 }
 
 - (void)setInitialAndFinalBoundaries {

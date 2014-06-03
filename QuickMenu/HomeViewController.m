@@ -17,6 +17,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "Categories.h"
 #import "TopDishesViewController.h"
+#import "LeftTableViewController.h"
 
 #import "OAuthConsumer.h"
 
@@ -92,6 +93,13 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [nc addObserver:self selector:@selector(becameActive) name:UIApplicationWillEnterForegroundNotification object:nil];
     [MenyouApi getInstance].delegate = self;
     self.locationManager.delegate = self;
+    if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+    {
+        if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+        {
+            [self.locationManager requestAlwaysAuthorization];
+        }
+    }
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     self.refreshControl = [[UIRefreshControl alloc]
@@ -266,6 +274,8 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     {
         [r reloadReviews];
     }
+    UITableView* table = ((LeftTableViewController*) self.slidingViewController.underLeftViewController).tableView;
+    [table reloadData];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
