@@ -13,8 +13,8 @@ want to see.  Menyou shows you the most popular items on a menu and even lets yo
 letting you narrow down your choice to the perfect order.
 
 ### Use
-The app is designed to be used and tested for the iPhone5/5s running iOS 7.1.1 or later.  The website is compatible
-with Safari vesrion 7.0.4 with javascript enabled and is best displayed at a window size of 1259 x 897.
+The app is designed to be used and tested for the iPhone5/5s running iOS 7.1.1 or later.  The website is best viewed
+with Safari vesrion 7.0.4 and requires javascript enabled; it is best displayed at a window size of 1259 x 897.
 The phone must also have a network connection and the app must be allowed to access location.  Furthermore, some
 features require the phone to have a camera.
 
