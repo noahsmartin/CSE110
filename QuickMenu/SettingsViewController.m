@@ -44,7 +44,7 @@
     NSString* username = [MenyouApi getInstance].username;
     if(username)
     {
-        if ([username containsString:@"@menyoutouch.com"]) {
+        if ([username rangeOfString:@"@menyoutouch.com"].location != NSNotFound) {
             username = @"TouchID user";
         }
         self.usernameView.text = [temp stringByAppendingString:username];
