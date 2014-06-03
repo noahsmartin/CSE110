@@ -22,6 +22,13 @@
 
 @end
 
+@protocol MenyouApiFilterDelegate
+
+@required
+-(void)dynamicFilterChanged;
+
+@end
+
 @interface MenyouApi : NSObject
 
 @property (readonly) NSString* username;
@@ -30,7 +37,11 @@
 
 @property NSMutableArray* preferences;
 
+@property NSMutableArray* dynamicPref;
+
 @property (weak) id<MenyouApiDelegate> delegate;
+
+@property (weak) id<MenyouApiFilterDelegate> filterDelegate;
 
 // This is a singleton class
 // Populates defaults in restaruants until requestInfo called
@@ -63,5 +74,7 @@
 -(void)setPref:(NSString*)pref withValue:(int)value withBlock:(void(^)(BOOL success))block;
 
 -(void)savePrefs;
+
+-(void)filterUpdated;
 
 @end

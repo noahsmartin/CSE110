@@ -124,6 +124,7 @@
         // We do this even if the api call was not successful because if it was not we still wan't the user to see
         // the dishes updated
         [[MenyouApi getInstance].preferences replaceObjectAtIndex:index withObject:[NSString stringWithFormat:@"%d", state]];
+        [[MenyouApi getInstance].dynamicPref replaceObjectAtIndex:index withObject:[NSString stringWithFormat:@"%d", state]];
         [[MenyouApi getInstance] savePrefs];
     }];
 }

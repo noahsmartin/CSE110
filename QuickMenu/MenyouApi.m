@@ -49,6 +49,7 @@ BOOL DEBUG_API = NO;
         _username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         _business = [[NSUserDefaults standardUserDefaults] objectForKey:@"business"];
         self.preferences = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"preferences"]];
+        self.dynamicPref = [NSMutableArray arrayWithArray:self.preferences];
         
         if([self loggedIn])
         {
@@ -204,6 +205,9 @@ BOOL DEBUG_API = NO;
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Peanut-Allergy"]]];
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Kosher"]]];
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Low-Fat"]]];
+                
+                self.dynamicPref = [NSMutableArray arrayWithArray:self.preferences];
+                
                 if([[json objectForKey:@"Reviews"] isKindOfClass:[NSDictionary class]])
                     self.reviews = [[json objectForKey:@"Reviews"] mutableCopy];
                 [[NSUserDefaults standardUserDefaults] setObject:self.session forKey:@"session"];
@@ -378,6 +382,11 @@ BOOL DEBUG_API = NO;
     hash = [hash stringByReplacingOccurrencesOfString:@"<" withString:@""];
     hash = [hash stringByReplacingOccurrencesOfString:@">" withString:@""];
     return hash;
+}
+
+-(void)filterUpdated
+{
+    [self.filterDelegate dynamicFilterChanged];
 }
 
 @end
