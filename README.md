@@ -13,10 +13,10 @@ want to see.  Menyou shows you the most popular items on a menu and even lets yo
 letting you narrow down your choice to the perfect order.
 
 ### Use
-The app is designed to be used and tested for the iPhone5/5s running iOS 7.1.1 or later.  The website is compatible
-with Safari vesrion 7.0.4 with javascript enabled and is best displayed at a window size of 1259 x 897.
+The app is designed to be used and tested for the iPhone5/5s running iOS 7.1.1 or later.  The website is best viewed
+with Safari vesrion 7.0.4 and requires javascript enabled; it is best displayed at a window size of 1259 x 897.
 The phone must also have a network connection and the app must be allowed to access location.  Furthermore, some
 features require the phone to have a camera.
 
 ### Building
-The app has been updated to support iOS 8 and is still backrwards compatible with iOS 7 but must be compiled with Xcode 6 Beta 1.  If you do not have the latest Xcode, you can still compile the app with Xcode 5 if you comment out two sections that use iOS 8 APIs.
+The app has been updated to support iOS 8 and is still backrwards compatible with iOS 7 but must be compiled with Xcode 6 Beta 1.  If you do not have the latest Xcode, you can still compile the app with Xcode 5 if you comment out two sections that use iOS 8 APIs.  You will also need to remove CloudKit from Linked Framkeworks and Libraries if you are building in Xcode 5.
