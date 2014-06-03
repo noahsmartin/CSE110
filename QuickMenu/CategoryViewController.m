@@ -11,7 +11,7 @@
 #import "DishViewController.h"
 #import "MenyouApi.h"
 
-@interface CategoryViewController () <MenyouApiFilterDelegate>
+@interface CategoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *categoryTableView;
 
@@ -35,7 +35,6 @@
     view.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.4];
     [self.view addSubview:view];
     self.titleLabel.text = self.title;
-    [MenyouApi getInstance].filterDelegate = self;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -56,6 +55,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.category.filteredDishes = [self.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
     [self.categoryTableView reloadData];
 }
 
@@ -183,10 +183,8 @@
     }
 }
 
--(void)dynamicFilterChanged
+-(void)updateTableView
 {
-    self.category.filteredDishes = [self.category filterOutDishes:[MenyouApi getInstance].dynamicPref];
-    NSLog(@"%@", self.titleLabel);
     [self.categoryTableView reloadData];
 }
 
