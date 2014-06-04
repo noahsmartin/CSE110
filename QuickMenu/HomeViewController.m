@@ -93,6 +93,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [nc addObserver:self selector:@selector(becameActive) name:UIApplicationWillEnterForegroundNotification object:nil];
     [MenyouApi getInstance].delegate = self;
     self.locationManager.delegate = self;
+#if !__IPHONE_OS_VERSION_MIN_REQUIRED
     if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
     {
         if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
@@ -100,6 +101,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
             [self.locationManager requestAlwaysAuthorization];
         }
     }
+#endif
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     self.refreshControl = [[UIRefreshControl alloc]
