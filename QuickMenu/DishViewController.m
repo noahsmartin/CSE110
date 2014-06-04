@@ -12,7 +12,7 @@
 #import "AddRatingViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "ASMediaFocusManager.h"
-#import "DishAttributes.h"
+#import "PropertiesView.h"
 
 @interface DishViewController () <ASMediasFocusDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleView;

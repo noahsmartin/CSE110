@@ -56,7 +56,7 @@
 		4F91227E1915744100139F81 /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91227D1915744100139F81 /* MEDynamicTransition.m */; };
 		4F94FEB7192D7ADD0091C3BC /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */; };
 		4F96295C18FD0FB600F4EC34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F96295B18FD0FB600F4EC34 /* CoreLocation.framework */; };
-		4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA02640193D9079007DEE5C /* CloudKit.framework */; };
+		4FA02641193D9079007DEE5C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA02640193D9079007DEE5C /* CloudKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4FA2C0B1191DB8C200793042 /* StarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C0B0191DB8C200793042 /* StarView.m */; };
 		4FA80C0F192C686D00737687 /* TopDishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA80C0E192C686D00737687 /* TopDishesViewController.m */; };
 		4FB3AE641937F4D400D90AF5 /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB3AE631937F4D400D90AF5 /* FilterTableViewController.m */; };
