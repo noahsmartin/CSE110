@@ -21,6 +21,7 @@
 @property int numRatings;
 @property NSMutableArray* properties;
 @property NSString* chefRecommendation;
+@property NSString* isSpicy;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 

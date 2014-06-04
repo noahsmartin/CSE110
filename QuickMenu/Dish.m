@@ -55,6 +55,16 @@
             [self.properties addObject: [NSNumber numberWithBool:YES]];
         else
             [self.properties addObject: [NSNumber numberWithBool:NO]];
+
+        if([self.chefRecommendation isEqualToString:@"1"])
+            [self.properties addObject: [NSNumber numberWithBool:YES]];
+        else
+            [self.properties addObject: [NSNumber numberWithBool:NO]];
+        
+        if([self.isSpicy isEqualToString:@"1"])
+            [self.properties addObject: [NSNumber numberWithBool:YES]];
+        else
+            [self.properties addObject: [NSNumber numberWithBool:NO]];
         
         if([data objectForKey:@"rating"])
         {
