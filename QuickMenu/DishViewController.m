@@ -12,6 +12,7 @@
 #import "AddRatingViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "ASMediaFocusManager.h"
+#import "DishAttributes.h"
 
 @interface DishViewController () <ASMediasFocusDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
@@ -171,6 +172,7 @@
         [self.yourReviewStars setHidden:YES];
     }
     [self setButtonImage:self.selectedButton];
+    [self.dishAttributes setHidden:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated

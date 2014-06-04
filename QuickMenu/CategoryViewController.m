@@ -78,6 +78,7 @@
     [cell setDishSelected:((Dish*) self.category.filteredDishes[indexPath.row]).isSelected];
     cell.starView.rating = ((Dish*) self.category.filteredDishes[indexPath.row]).rating;
     
+    
     return cell;
 }
 

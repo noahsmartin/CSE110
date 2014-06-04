@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39C16B93193EB0E700F278E5 /* PropertiesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C16B92193EB0E700F278E5 /* PropertiesView.m */; };
 		39F090351921C4390023B2B7 /* HomeTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A493318FDEE420053D0B8 /* HomeTableViewDataSource.m */; };
 		4F0C6DFE18FD023900A0F186 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C6DFD18FD023900A0F186 /* HomeViewController.m */; };
 		4F23B5F91919A39E006C0B58 /* DishTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23B5F81919A39E006C0B58 /* DishTableViewCell.m */; };
@@ -114,6 +115,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39C16B91193EB0E700F278E5 /* PropertiesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertiesView.h; path = ../PropertiesView.h; sourceTree = "<group>"; };
+		39C16B92193EB0E700F278E5 /* PropertiesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertiesView.m; path = ../PropertiesView.m; sourceTree = "<group>"; };
 		4F0C6DFC18FD023900A0F186 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		4F0C6DFD18FD023900A0F186 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		4F23B5F71919A39E006C0B58 /* DishTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishTableViewCell.h; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				4F80A21D19009B510012A60F /* MenyouApi.m */,
 				4FA2C0AF191DB8C200793042 /* StarView.h */,
 				4FA2C0B0191DB8C200793042 /* StarView.m */,
+				39C16B91193EB0E700F278E5 /* PropertiesView.h */,
+				39C16B92193EB0E700F278E5 /* PropertiesView.m */,
 			);
 			name = MenyouData;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				4FC4E826193263F1008609A6 /* AFNetworkReachabilityManager.m in Sources */,
 				4F7F5CF519343815006FEFF2 /* ASImageScrollView.m in Sources */,
 				4F26DFB41901BBBD002C4FEC /* RestaurantFactory.m in Sources */,
+				39C16B93193EB0E700F278E5 /* PropertiesView.m in Sources */,
 				4F5D5F8218FCB0D00042A0BA /* main.m in Sources */,
 				4F7F5CE41933C3BB006FEFF2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				39F090351921C4390023B2B7 /* HomeTableViewDataSource.m in Sources */,

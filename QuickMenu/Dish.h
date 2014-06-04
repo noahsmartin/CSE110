@@ -20,6 +20,7 @@
 @property double myRating;
 @property int numRatings;
 @property NSMutableArray* properties;
+@property NSString* chefRecommendation;
 
 -(instancetype)initWithData:(NSDictionary*)data;
 
