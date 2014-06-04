@@ -18,6 +18,9 @@
         self.title = [data objectForKey:@"title"];
         self.price = [NSString stringWithFormat:@"%@", [data objectForKey:@"price"]];
         self.itemDescription = [data objectForKey:@"description"];
+        self.chefRecommendation = [data objectForKey:@"chefrecommended"];
+        self.spicyProp = [data objectForKey:@"spicemeter"];
+        
         self.properties = [[NSMutableArray alloc] init];
         
         NSString* tempdata = [data objectForKey:@"vegetarian"];
@@ -61,7 +64,7 @@
         else
             [self.properties addObject: [NSNumber numberWithBool:NO]];
         
-        if([self.isSpicy isEqualToString:@"1"])
+        if([self.spicyProp isEqualToString:@"1"])
             [self.properties addObject: [NSNumber numberWithBool:YES]];
         else
             [self.properties addObject: [NSNumber numberWithBool:NO]];

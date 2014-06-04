@@ -9,6 +9,7 @@
 #import "TopDishesViewController.h"
 #import "Dish.h"
 #import "DishViewController.h"
+#import "PropertiesView.h"
 
 @interface TopDishesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -88,6 +89,9 @@
         cell.delegate = self;
         [cell setDishSelected:dish.isSelected];
         cell.starView.rating = dish.rating;
+        [cell.propView setAttributeImages:dish.properties];
+        [cell.propView setChefRecommended:dish.chefRecommendation];
+                                      
     }
     return cell;
 }

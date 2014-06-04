@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Dish.h"
+#import "PropertiesView.h"
 
 @interface DishViewController : UIViewController
 
 @property (weak) Dish* dish;
 @property NSString* restaurant;
+@property (weak, nonatomic) IBOutlet PropertiesView *propView;
 
 @end

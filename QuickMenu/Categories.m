@@ -90,10 +90,22 @@
         {
             if([[filters objectAtIndex:i] isEqualToString:@"1"])
             {
-                if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:NO]])
+                //If it does have dairy(2) or peanuts(3) remove them...
+                if(i == 2 || i ==3)
                 {
-                    [tempresult removeObject:d];
-                    break;
+                    if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:YES]])
+                    {
+                        [tempresult removeObject:d];
+                        break;
+                    }
+                }
+                else //remove things that aren't vegetarian, vegan, etc.
+                {
+                    if([[d.properties objectAtIndex:i] isEqualToNumber:[NSNumber numberWithBool:NO]])
+                    {
+                        [tempresult removeObject:d];
+                        break;
+                    }
                 }
             }
         }

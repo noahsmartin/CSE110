@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Menu.h"
 #import "DishTableViewCell.h"
+#import "PropertiesView.h"
 
 @interface TopDishesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DishTableViewDelegate>
 
 @property Menu* menu;
 @property NSString* restaurant;
+@property NSArray* dishProps;
 
 -(void)updateTableView;
+
 
 @end

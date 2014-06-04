@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StarView.h"
+#import "PropertiesView.h"
 
 @protocol DishTableViewDelegate <NSObject>
 
@@ -28,8 +29,11 @@
 @property (weak, nonatomic) id<DishTableViewDelegate> delegate;
 @property (weak) id data;  // The dish object, the view should not know anything about it
 @property (weak, nonatomic) IBOutlet StarView *starView;
+@property (weak, nonatomic) IBOutlet PropertiesView *propView;
 
 -(void)setDishSelected:(BOOL)selected;
 -(void)setColor:(UIColor*)color;
+-(void)setimageAttributes:(NSArray*)dishProps;
+-(void)setChefRecommended:(NSString*)setChef;
 
 @end

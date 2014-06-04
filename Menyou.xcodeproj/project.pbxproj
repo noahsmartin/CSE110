@@ -360,8 +360,6 @@
 				4F80A21D19009B510012A60F /* MenyouApi.m */,
 				4FA2C0AF191DB8C200793042 /* StarView.h */,
 				4FA2C0B0191DB8C200793042 /* StarView.m */,
-				39C16B91193EB0E700F278E5 /* PropertiesView.h */,
-				39C16B92193EB0E700F278E5 /* PropertiesView.m */,
 			);
 			name = MenyouData;
 			sourceTree = "<group>";
@@ -416,6 +414,8 @@
 				4F7F5CD11933C3BB006FEFF2 /* UIKit+AFNetworking */,
 				4F5D5F9018FCB0D00042A0BA /* Images.xcassets */,
 				4F8AEAA419283A4800479B23 /* AddRatingViewController.h */,
+				39C16B91193EB0E700F278E5 /* PropertiesView.h */,
+				39C16B92193EB0E700F278E5 /* PropertiesView.m */,
 				4F8AEAA519283A4800479B23 /* AddRatingViewController.m */,
 				4F94FEB5192D7ADD0091C3BC /* AVCamPreviewView.h */,
 				4F94FEB6192D7ADD0091C3BC /* AVCamPreviewView.m */,

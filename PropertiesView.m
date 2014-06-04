@@ -10,7 +10,7 @@
 #import "MenyouApi.h"
 
 @interface PropertiesView();
-@property (nonatomic)  UILabel* dishAttributes;
+@property (nonatomic)  UILabel* properties;
 @property NSArray* images;
 @end
 
@@ -31,17 +31,43 @@
     [self setUp];
 }
 
--(void)setAttributeImages{
-    if([[MenyouApi getInstance].preferences count] == 0)
-        [self.dishAttributes setHidden:YES];
-    
-    else{
-        
+-(void)setAttributeImages:(NSArray*)dishProps{
+    for(int i = 0; i < sizeof(dishProps); i++){
+        [self.images[i] setImage:nil];
     }
     
+    int i = 0;
+    if([[dishProps objectAtIndex:0] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0veggie"]];
+        i++;
+    }
+    if([[dishProps objectAtIndex:1] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0vegan"]];
+        i++;
+    }
+    if([[dishProps objectAtIndex:2] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0dairyfree"]];
+        i++;
+    }
+    if([[dishProps objectAtIndex:3] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0peanut"]];
+        i++;
+    }
+    if([[dishProps objectAtIndex:4] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0kosher"]];
+        i++;
+    }
+    if([[dishProps objectAtIndex:5] boolValue]){
+        [self.images[i] setImage:[UIImage imageNamed:@"0lowfat"]];
+        i++;
+    }
     
-    //set numAttributes to only top 3 most important if > 3
-    
+    if([self.chefRecommended isEqualToString:@"1"])
+    {
+        NSLog(@"chef recommend");
+        [self.images[i] setImage:[UIImage imageNamed:@"0chef"]];
+    }
+
     [self setNeedsDisplay];
 }
 
@@ -54,7 +80,7 @@
     
     int i = 0;
     for(UIImageView *v in array){
-        [v setFrame:CGRectMake(i*15, 0, 15, 15)];
+        [v setFrame:CGRectMake(i*16, 0, 15, 15)];
         [self addSubview:v];
         i++;
     }

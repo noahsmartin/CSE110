@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property ASMediaFocusManager* mediaManager;
-@property (weak, nonatomic) IBOutlet UIView *dishAttributes;
 @property int imageCount;
 @property CGFloat contentOffset;
 @end
@@ -172,7 +171,8 @@
         [self.yourReviewStars setHidden:YES];
     }
     [self setButtonImage:self.selectedButton];
-    [self.dishAttributes setHidden:NO];
+    [self.propView setAttributeImages:self.dish.properties];
+    [self.propView setChefRecommended:self.dish.chefRecommendation];
 }
 
 -(void)viewDidAppear:(BOOL)animated

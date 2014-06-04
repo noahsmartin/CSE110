@@ -139,6 +139,15 @@
     }
 }
 
+-(void)setimageAttributes:(NSArray*)dishProps{
+    [self.propView setAttributeImages:dishProps];
+}
+
+-(void)setChefRecommended:(NSString*)setChef
+{
+    self.propView.chefRecommended = setChef;
+}
+
 - (void)awakeFromNib
 {
     [self setup];

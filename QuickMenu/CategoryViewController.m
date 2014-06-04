@@ -77,7 +77,9 @@
     cell.delegate = self;
     [cell setDishSelected:((Dish*) self.category.filteredDishes[indexPath.row]).isSelected];
     cell.starView.rating = ((Dish*) self.category.filteredDishes[indexPath.row]).rating;
-    
+    [cell setimageAttributes:((Dish*) self.category.filteredDishes[indexPath.row]).properties];
+    NSLog(@"title: %@ %@", ((Dish*) self.category.filteredDishes[indexPath.row]).title, ((Dish*) self.category.filteredDishes[indexPath.row]).chefRecommendation);
+    [cell setChefRecommended:((Dish*) self.category.filteredDishes[indexPath.row]).chefRecommendation];
     
     return cell;
 }

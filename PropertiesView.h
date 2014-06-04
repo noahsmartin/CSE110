@@ -10,4 +10,9 @@
 
 @interface PropertiesView : UIView
 
+@property (nonatomic) NSArray* dishProps;
+@property NSString* chefRecommended;
+
+-(void)setAttributeImages:(NSArray*)dishProps;
+
 @end
