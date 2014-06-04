@@ -93,7 +93,7 @@ NSString* token_secret = @"ob9tIi9tc40InGRM-qPtfwVrTYc";
     [nc addObserver:self selector:@selector(becameActive) name:UIApplicationWillEnterForegroundNotification object:nil];
     [MenyouApi getInstance].delegate = self;
     self.locationManager.delegate = self;
-#if !__IPHONE_OS_VERSION_MIN_REQUIRED
+#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_7_1
     if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
     {
         if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)

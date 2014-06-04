@@ -41,9 +41,10 @@
 
 - (IBAction)touchId:(id)sender {
     // Check for pre ios8
-#if !TARGET_IPHONE_SIMULATOR
     if(NSClassFromString(@"LAContext") != Nil)
     {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_7_1
+#if !TARGET_IPHONE_SIMULATOR
         LAContext *myContext = [[LAContext alloc] init];
         NSError *authError = nil;
         NSString *myLocalizedReasonString = @"Authenticate with TouchID to log in.";
@@ -80,13 +81,14 @@
         } else {
             // Could not evaluate policy; look at authError and present an appropriate message to user
         }
+#endif
+#endif
     }
     else {
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error" message:@"TouchID authentication not supported on your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
-#endif
 }
 
 - (IBAction)cancel:(id)sender {
