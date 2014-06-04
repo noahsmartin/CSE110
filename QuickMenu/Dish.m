@@ -18,6 +18,9 @@
         self.title = [data objectForKey:@"title"];
         self.price = [NSString stringWithFormat:@"%@", [data objectForKey:@"price"]];
         self.itemDescription = [data objectForKey:@"description"];
+        self.chefRecommendation = [data objectForKey:@"chefrecommended"];
+        self.spicyProp = [data objectForKey:@"spicemeter"];
+        
         self.properties = [[NSMutableArray alloc] init];
         
         NSString* tempdata = [data objectForKey:@"vegetarian"];
