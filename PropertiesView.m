@@ -64,7 +64,6 @@
     
     if([self.chefRecommended isEqualToString:@"1"])
     {
-        NSLog(@"chef recommend");
         [self.images[i] setImage:[UIImage imageNamed:@"0chef"]];
     }
 
