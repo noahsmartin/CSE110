@@ -9,13 +9,13 @@
 #import "LoginViewController.h"
 #import "MenyouApi.h"
 
-/*#if __has_include(<LocalAuthentication/LocalAuthentication.h>)
+#if __has_include(<LocalAuthentication/LocalAuthentication.h>)
 #import <LocalAuthentication/LocalAuthentication.h>
 #endif
 
 #if __has_include(<CloudKit/CloudKit.h>)
 #import <CloudKit/CloudKit.h>
-#endif*/
+#endif
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
@@ -41,7 +41,6 @@
 
 - (IBAction)touchId:(id)sender {
     // Check for pre ios8
-#if !__IPHONE_OS_VERSION_MIN_REQUIRED
 #if !TARGET_IPHONE_SIMULATOR
     if(NSClassFromString(@"LAContext") != Nil)
     {
@@ -87,7 +86,6 @@
                                    initWithTitle:@"Error" message:@"TouchID authentication not supported on your device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
-#endif
 #endif
 }
 

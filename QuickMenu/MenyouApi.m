@@ -208,8 +208,7 @@ BOOL DEBUG_API = NO;
                 _username = username;
                 self.session = [json objectForKey:@"SessionID"];
                 _business = [json objectForKey:@"Business"];
-                if(!self.preferences)
-                    self.preferences = [NSMutableArray array];
+                self.preferences = [NSMutableArray array];
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegetarian"]]];
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Vegan"]]];
                 [self.preferences addObject:[NSString stringWithFormat:@"%@", [json objectForKey:@"Dairy-Free"]]];
