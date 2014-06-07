@@ -1,0 +1,120 @@
+<html>
+
+<head>
+ 
+
+<title>many flat such red wow</title>
+<link rel="stylesheet" type="text/css" href="style-mobile.css">
+
+
+<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="JS/jquery.leanModal.min.js"></script>
+</head>
+
+
+
+<body>
+
+
+
+
+<div id="wrapper" style="height:100%;width=100%"  >
+    
+
+
+     <div id = "name">
+      
+     <ul>      <center>   
+      	       
+       <li>M e n y o u</li> 
+      
+ </center>    </ul>
+     
+     </div>
+
+ 
+
+
+
+     <div id="signin">
+     <ul>
+     
+     <form >
+      
+         
+         <center>  <input type="text" class="username"  placeholder="Email Address" /> 
+         
+<input type="password" class="password"    placeholder="Password" />
+
+         <input type="submit" class ="Login"   value="Sign In">
+  </center>
+     </form>
+     
+     </ul> 
+  
+     </div>
+
+  
+ 
+     <div id="reg"> <ul><center><a href="#registermodal" class="flatbtn" id="modaltrigger">
+  <input type="submit" class ="register"   value="Create an Account">
+</a>  </center>
+    </center> </ul></div>
+
+
+
+
+ 
+  <div id="loginmodal" style="display:none;">
+    <h1><center><font face="Roboto" size="14" color="#555555">User Login</font></center></h1>
+    <form id="loginform" name="loginform" method="post" action="mobile.html">
+   
+      <input type="text" name="username" id="username" class="txtfield" tabindex="1" placeholder = "Email Address">
+      <input type="password" name="password" id="password" class="txtfield" tabindex="2" placeholder = "Password">
+      <center><input type="submit" name="loginbtn" id="loginbtn" class="loginbtn" value="Sign In" tabindex="3"></center>
+   
+  </form>
+  </div>
+
+
+  <div id="registermodal" style="display:none;">
+  <h1><center><font face="Roboto" size="14" color="#555555">Sign Up</font></center></h1><hr>
+  <form id="loginform" name="loginform" method="post" action="mobile.html">
+   
+
+
+  <input type="text" name="username1" id="username1" class="txtfield" tabindex="1" placeholder = "Email Address">
+  <input type="text" name="yelpid" id="yelpid" class="txtfield" tabindex="4" placeholder = "Yelp ID"> 
+  <input type="password" name="password1" id="password1" class="txtfield" tabindex="2" placeholder = "Password">
+  <input type="password" name="password2" id="password2" class="txtfield" tabindex="3" placeholder = "Confirm Password">
+
+  <center><input type="submit" name="loginbtn1" id="loginbtn1" class="loginbtn" value="Register My Account" tabindex="3"></center>
+   
+  </form>
+  </div>
+
+
+
+<script type="text/javascript">
+$(function(){
+  $('#loginform').submit(function(e){
+    return false;
+  });
+  
+  $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+  $('#modaltrigger2').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+});
+</script>
+
+
+</div>
+
+
+
+
+<body bgcolor="#E84C3D"> 
+
+</body>
+
+
+</html>

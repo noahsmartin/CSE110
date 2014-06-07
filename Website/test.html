@@ -1,0 +1,104 @@
+<html>
+
+<head>
+ 
+
+<title>Menyou App</title>
+
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js'></script>
+	<script type='text/javascript' src='blur.js'></script>
+<script type="text/javascript" charset="utf-8" src="JS/jquery.leanModal.min.js"></script>
+
+
+<style type="text/css">
+		
+body
+{
+margin: 0;
+padding: 0;
+}
+#mainContent {
+    margin-top: 450px;
+}
+#wrapper {
+        background-image: url('02950_dreambig_2880x1800.jpg');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    bottom:0;
+    right: 0;
+}
+</style>
+
+</head>
+
+<body> 
+
+<script type="text/javascript">
+<!--
+if (screen.width <= 699) {
+document.location = "mobile.html";
+}
+//-->
+</script>
+
+<div id="wrapper">
+
+  <!--<div id="header">
+         
+     <div id = "name">
+       Menyou
+     </div>
+
+    <div style="float:right;">
+        <div id="health">
+             <form>
+                 <input type="text" class="username"  placeholder="Email Address" /> 
+                 
+                 <input type="password" class="password"    placeholder="Password" />
+        
+                 <input type="submit" class ="Login"   value="Sign In">
+             </form>
+         </div>
+         
+         <div id="text">
+              <div id="registerlink">
+                  <a href="#registermodal" class="registerlink" id="modaltrigger">Register an account</a>
+              </div>    
+              <div id="passwordlink">
+                  <a href="#passwordmodal" class="passwordlink" id="modaltrigger2">Forgot your password?</a>
+              </div>
+         </div>
+    </div>
+     
+  </div>  -->
+  
+  <div align="center">
+  <div id="mainContent">
+  <div id="mainText" class="blur">
+  <h1>test</h1>
+  </div>
+  </div>
+  </div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.blur').blurjs({
+			        source: '#wrapper',
+				radius:10,
+			});
+		});
+	</script>
+  
+
+</div>
+
+
+</body>
+
+
+</html>

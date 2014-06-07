@@ -1,0 +1,226 @@
+<html>
+
+<head>
+ 
+
+<title>Menyou App</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<script type="text/javascript" src="JS/jquery-1.9.1..js"></script>
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js'></script>
+<script type="text/javascript" charset="utf-8" src="JS/jquery.leanModal.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="sha256.js"></script>
+
+
+</head>
+
+<body> 
+
+<script type="text/javascript">
+<!--
+if (screen.width <= 0) {
+document.location = "mobile.html";
+}
+//-->
+</script>
+
+<div id="wrapper" style="height:100%;width=100%">
+
+  <div id="header">
+         
+     <div id = "name">
+       Menyou
+     </div>
+
+    <div style="float:right;">
+        <div id="health">
+             <form onsubmit='return httpGet("appLogin.php")'>
+                 <input id = "userEmail" type="text" class="username"  placeholder="Email Address" /> 
+            	     
+                 <input id = "PWofUser" type="password" class="password"    placeholder="Password" />
+        
+                 <input type="submit" class ="Login"   value="Sign In">
+             </form>
+         </div>
+         
+         <div id="text">
+              <div id="registerlink">
+                  <a href="#registermodal" class="registerlink" id="modaltrigger">Register an account</a>
+              </div>    
+             <!-- <div id="passwordlink">
+                  <a href="#passwordmodal" class="passwordlink" id="modaltrigger2">Forgot your password?</a>
+              </div>  -->
+         </div>
+    </div>
+     
+  </div>  
+  
+  <div align="center">
+  <div id="mainContent">
+  <div id="mainText">
+      <h1>Welcome!</h1>
+      <br /> <div id="textContent">
+      Menyou was carefully engineered by a team of UCSD students to give you the <i>best</i> restaurant experience possible. <br /> With Menyou you can see customizable menus tailored specifically to your interests so can can stop worrying about what to order and focus on exploring the range of restaurants your city has to offer! <br /> <br />
+      <b>Get it on the app store now!</b>
+      </div>
+  </div>
+  </div>
+  </div>
+
+  <div id="footer">
+  <ul>
+        <div id="links"><ul>
+
+        <li><a href="http://menyouapp.com" class="flatbtn" id="modaltrigger">Home</a></li>
+        <li><a href="https://github.com/noahsmartin/CSE110">About</a></li>
+        <li><a href="http://menyouapp.com/contact.html">Contact</a></li>
+        <li><a href="http://menyouapp.com/terms.html">Terms Of Service</a></li>
+
+        </ul></div>    
+  </ul>
+  </div>
+
+ 
+  <div id="loginmodal" style="display:none;">
+    <h1><center><font face="Roboto" size="14" color="#555555">User Login</font></center></h1>
+    <form id="loginform" name="loginform" method="post" action="index.html">
+   
+      <input type="text" name="username" id="username" class="txtfield" tabindex="1" placeholder = "Email Address">
+      <input type="password" name="password" id="password" class="txtfield" tabindex="2" placeholder = "Password">
+      <center><input type="submit" name="loginbtn" id="loginbtn" class="loginbtn" value="Sign In" tabindex="3"></center>
+   
+  </form>
+  </div>
+
+
+  <div id="registermodal" style="display:none;">
+  <h1><center><font face="Roboto" size="14" color="#555555">Sign Up</font></center></h1><hr>
+  <form id="loginform" name="loginform" onsubmit='return httpGetCreate("appCreateAccount.php")'>
+
+  <input type="text" name="username1" id="username1" class="txtfield" tabindex="1" placeholder = "Email Address">
+  <input type="text" name="yelpid" id="yelpid" class="txtfield" tabindex="4" placeholder = "Yelp ID"> 
+  <input type="password" name="password1" id="password1" class="txtfield" tabindex="2" placeholder = "Password">
+  <input type="password" name="password2" id="password2" class="txtfield" tabindex="3" placeholder = "Confirm Password">
+
+  <center><input type="submit" name="loginbtn1" id="loginbtn1" class="loginbtn" value="Register My Account" tabindex="3"></center>
+   
+  </form>
+  </div>
+
+
+
+    <div id="passwordmodal" style="display:none;">
+    <h1><center><font face="RobotoL" size="5" color="#555555">Forgot your password? Just enter in the email address you used to sign up for your account and we'll send you instructions to reset your password</font></center><hr>
+    <form id="loginform" name="loginform" method="post" action="index.html">
+   
+      <input type="text" name="email" id="email" class="txtfield" tabindex="1" placeholder = "Email Address">
+      <center><input type="submit" name="emailbtn" id="emailbtn" class="loginbtn" value="Retrieve My Password" tabindex="3"></center>
+   
+  </form>
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $('#loginform').submit(function(e){
+    return false;
+  });
+  
+  $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+  $('#modaltrigger2').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+});
+</script>
+
+<script>
+function httpGet(theUrl)
+{   
+    var pw = document.getElementById("PWofUser").value;
+    var pwHash = SHA256(pw);
+    var user = document.getElementById("userEmail").value;
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "http://menyouapp.com/appLogin.php?email="+user+"&passhash="+pwHash+"&timestamp="+Date.now(), false);
+    xmlHttp.send();
+    var retVal = xmlHttp.responseText;                             //get JSON
+    result = JSON.parse(retVal);                                   // parse JSON and check Status
+    var check = result.Status;
+    console.log(result);
+    /* if get request was successful, redirect. */                       
+    if(check == "Success"){  
+        if(result.Business != "")
+             window.location.href = "http://menyouapp.com/input.php" + "?sessionid=" + result.SessionID+"&business="+result.Business+"&username="+user;
+        else
+             alert("Not a business account");
+    }	
+    else{
+       alert(result.Message);
+    }
+    return false;
+}
+
+function httpGetCreate(theUrl)
+{
+    var pw = document.getElementById("password1").value;
+    var pw2 = document.getElementById("password2").value;
+    if(pw != pw2)
+    {
+        alert("Passwords do not match");
+        return false;
+    }
+    if(pw == "")
+    {
+        alert("Password can't be blank");
+        return false;
+    }
+    var pwHash = SHA256(pw);
+    var user = document.getElementById("username1").value;
+    if(!validateEmail(user))
+    {
+        alert("Invalid email");
+        return false;
+    }
+    var xmlHttp = null;
+    var business = document.getElementById("yelpid").value;
+    if(business == "")
+    {
+        alert("Business can't be blank");
+        return false;
+    }
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "http://menyouapp.com/appCreateAccount.php?email="+user+"&passhash="+pwHash+"&business="+business+"&timestamp="+Date.now(), false);
+    xmlHttp.send();
+    var retVal = xmlHttp.responseText;                             //get JSON
+    result = JSON.parse(retVal);                                   // parse JSON and check Status
+    var check = result.Status;
+    console.log(result);
+    /* if get request was successful, redirect. */                       
+    if(check == "Success"){  
+        if(result.Business != "")
+             window.location.href = "http://menyouapp.com/input.php" + "?sessionid=" + result.SessionID+"&business="+result.Business+"&username="+user;  // redirect to create menu page once we have one.
+        else
+             alert("Not a business account");
+    }	
+    else{
+       alert(result.Message);
+    }
+    return false;
+}
+
+function validateEmail(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+} 
+</script>
+
+
+
+</div>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,443 @@
+@font-face 
+{ 
+
+font-family: Roboto; src: url('Roboto/Roboto-Thin.ttf'); 
+
+} 
+
+@font-face 
+{ 
+
+font-family: RobotoL; src: url('Roboto/Roboto-Light.ttf'); 
+
+} 
+
+#mainContent {
+    position: relative;
+    margin-top: 50px;
+    width: 400px;
+    height: 300px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2;
+    box-shadow: 0px 1px 0px black;
+}
+
+
+#mainText h1{
+    font-family: "Helvetica";
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+    color: black;
+}
+
+#textContent {
+font-family: "Helvetica";
+width: 300px;
+line-height: 22px;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+color: black;
+}
+
+
+body
+{
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+margin: 0;
+padding: 0;
+}
+
+#header{
+
+
+min-width:900px;
+width:100%;
+height:75px;
+clear:both;
+background-color:#C1392B;
+padding: 0;
+top:0;
+left:0;
+margin: 0;
+}
+
+#name
+{
+display: block;
+position: relative;
+float: left;
+font-family: "Helvetica Neue";
+font-weight: 100;
+font-size:75px;
+line-height: 62px;
+padding-top: 2px;
+padding-left: 8px;
+color:#fff;
+white-space:nowrap;
+text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+}
+
+#health
+{
+padding-top: 10px;
+padding-right: 10px;
+}
+
+.username
+{
+  color:#565656;
+  background:#F3F6FA;
+  width: 200px;
+  height:30px;
+  font-size:16px;
+  border-radius:16px;
+  border:0px;
+  padding-left :10px;
+  padding-right :18px;
+
+  font-family:  RobotoL, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.password
+{
+  background:#F3F6FA;
+  margin-left:10px;
+  width: 200px;
+  height:30px;
+  font-size:16px;
+  border-radius:16px;
+  border:0px;
+  padding-left :10px;
+  padding-right :18px;
+  font-family:  RobotoL;
+}
+
+.username:focus
+{
+  outline: none;
+  
+  border-color: #ffffff;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+}
+
+.password:focus
+{
+  outline: none;
+
+  border-color: #ffffff;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 7px #ffffff;
+}
+
+.Login
+{
+  overflow: auto;
+  background: -webkit-linear-gradient(#ffcc99 0%, #c1392b 100%);
+  color:#FFF;
+  width: 90px;
+  height:30px;
+  font-size:16px;
+  border-radius:10px;
+  border:0px;
+  margin-left:8px;
+  box-shadow: 0px 1px 0px rgba(0,0,0,0.67); 
+  font-family:  RobotoL, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-align: center;
+}
+
+.Login:hover
+{
+box-shadow: 0px 1px 1px #000000;
+border: 1px;
+background: -webkit-linear-gradient(#ffcc99 10%, #c1392f 90%);
+font-weight:bold;
+}
+
+Login:active
+{
+box-shadow: 1px 1px 1px #888888;
+background:#d7756b;
+padding-bottom:1px;
+   float: left;
+}
+
+#text {
+    width: 525px;
+    position: relative;
+    bottom: 10px;
+}
+
+#registerLink
+{
+position: relative;
+float: left;
+padding-left: 10px;
+}
+
+#registerLink a
+{
+text-decoration: none;
+font-family: "Helvetica";
+font-weight: 200;
+color: #ffeddc;
+text-shadow: 0px 1px 0px rgba(0,0,0,0.36);
+    	-webkit-transition-property: color;
+	-webkit-transition-duration: 0.28s;
+	}
+	
+#registerLink a:hover, active
+{
+color: white;
+}
+
+#passwordlink
+{
+    position: relative;
+    float: right;
+    padding-right: 140px;
+}
+
+#passwordlink a
+{
+text-decoration: none;
+    font-family: "Helvetica";
+color: #ffeddc;
+text-shadow: 0px 1px 0px rgba(0,0,0,0.36);
+    	      		-webkit-transition-property: color;
+	-webkit-transition-duration: 0.28s;
+}
+#passwordlink a:hover, active
+{
+color: white;
+}
+
+#footer{
+
+width:100% ;
+height:60px;
+clear:both;
+background-color:#C1392B;
+
+position:fixed;
+left:0;
+bottom:0;
+margin: 0 auto;
+text-align: center;
+
+font-family:  RobotoL, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+min-width:900px;
+        
+}
+
+
+
+#links
+{
+position:relative;
+bottom:15;      
+text-align: center;
+width: 700px;
+margin: 0 auto;
+
+}
+
+
+#links li
+{
+list-style: none;
+display: block;
+float: left;
+margin: 1em;
+}
+
+#links li a 
+{
+        text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+        display: block;
+        text-decoration: none;
+        color: #f0f0f0;
+        font-size: 1.6em;
+        text-align:center; 
+}
+
+#links li :hover
+{
+  color: #FFF;
+  text-shadow: 0 0 100px #c61a1a;
+  font-size: 1.7em;
+  margin-top:-3px;
+}
+
+.loginbtn
+{
+  overflow: auto;
+  background:#E84C3D;
+  color:#FFfffF;
+  width: 350px;
+  height:45px;
+  font-size:20px;
+  border-radius:5px;
+  border:0px;
+  padding-right :18px;
+  box-shadow: 0px 2px 0px #888888; 
+  font-family:  RobotoL, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+}
+
+.loginbtn:hover
+{
+background:#e84c3d;
+font-weight:bold;
+
+}
+
+
+.loginbtn:active
+{
+box-shadow: 0px 0px 0px #888888;
+background:#e84c3d;
+margin-top:1px;
+
+}
+
+#lean_overlay {
+    position: fixed;
+    z-index:400;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+ 
+
+
+
+
+/** modal window styles **/
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+ 
+#loginmodal {
+  width: 351px;
+  height:300px;
+  padding: 15px 20px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+}
+
+
+#registermodal {
+  width: 351px;
+  height:382px;
+  padding: 15px 20px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+}
+
+
+#passwordmodal {
+  width: 851px;
+  height:170px;
+  padding: 15px 20px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+}
+
+#registerform{ /* no default styles */ }
+ 
+#registerformform label { display: block; font-size: 1.1em; font-weight: bold; color: #7c8291; margin-bottom: 3px; }
+
+
+ 
+#loginform {  }
+ 
+#loginform label { display: block; font-size: 1.1em; font-weight: bold; color: #7c8291; margin-bottom: 3px; }
+ 
+#passwordform {  }
+ 
+#passwordform label { display: block; font-size: 1.1em; font-weight: bold; color: #7c8291; margin-bottom: 3px; }
+
+.txtfield {
+  display: block;
+  width: 100%;
+  height:40px;
+  padding: 6px 5px;
+  margin-bottom: 15px;
+  font-family:  RobotoL, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #7988a3;
+  font-size: 1.1em;
+  
+  background-color: #fff;
+ 
+  border: 1px solid;
+  border-color: #abbce8 #c3cae0 #b9c8ef;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px; 
+}
+ 
+.txtfield:focus {
+  outline: none;
+  color: #525864;
+  border-color: #84c0ee;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 7px #96c7ec;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 7px #96c7ec;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 7px #96c7ec;
+}
+
+#email
+{
+width:65%;
+font-size: .6em
+
+}
+
+#emailbtn
+{
+
+width:30%;
+position:absolute;
+margin-top:-55px;
+margin-left:20px;
+height:38px;
+right:23;
+text-align:center;
+}
+
+
+
+hr { display: block; height: 4px;
+    border: 0px; border-top: 1px solid #ccc;
+     }
