@@ -397,6 +397,9 @@ BOOL DEBUG_API = NO;
 -(void)updatedynamicPref
 {
     self.dynamicPref = [NSMutableArray arrayWithArray:self.preferences];
+    if(self.dynamicPref.count != 6)
+        self.dynamicPref = [[NSMutableArray alloc] initWithObjects:@"0", @"0", @"0", @"0", @"0", @"0", nil];
+
 }
 
 -(void)filterUpdated
