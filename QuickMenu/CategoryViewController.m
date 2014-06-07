@@ -157,7 +157,7 @@
 
 -(void)itemRemoved:(id)cell
 {
-    NSUInteger index = [self.category.dishes indexOfObject:((DishTableViewCell*) cell).data];
+    NSUInteger index = [self.category.filteredDishes indexOfObject:((DishTableViewCell*) cell).data];
     [self.category removeDish:((DishTableViewCell*) cell).data];
     [self.categoryTableView beginUpdates];
     [self.categoryTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]
